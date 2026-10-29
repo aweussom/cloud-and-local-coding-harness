@@ -7,7 +7,7 @@ fully offline target, the Mac Studio, is waiting on delivery (N-005).
 
 ## Verified
 
-- 2026-10-29: the 5090 (Ollama 0.40.13, 100.98.33.88:11434) serves `glm-5.3:cloud` and `qwen3.8:27b` from one
+- 2026-10-29: the 5090 (Ollama 0.40.13) serves `glm-5.3:cloud` and `qwen3.8:27b` from one
   Anthropic `/v1/messages` endpoint. Raw tool calls: glm 3/3, qwen 5/5, muse-glimmer 3/3; qwen warm 0.4 s.
 - 2026-10-29: `claude-hybrid.ps1` (Claude Code 2.1.312) routes Explore and general-purpose subagents to qwen.
   Token use per model proves it.

@@ -37,7 +37,7 @@ Nobody has published tool-calling reliability numbers for any of these. Phase 4 
 
 ## Phase 1: 5090 server
 
-The 5090 runs Windows. It is at 100.98.33.88 on the tailnet,
+The 5090 runs Windows. It is on the tailnet (address in `OLLAMA_5090_URL` on the laptop),
 already listening there and signed in to Ollama cloud. Ollama 0.40.1, `muse-glimmer:latest` already pulled.
 [OBSERVED 2026-10-29]
 
@@ -71,7 +71,7 @@ already listening there and signed in to Ollama cloud. Ollama 0.40.1, `muse-glim
 
 ## Phase 2: Verify the endpoint from the laptop
 
-Set `$H = "http://100.98.33.88:11434"`.
+Set `$H = $env:OLLAMA_5090_URL`.
 
 ```powershell
 Invoke-RestMethod "$H/api/version"
@@ -100,7 +100,7 @@ reroute every normal Claude Code session. Launch through a wrapper instead.
 
 ```powershell
 param([Parameter(ValueFromRemainingArguments)] $Rest)
-$env:ANTHROPIC_BASE_URL            = 'http://100.98.33.88:11434'
+$env:ANTHROPIC_BASE_URL            = $env:OLLAMA_5090_URL
 $env:ANTHROPIC_AUTH_TOKEN          = 'ollama'
 $env:ANTHROPIC_API_KEY             = ''
 $env:ANTHROPIC_MODEL               = 'glm-5.3:cloud'

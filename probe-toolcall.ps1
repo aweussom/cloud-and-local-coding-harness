@@ -1,11 +1,16 @@
 # Phase 2 probe: does a model behind an Anthropic /v1/messages endpoint emit a real tool_use block?
-# Usage: .\probe-toolcall.ps1 -Model qwen3.8:27b [-BaseUrl http://100.98.33.88:11434] [-Runs 5]
+# Usage: .\probe-toolcall.ps1 -Model qwen3.8:27b [-BaseUrl http://<host>:11434] [-Runs 5]
+# -BaseUrl defaults to $env:OLLAMA_5090_URL, so the host address never lives in this public repo.
 param(
     [Parameter(Mandatory)] [string] $Model,
-    [string] $BaseUrl = 'http://100.98.33.88:11434',
+    [string] $BaseUrl = $env:OLLAMA_5090_URL,
     [int] $Runs = 5
 )
 $ErrorActionPreference = 'Stop'
+if (-not $BaseUrl) {
+    Write-Error 'probe-toolcall.ps1: no endpoint. Pass -BaseUrl or set OLLAMA_5090_URL, e.g. http://<host>:11434'
+    exit 2
+}
 
 $tools = @(
     @{

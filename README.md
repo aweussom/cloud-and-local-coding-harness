@@ -37,6 +37,8 @@ Subagents are routed through the `haiku` alias: `ANTHROPIC_DEFAULT_HAIKU_MODEL=q
 
 - Claude Code on the laptop (tested on 2.1.312), PowerShell 7.
 - The 5090 box: Ollama (tested on 0.40.13), signed in with `ollama signin`.
+- `OLLAMA_5090_URL` in the laptop's environment, e.g. `http://<5090-host>:11434`. The scripts read it and stop if
+  it is missing.
 - `OLLAMA_API_KEY` in the laptop's environment if you want quota numbers in the probe.
 
 ### 5090 setup (by hand, on that box)
@@ -55,7 +57,7 @@ Subagents are routed through the `haiku` alias: `ANTHROPIC_DEFAULT_HAIKU_MODEL=q
 
 ```powershell
 # Is it up, and what is loaded (context length, VRAM as Ollama sees it)
-$H = 'http://<5090-host>:11434'
+$H = $env:OLLAMA_5090_URL
 Invoke-RestMethod "$H/api/version"
 (Invoke-RestMethod "$H/api/ps").models | Select-Object name, context_length, size_vram
 
@@ -71,7 +73,7 @@ Invoke-RestMethod "$H/api/version"
 .\claude-hybrid.ps1          # glm-5.3:cloud main, qwen3.8:27b subagents
 ```
 
-Any `claude` argument passes through. Routing is in `hybrid.settings.json`.
+Any `claude` argument passes through. The wrapper builds its routing settings at startup.
 
 ### Run the probe
 
@@ -92,7 +94,7 @@ Five tasks through `claude -p` against throwaway fixtures. Pass/fail is decided 
 
 ## Layout
 
-- `claude-hybrid.ps1`, `hybrid.settings.json`: the wrapper.
+- `claude-hybrid.ps1`: the wrapper.
 - `probe-toolcall.ps1`, `probe-agent.ps1`: the probes.
 - `results/`: raw measurements, kept byte for byte, failed runs included.
 - `brain/`: plan, decisions, what did not work, open items.

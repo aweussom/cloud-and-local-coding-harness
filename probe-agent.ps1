@@ -25,7 +25,8 @@ Criteria are printed before the run so the verdict cannot be written afterwards.
 param(
     [Parameter(Mandatory)] [string] $MainModel,
     [Parameter(Mandatory)] [string] $SubagentModel,
-    [string] $BaseUrl = 'http://100.98.33.88:11434',
+    # Defaults to $env:OLLAMA_5090_URL so the host address never lives in this public repo.
+    [string] $BaseUrl = $env:OLLAMA_5090_URL,
     [string] $Config = '',
     [int] $TimeoutSec = 900,
     [string] $WorkDir = (Join-Path ([System.IO.Path]::GetTempPath()) 'claude-agent-probe'),
@@ -368,6 +369,9 @@ function Invoke-Task {
 }
 
 # --- run -------------------------------------------------------------------
+if (-not $BaseUrl) {
+    Write-Host 'ERROR: no endpoint. Pass -BaseUrl or set OLLAMA_5090_URL, e.g. http://<host>:11434' -ForegroundColor Red; exit 2
+}
 if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
     Write-Host 'ERROR: claude is not on PATH' -ForegroundColor Red; exit 2
 }

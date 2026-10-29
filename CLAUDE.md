@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## What this repo is
 
 An evaluation of Claude Code with a cloud main model (Ollama Cloud) and local models for subagents, or fully
-offline. Local today: RTX 5090 Ollama at 100.98.33.88 (Windows box, changed by the owner by hand; only its HTTP
+offline. Local today: RTX 5090 Ollama at `$env:OLLAMA_5090_URL` (Windows box, changed by the owner by hand; only its HTTP
 API is reachable from here). Later: Mac Studio M5 Max. Probes, a wrapper, measurements; not a product.
 `README.md` has the runbook, `brain/plans/PLAN.md` the plan, `brain/TODONT.md` the traps already paid for.
 
