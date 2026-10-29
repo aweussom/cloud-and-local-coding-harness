@@ -36,7 +36,7 @@ Subagents are routed through the `haiku` alias: `ANTHROPIC_DEFAULT_HAIKU_MODEL=q
 ### Prerequisites
 
 - Claude Code on the laptop (tested on 2.1.312), PowerShell 7.
-- The 5090 box: Ollama (tested on 0.40.13), signed in with `ollama signin`, reachable on the tailnet at `100.98.33.88:11434`. Port 11434 has no auth, so keep it tailnet only.
+- The 5090 box: Ollama (tested on 0.40.13), signed in with `ollama signin`.
 - `OLLAMA_API_KEY` in the laptop's environment if you want quota numbers in the probe.
 
 ### 5090 setup (by hand, on that box)
@@ -55,11 +55,12 @@ Subagents are routed through the `haiku` alias: `ANTHROPIC_DEFAULT_HAIKU_MODEL=q
 
 ```powershell
 # Is it up, and what is loaded (context length, VRAM as Ollama sees it)
-Invoke-RestMethod http://100.98.33.88:11434/api/version
-(Invoke-RestMethod http://100.98.33.88:11434/api/ps).models | Select-Object name, context_length, size_vram
+$H = 'http://<5090-host>:11434'
+Invoke-RestMethod "$H/api/version"
+(Invoke-RestMethod "$H/api/ps").models | Select-Object name, context_length, size_vram
 
 # Raw tool calls against one model, exit 1 on any miss
-.\probe-toolcall.ps1 -Model qwen3.8:27b -Runs 5
+.\probe-toolcall.ps1 -BaseUrl $H -Model qwen3.8:27b -Runs 5
 ```
 
 `ollama ps` under-reports VRAM by about 6 GB. Task Manager on the 5090 is the truth.
