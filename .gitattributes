@@ -1,0 +1,8 @@
+# LF in the repo and in the working tree, on every OS. Silences the CRLF warnings and keeps exact-match edit tools
+# from tripping on mixed line endings.
+* text=auto eol=lf
+*.ps1 text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+# Probe output is evidence; store it byte for byte.
+results/** -text

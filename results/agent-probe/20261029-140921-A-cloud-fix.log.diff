@@ -1,0 +1,15 @@
+diff --git a/calc.py b/calc.py
+index 19c1050..b56f183 100644
+--- a/calc.py
++++ b/calc.py
+@@ -3,7 +3,9 @@
+ 
+ def apply_discount(amount, percent):
+     """Return amount with percent taken off, rounded to two decimals."""
+-    return round(amount - (amount * percent), 2)
++    # percent arrives as 0-100, not a 0-1 fraction; divide by 100 or a
++    # "10 percent" discount removes 10x the amount
++    return round(amount - (amount * percent / 100.0), 2)
+ 
+ 
+ def total(items):

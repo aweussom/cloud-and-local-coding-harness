@@ -1,0 +1,43 @@
+diff --git a/billing/invoice.py b/billing/invoice.py
+index 9b9e2a2..51ccdec 100644
+--- a/billing/invoice.py
++++ b/billing/invoice.py
+@@ -11,6 +11,6 @@ class Line:
+     currency: str
+ 
+ 
+-def line_total_nok(line):
++def line_amount_nok(line):
+     """One line's amount in NOK."""
+     return to_nok(line.amount, line.currency)
+diff --git a/billing/report.py b/billing/report.py
+index 8171cac..7b0247c 100644
+--- a/billing/report.py
++++ b/billing/report.py
+@@ -1,7 +1,7 @@
+ """The monthly report."""
+-from billing.invoice import line_total_nok
++from billing.invoice import line_amount_nok
+ 
+ 
+ def report_total(lines):
+     """Total of all invoice lines, in NOK."""
+-    return round(sum(line_total_nok(line) for line in lines), 2)
++    return round(sum(line_amount_nok(line) for line in lines), 2)
+diff --git a/tests/test_invoice.py b/tests/test_invoice.py
+index 87086ec..f92cbe9 100644
+--- a/tests/test_invoice.py
++++ b/tests/test_invoice.py
+@@ -1,9 +1,10 @@
+ import sys, os
+-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))from billing.invoice import Line, line_total_nok
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++from billing.invoice import Line, line_amount_nok
+ 
+ 
+ def test_nok_line():
+-    assert line_total_nok(Line("hosting", 100.0, "NOK")) == 100.0
++    assert line_amount_nok(Line("hosting", 100.0, "NOK")) == 100.0
+ 
+ if __name__ == "__main__":
+     fails = 0

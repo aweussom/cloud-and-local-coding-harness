@@ -1,0 +1,20 @@
+{
+  "awaySummaryEnabled": true,
+  "permissions": {
+    "deny": [
+      "Bash(git reset --hard *)",
+      "Bash(git reset --hard)",
+      "Bash(git clean -f *)",
+      "Bash(git clean -ff *)",
+      "Bash(git clean -fd *)",
+      "Bash(git clean -ffd *)",
+      "Bash(git branch -D *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(git push * --force*)",
+      "Bash(git push --delete *)"
+    ]
+  }
+}

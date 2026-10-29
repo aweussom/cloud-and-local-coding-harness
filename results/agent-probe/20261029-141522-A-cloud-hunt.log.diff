@@ -1,0 +1,35 @@
+diff --git a/billing/currency.py b/billing/currency.py
+index 525fa8a..aa0f65b 100644
+--- a/billing/currency.py
++++ b/billing/currency.py
+@@ -4,4 +4,5 @@ from billing.rates import nok_per_unit
+ 
+ def to_nok(amount, currency):
+     """Convert amount in currency to NOK, rounded to two decimals."""
+-    return round(amount / nok_per_unit(currency), 2)
++    # nok_per_unit is quoted as NOK per one unit of the currency, so multiply.
++    return round(amount * nok_per_unit(currency), 2)
+diff --git a/tests/test_invoice.py b/tests/test_invoice.py
+index 87086ec..6ded522 100644
+--- a/tests/test_invoice.py
++++ b/tests/test_invoice.py
+@@ -1,5 +1,6 @@
+ import sys, os
+-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))from billing.invoice import Line, line_total_nok
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++from billing.invoice import Line, line_total_nok
+ 
+ 
+ def test_nok_line():
+diff --git a/tests/test_report.py b/tests/test_report.py
+index 37bdaff..327a2b1 100644
+--- a/tests/test_report.py
++++ b/tests/test_report.py
+@@ -1,5 +1,6 @@
+ import sys, os
+-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))from billing.invoice import Line
++sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++from billing.invoice import Line
+ from billing.report import report_total
+ 
+ 

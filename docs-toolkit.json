@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "Configuration for check_docs.py. This file is per-repo state; the checker",
+    "file itself is copied verbatim and carries nothing project-specific.",
+    "",
+    "enforced: files checked STRICTLY. Start every list EMPTY and add a file only",
+    "once it is already at 100%. A checker that reports hundreds of known misses",
+    "on its first run teaches everyone to ignore it.",
+    "",
+    "Paths are repo-relative, forward slashes, on all platforms."
+  ],
+  "schema_version": 1,
+  "enforced": {
+    "python": [],
+    "javascript": [],
+    "go": [],
+    "swift": [],
+    "kotlin": [],
+    "typescript": []
+  },
+  "skip_dirs": [
+    ".claude",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv"
+  ],
+  "diagram_dirs": [
+    "docs"
+  ],
+  "scan_markdown_diagrams": true,
+  "js_syntax_gate": true
+}
