@@ -1,9 +1,10 @@
 # STATUS
 
 Claude Code runs against the RTX 5090's Ollama with `glm-5.3:cloud` as main model and `qwen3.8:27b` for
-subagents, or with qwen for everything. Both pass every synthetic probe task. Speed differs, and the probes no
-longer tell the configs apart on quality. The next step needs real tasks from the owner's backlog (N-001). The
-fully offline target, the Mac Studio, is waiting on delivery (N-005).
+subagents, or with qwen for everything. Three cheaper cloud main models pass too; `glm-5.3-flash` is the
+everyday candidate at about a ninth of glm-5.3's token price. Every config passes every synthetic probe task, so
+the probes no longer tell them apart on quality. The next step needs real tasks from the owner's backlog
+(N-001). The fully offline target, the Mac Studio, is waiting on delivery (N-005).
 
 ## Verified
 
@@ -24,6 +25,22 @@ fully offline target, the Mac Studio, is waiting on delivery (N-005).
   qwen root-causes `hunt` and follows the `rename` constraint. In B, glm started a subagent only when told to.
   On small repos B is effectively A. Run-to-run noise is large (A delegate 25 s, then 18 s). Raw rows in
   `results/agent-probe-*.jsonl`.
+- 2026-10-30: cheaper Ollama Cloud models as main AND subagent model, same 5 tasks, one run each, 15/15 PASS.
+  Prices per 1M tokens input/output [DOCUMENTED ollama.com/pricing, 2026-10-30]:
+
+  | Task | glm-5.3-flash | minimax-m3.1-flash | mistral-large-4 |
+  |---|---|---|---|
+  | fix | 31 s | 30 s | 31 s |
+  | feature | 39 s | 81 s | 59 s |
+  | delegate | 28 s | 140 s | 48 s |
+  | hunt | 45 s | 84 s | 47 s |
+  | rename | 40 s | 113 s | 38 s |
+  | session quota, 5 tasks | 0.80 % | 0.44 % | 2.33 % |
+  | price in/out | $0.15 / $0.50 | $0.15 / $0.60 | $0.70 / $2.10 |
+
+  glm-5.3 for reference: $1.40 / $4.40. minimax makes the most tool calls (up to 33 per task) and is 2-3x
+  slower, but used the least quota, probably from its $0.015 cached input [INFERRED]. Quota is the session
+  percent read before and after each task.
 
 ## Built, not proven
 

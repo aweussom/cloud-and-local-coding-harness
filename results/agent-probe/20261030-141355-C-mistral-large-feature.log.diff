@@ -1,0 +1,40 @@
+diff --git a/calc.py b/calc.py
+index 19c1050..00eb9b7 100644
+--- a/calc.py
++++ b/calc.py
+@@ -3,7 +3,12 @@
+ 
+ def apply_discount(amount, percent):
+     """Return amount with percent taken off, rounded to two decimals."""
+-    return round(amount - (amount * percent), 2)
++    return round(amount - (amount * percent / 100), 2)
++
++
++def apply_tax(amount, percent):
++    """Return amount with percent added on, rounded to two decimals."""
++    return round(amount + (amount * percent / 100), 2)
+ 
+ 
+ def total(items):
+diff --git a/tests/test_calc.py b/tests/test_calc.py
+index c6aa1b1..89c751b 100644
+--- a/tests/test_calc.py
++++ b/tests/test_calc.py
+@@ -1,12 +1,16 @@
+ import sys, os
+ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+-from calc import apply_discount, total
++from calc import apply_discount, apply_tax, total
+ 
+ 
+ def test_apply_discount_takes_a_percentage_not_a_fraction():
+     assert apply_discount(200.0, 10) == 180.0
+ 
+ 
++def test_apply_tax_adds_a_percentage():
++    assert apply_tax(100.0, 25) == 125.0
++
++
+ def test_total_sums_discounted_items():
+     assert total([(200.0, 10), (100.0, 50)]) == 230.0
+ 
