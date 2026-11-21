@@ -1,0 +1,650 @@
+{
+  "info": {
+    "id": "ses_e008aacd0ffee28sii6wNUC2Pt",
+    "slug": "stellar-island",
+    "projectID": "04f30210bd814334c259957836f6ff91d3e8a943",
+    "directory": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+    "path": "",
+    "parentID": "ses_e008ac02bffeIGmf8gais1PuIJ",
+    "title": "Find optimum backend architectures (@explore subagent)",
+    "agent": "explore",
+    "model": {
+      "id": "qwen3.8:27b",
+      "providerID": "sub",
+      "variant": "default"
+    },
+    "version": "1.18.30",
+    "summary": {
+      "additions": 0,
+      "deletions": 0,
+      "files": 0
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 19268,
+      "output": 2471,
+      "reasoning": 0,
+      "cache": {
+        "read": 61509,
+        "write": 0
+      }
+    },
+    "permission": [
+      {
+        "permission": "question",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_enter",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_exit",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "todowrite",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "task",
+        "pattern": "*",
+        "action": "deny"
+      }
+    ],
+    "time": {
+      "created": 1795287241519,
+      "updated": 1795287267795
+    }
+  },
+  "messages": [
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1795287241526
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "sub",
+          "modelID": "qwen3.8:27b"
+        },
+        "summary": {
+          "diffs": []
+        },
+        "id": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "This is a research task in the NoLlama repo at C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe. Do NOT edit any file.\n\nContext: NoLlama is a Flask LLM/VLM server (nollama.py at the repo root). Most models run on openvino_genai, but a few need the optimum-intel python runtime, selected via the `--backend` runtime flag (see docs/dev/runtime-stacks.md for background). Somewhere in nollama.py there is logic that decides, based on the model architecture name, whether to force the optimum backend instead of the genai backend.\n\nYour job: find that decision logic. Look in nollama.py (and, only if the decision actually lives elsewhere, other Python files — but the user believes it is in nollama.py). Search for terms like \"optimum\", \"backend\", \"architecture\", \"arch\", \"gemma\", \"mpt\", model config reading (e.g. config.json's \"architectures\" field), and any mapping of architecture names to backends.\n\nBe thorough (\"medium\" level): confirm whether the mapping is a hardcoded set/list of architecture names, and note the function name(s) involved and how the decision is applied (e.g. an override of args.backend, a check during model load).\n\nReturn in your final message:\n1. The exact architecture names that are forced onto the optimum backend (verbatim, as written in code).\n2. The file:line references where the decision is made (path:line for the mapping/constant and the function that uses it).\n3. The function name(s) that implement the decision, with a one-sentence description of each.\n4. A short quote of the relevant code lines (a few lines of context) so the answer is verifiable.\n\nDo not edit any files. This is read-only research.",
+          "id": "prt_1ff755338001QfDz7WH3M0pyzi",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7553350019dJ93z1Asv3Nja"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 9838,
+          "input": 9703,
+          "output": 135,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287241539,
+          "completed": 1795287245763
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff755343001uvmRGntkQVf55m",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-start",
+          "id": "prt_1ff755f93001kOu8Crau8TAaYS",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff755343001uvmRGntkQVf55m"
+        },
+        {
+          "type": "reasoning",
+          "text": "I'll search for the relevant code in nollama.py.",
+          "time": {
+            "start": 1795287244694,
+            "end": 1795287245088
+          },
+          "id": "prt_1ff755f9600176OgS4bVckEnwD",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff755343001uvmRGntkQVf55m"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_ep3lvxk3",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "optimum",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 100 matches (more matches available)\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\.gitignore:\n  Line 27: venv-optimum/\n\n  Line 50: # Conversion venv (optimum-cli exports), machine-local\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\CLAUDE.md:\n  Line 40: - Most models run on openvino_genai; a few need optimum-intel's python\n\n  Line 76: | `docs/dev/runtime-stacks.md` | installs, dependency pins, which venv runs what, genai vs optimum backend |\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\DOCKER-INSTALL.md:\n  Line 637:   `optimum`/`transformers`: the container never exports), `nollama.py` +\n\n  Line 659:   costs the `--backend optimum` path inside the image; documented\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\1-now\\033-2h-does-the-optimum-backend-still-serve-anything.md:\n  Line 1: # N-033 — The optimum backend serves no model we ship. Keep it or cut it?\n\n  Line 15: - `--backend optimum` as a manual escape hatch, which nothing in the docs asks a\n\n  Line 20: **What changed and is worth checking first:** optimum-intel\n\n  Line 21: [#1789](https://github.com/huggingface/optimum-intel/pull/1789) (Mamba 2\n\n  Line 28: - [ ] try an export in `venv-optimum` and serve it with `--backend optimum`\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\download-model.ps1:\n  Line 35:     # optimum-cli's --task. Only needed when auto-detection picks the wrong\n\n  Line 36:     # head: an embedding model must export as `feature-extraction`, or optimum\n\n  Line 38:     # result. Left empty, optimum infers it (right for every chat/VLM model).\n\n  Line 82: # and optimum-cli pick it up with no further changes. Only set when -HfToken\n\n  Line 126:     Write-Host \"  Mode:   Convert (optimum-cli, $Weight)\"\n\n  Line 162:     # variant (see header note). Maps to optimum-cli's flag spelling.\n\n  Line 173:     Write-Host \"Running: optimum-cli $($args -join ' ')\" -ForegroundColor DarkGray\n\n  Line 175:     # `python -m` rather than the optimum-cli shim, for the same reason as the\n\n  Line 178:     & python -m optimum.commands.optimum_cli @args\n\n  Line 184:         Write-Host \"    - Check that optimum-intel is installed: pip install optimum[openvino]\" -ForegroundColor Yellow\n\n  Line 185:         Write-Host \"    - Some architectures aren't supported yet by optimum-intel\" -ForegroundColor Yellow\n\n  Line 190:         Write-Host \"        venv-convert\\Scripts\\pip install `\"optimum-intel[openvino]>=1.27`\" `\"transformers==X`\"\" -ForegroundColor Yellow\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\proposed\\2026-09-24-native-tool-template-as-default.md:\n  Line 21: - Scope today: OpenAI endpoint, genai LLM slots. VLM, optimum and the Ollama\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\3-someday\\038-1d-kolibri-1-norwegian-on-the-mac-studio.md:\n  Line 15: transformers modeling code, so optimum-intel cannot export it. llama.cpp\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\waiting-on-time\\007-10min-upstream-ticket-watch.md:\n  Line 17: | [optimum-intel#2080](https://github.com/huggingface/optimum-intel/issues/2080) | `nemotron_h` exporter request (Lightning 30B-A3B; Bolt and Super-VL are `nemotron_h_omni` on top of it). Also flags the transformers `5.16.0.dev0` text-only `generate()` break (T-017). #1789 merged descoped, #1724/#1844 closed unmerged | filed 2026-10-24 (was N-003), offered testing on 140V/B60/CPU. When a PR appears: export Lightning, bare-probe, then `NEEDS_OPTIMUM` slot |\n\n  Line 19: | [optimum-intel#2086](https://github.com/huggingface/optimum-intel/issues/2086) | Phi-3.5-mini OpenVINO IR collapses past ~4.5k prompt tokens (LongRoPE short/long switch suspected); transformers and llama.cpp fine to 30k | filed 2026-10-27 (was N-052), on current drivers (B60 8976, 285K iGPU 9150), offered testing on B60/140V/285K. If bounced as runtime: refile on openvino.genai. When fixed: rerun `scripts/longrope-recall-probe.py`, then drop the warning in `docs/dev/models.md` |\n\n  Line 21: | [optimum-intel#1948](https://github.com/huggingface/optimum-intel/issues/1948) | export can silently produce an IR with no fused SDPA op, so no PagedAttention | **no response since 2026-09-02**. Added 2026-10-19 |\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\API.md:\n  Line 68:     Exported with  : OpenVINO 2026.0.0, optimum-intel 1.27.0.dev0, transformers 4.57.6\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\Dockerfile:\n  Line 39: # also carries optimum-intel/transformers, which exist for model *export* —\n\n  Line 41: # choice: the `--backend optimum` path is unavailable here, so the\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\install.ps1:\n  Line 109:     # optimum-intel is installed from git in this stack (qwen3_5 VLM support\n\n  Line 112:         Write-Host \"ERROR: -Nightly needs 'git' on PATH (optimum-intel installs from GitHub).\" -ForegroundColor Red\n\n  Line 1006:             Write-Host \"Running: optimum-cli $($args -join ' ')\" -ForegroundColor DarkGray\n\n  Line 1007:             & optimum-cli @args\n\n  Line 1010:                 Write-Host \"  If unsupported architecture: needs newer optimum-intel\" -ForegroundColor Yellow\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\models.json:\n  Line 76:             \"notes\": \"Intel's official export (2026-08-12), enabled in the OpenVINO 2026.3.1 release. Lands on a VLM slot with tool calling + prefix caching. Verified 2026-08-30 on Arc 140V (2026.3.1): quotes the instruction back verbatim, answers correctly, ~2.5 tok/s (17 GB on a shared-memory iGPU); 23.8 tok/s on an Arc Pro B60 (2026-10-24). On a 24 GB card the auto-sized 3 GB KV pool peaks ~0.13 GiB under the budget on a 35k-token prefill (2026-10-26, driver 32.0.101.8976); if prefills turn slow there, --cache-size-gb 2. The Xe2/Xe3 GPU corruption seen 2026-08 was the optimum path only — this GenAI path was never affected. Always reasons by default; the web UI's 'Just answer me' trims it.\"\n\n  Line 184:             \"notes\": \"Recommended. Multilingual (100+ languages), 1024 dims, 8192-token inputs. Exports natively: optimum-cli export openvino --task feature-extraction --weight-format int8. Convert with download-model.ps1 -Convert -Weight int8 -Task feature-extraction.\"\n\n  Line 205:             \"notes\": \"768 dims. What Ollama-based RAG clients expect by name - serve it with --embed-name nomic-embed-text:v1.5. Does NOT export through optimum-intel (nomic_bert is unsupported); use scripts/export-embed-onnx.py, which converts the repo's official ONNX instead. Task prefixes ('search_document: ') belong to the client.\"\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 142: # Mamba2+MoE with no GenAI path. Served through optimum-intel's python\n\n  Line 148: # GenAI nightly, B60 2026-08-18, ~14 tok/s vs 8-11 on optimum). If an\n\n  Line 150: # --backend optimum still forces the python runtime for any model.\n\n  Line 154: def needs_optimum(model_dir):\n\n  Line 155:     \"\"\"True when this model must run on the optimum-intel python backend.\n\n  Line 634: # load (optimum-intel defaults CACHE_DIR to <model>/model_cache). The .blob\n\n  Line 1143:     plus the OpenVINO / optimum-intel / transformers versions that built it.\n\n  Line 1242:     optimum-intel pins the attention implementation only for models in\n\n  Line 1357:     if needs_optimum(model_dir):\n\n  Line 1358:         kind += \", served text-only via optimum backend\"\n\n  Line 1365:         \"backend\": \"optimum-intel (python runtime)\" if needs_optimum(model_dir)\n\n  Line 1378:         \"optimum_intel_version\": rt.get(\"optimum/optimum_intel_version\"),\n\n  Line 1379:         \"transformers_version\": rt.get(\"optimum/transformers_version\"),\n\n  Line 1463:             if importlib.util.find_spec(\"optimum\") is None:\n\n  Line 1487:             f\"optimum-intel {info['optimum_intel_version']}\" if info[\"optimum_intel_version\"] else None,\n\n  Line 1662:         # GPU plugin limitation, not a loading conflict: some optimum-exported\n\n  Line 3421:             \"backend\": self.backend,            # genai or optimum runtime\n\n  Line 3898:     optimum backend translates at the edge.\"\"\"\n\n  Line 3906:             print(\"  [optimum] frequency/presence penalties are not supported by \"\n\n  Line 3914:     \"\"\"One model served through optimum-intel's python runtime instead of an\n\n  Line 3917:     --backend optimum. Muse Glimmer lived here until Intel's VLM-shaped\n\n  Line 3928:     backend = \"optimum\"\n\n  Line 3937:         DeviceSlot (the optimum backend has no NPU path, so it is unused).\n\n  Line 3946:         installs don't carry optimum/transformers, and GenAI-only serving\n\n  Line 3950:             import optimum.intel  # noqa: F401\n\n  Line 3953:                 f\"{self.model_name} needs the optimum-intel python backend, \"\n\n  Line 3966:         \"\"\"Load through optimum-intel: integrity check, GPU-corruption warning\n\n  Line 3977:               f\"optimum backend)\")\n\n  Line 4007:                 print(f\"  [GPU] NOTE: the optimum backend on GPU corrupted \"\n\n  Line 4013:                 print(f\"  [GPU] WARNING: the optimum backend on GPU produces \"\n\n  Line 4020:         print(f\"  [{self.device_name}] Loading (optimum-intel runtime)...\",\n\n  Line 4022:         from optimum.intel import OVModelForCausalLM, OVModelForVisualCausalLM\n\n  Line 4195:         raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n\n  Line 4200:         raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n\n  Line 6826:     p.add_argument(\"--backend\", choices=(\"auto\", \"genai\", \"optimum\"),\n\n  Line 6829:                         \"(genai), optimum-intel python runtime (optimum), or \"\n\n  Line 6830:                         \"pick per model (auto — optimum only for architectures \"\n\n  Line 6994:     # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n\n  Line 6995:     # optimum-intel python runtime instead.\n\n  Line 6999:         if args.backend == \"optimum\":\n\n  Line 7001:         return OptimumSlot if needs_optimum(mdir) else DeviceSlot\n\n  Line 7011:         missing = [m for m in (\"optimum\", \"transformers\")\n\n  Line 7014:             print(f\"ERROR: this model needs the optimum-intel backend, but \"\n\n  Line 7023:             print(\"ERROR: this model runs on the optimum-intel backend, which \"\n\n  Line 7028:         print(f\"  [auto] optimum-backend model — using {device} (NPU has no \"\n\n  Line 7029:               f\"optimum path)\", flush=True)\n\n  Line 7165:             print(f\"  Prewarm: inert on the optimum backend (no prefix cache); \"\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\dev\\machines.md:\n  Line 115: optimum.commands.optimum_cli`). Keep writing `python -m <module>` rather\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\dev\\models.md:\n  Line 54: **Conversion is RAM-bound, not disk-bound.** optimum-intel's Qwen3-Next\n\n  Line 115:    optimum-intel only pins the attention implementation for models listed in\n\n  Line 204: architecture, identically for an int8 optimum export and an fp16 ONNX\n\n  Line 364:   `lfm2_moe`; 5.5.4 is refused by optimum-intel's own cap\n\n  Line 429:   (`int4`), Intel's two exports and our own fp16 one (optimum-intel 2.3.0,\n\n  Line 434:   (`optimum/exporters/openvino/model_patcher.py`, the short/long factor\n\n  Line 439:   Reported upstream as optimum-intel#2086 (2026-10-27).\n\n  Line 510:   tok/s. The optimum-path GPU corruption (openvino#37419) never applied\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\LLM-PLAN.md:\n  Line 100:   3. Install export deps (optimum-intel, transformers, accelerate, etc.)\n\n  Line 113: optimum-cli export openvino `\n\n  Line 123: optimum-cli prints progress bars for download and conversion. Let them\n\n  Line 147: requirements-export.txt   # adds optimum-intel, transformers, etc.\n\n  Line 172: optimum-intel[openvino]>=1.27.0\n\n\n(Results truncated. Consider using a more specific path or pattern.)",
+            "metadata": {
+              "matches": 100,
+              "truncated": true
+            },
+            "title": "optimum",
+            "time": {
+              "start": 1795287245094,
+              "end": 1795287245356
+            }
+          },
+          "id": "prt_1ff756122001c8JOmw9N7nIPb6",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff755343001uvmRGntkQVf55m"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_99g8biu5",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "architectures|architecture",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 60 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\Dockerfile:\n  Line 42: # NEEDS_OPTIMUM architectures (nemotron_h) cannot be served from this image.\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\check-docs.ps1:\n  Line 711:     # Inline fences too: architecture-level diagrams embedded in markdown break\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\check_docs.py:\n  Line 734:     it. Markdown fences are included because architecture diagrams embedded in\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\download-model.ps1:\n  Line 185:         Write-Host \"    - Some architectures aren't supported yet by optimum-intel\" -ForegroundColor Yellow\n\n  Line 187:         Write-Host \"      architecture's exporter — it needs transformers==X (the version the\" -ForegroundColor Yellow\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\install.ps1:\n  Line 425:         # coding agent, 2026-09-23). Encoder architectures and the\n\n  Line 453:                     if ($cfg.architectures -and $cfg.architectures.Count -gt 0) { $arch = $cfg.architectures[0].ToLower() }\n\n  Line 734:     #      menu — e.g. Qwen3.5 reports architecture Qwen3_5ForConditional-\n\n  Line 1010:                 Write-Host \"  If unsupported architecture: needs newer optimum-intel\" -ForegroundColor Yellow\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 130:         arch = cfg.get(\"architectures\", [\"\"])[0].lower()\n\n  Line 159:     architecture GenAI would have to support.\n\n  Line 1052:     export of the same architecture.\n\n  Line 1334:     identical in architecture and geometry. So the directory name stays the\n\n  Line 1367:         \"architecture\": (cfg.get(\"architectures\") or [None])[0],\n\n  Line 1456:         arch = info[\"architecture\"] or info[\"model_type\"] or \"unknown\"\n\n  Line 1457:         if info[\"model_type\"] and info[\"architecture\"]:\n\n  Line 2500:                     # Pin the architecture so the compiler never sees AUTO_DETECT.\n\n  Line 2902:         takes it fine. Why not key it to an architecture: the convention\n\n  Line 3432: # Optimum-intel slot — python-runtime backend for architectures GenAI can't run\n\n  Line 3915:     openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n\n  Line 4032:                 f\"know this architecture ({e}) — the model-lab venv carries \"\n\n  Line 4041:         # routing) — those need translating; other architectures stream plain\n\n  Line 6345:     For NPU, the resolved architecture (\"3720\", \"4000\", \"5010\", …) is added\n\n  Line 6692:                         \"DEVICE_ARCHITECTURE. NoLlama pins the resolved architecture so \"\n\n  Line 6823:                         \"(name, precision, architecture, integrity) and exit. \"\n\n  Line 6830:                         \"pick per model (auto — optimum only for architectures \"\n\n  Line 6994:     # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\MODELS.md:\n  Line 171: The model menus rot fast — new architectures appear monthly. The\n\n  Line 310: **nomic-embed-text is the exception.** Its architecture (`nomic_bert`) is not\n\n  Line 447: ## Brand-new architectures: the optimum backend\n\n  Line 449: Some architectures land in optimum-intel (export) before openvino_genai\n\n  Line 554: openvino_genai gains these architectures, `--backend genai` (or just\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\DOCKER.md:\n  Line 139: downloaded inside a container. The `NEEDS_OPTIMUM` architectures\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\README.md:\n  Line 165: | [docs/MODELS.md](docs/MODELS.md) | Model registry, downloading, converting, `--scan`, brand-new architectures, the `-Nightly` runtime |\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\requirements.txt:\n  Line 13: # <5 cap: optimum-intel's per-architecture export configs lag behind major\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\dev\\models.md:\n  Line 35: it came from), LLM/VLM/Whisper, architecture, MoE shape, geometry,\n\n  Line 204: architecture, identically for an int8 optimum export and an fp16 ONNX\n\n  Line 545:     architecture) all pass eight interleaved turns.\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\dev\\runtime-stacks.md:\n  Line 29: | `venv-optimum/` | `scripts\\New-OptimumVenv.ps1` | transformers **and** optimum-intel from git `main`, release runtime | `NEEDS_OPTIMUM` architectures via `--backend optimum` |\n\n  Line 53: Some architectures land in optimum-intel (export) before openvino_genai\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\test_npu_multimodal.py:\n  Line 67:     \"\"\"Mirror of nollama.is_vlm() — config.json architecture/model_type sniff.\"\"\"\n\n  Line 74:         arch = (cfg.get(\"architectures\", [\"\"]) or [\"\"])[0].lower()\n\n  Line 212:     print(f\"config       architectures={arch or '?'}  model_type={mtype or '?'}\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\TODONT.md:\n  Line 519: architectures when the runtime is older than 2026.4.\n\n  Line 628: architecture): a 10.6k-token prompt, about one OpenCode first turn, took\n\n  Line 834: - *Key it to the `phi3_v` architecture* -- no. The convention belongs to the\n\n  Line 897: four observed families, but on two architectures' worth of evidence it is a\n\n  Line 971: gains a native implementation of the V1 `deepseek` MoE architecture so\n\n  Line 1106: - **No exporter.** New `AutoModelForMultimodalLM` architecture; optimum-intel\n\n  Line 1178: `VLMPipeline` per-architecture work on the C++ side. Not worth it for a model\n\n  Line 1543:   LFM-architecture-specific (its short-conv/linear-attention blocks),\n\n  Line 1577: - It is the architecture, not our export: Intel's own\n\n  Line 1670: **Verdict:** doesn't load. Not a memory problem — an architecture-vs-plugin\n\n  Line 1726:   gives architecture, layer count, context and MoE expert counts. `--scan`\n\n  Line 1733: Qwen3-Coder-Next vs Qwen3-Next-Instruct are identical in architecture and\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\export-embed-onnx.py:\n  Line 3: Why this exists: some embedding models ship a custom architecture that\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\New-OptimumVenv.ps1:\n  Line 4: brand-new architectures that openvino_genai cannot serve yet (see\n\n  Line 5: docs\\MODELS.md \"Brand-new architectures\"). Serving only: for EXPORTING such\n\n  Line 11: architectures, and the '--backend optimum' fallback for Glimmer, which now\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-npu-repro.py:\n  Line 5: Prints the versions, the device and NPU driver/architecture, compile time,\n",
+            "metadata": {
+              "matches": 60,
+              "truncated": false
+            },
+            "title": "architectures|architecture",
+            "time": {
+              "start": 1795287245419,
+              "end": 1795287245467
+            }
+          },
+          "id": "prt_1ff756268001b6SIGDiFqrVuBe",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff755343001uvmRGntkQVf55m"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-finish",
+          "tokens": {
+            "total": 9838,
+            "input": 9703,
+            "output": 135,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff75632f0016Ipbn2K7YE0k3M",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff755343001uvmRGntkQVf55m"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 15800,
+          "input": 5927,
+          "output": 174,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 9699
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287245767,
+          "completed": 1795287249290
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff7563c7001xwIRF6RRTc3Vnl",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-start",
+          "id": "prt_1ff756bf2001fpmORjhjKwy68u",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7563c7001xwIRF6RRTc3Vnl"
+        },
+        {
+          "type": "reasoning",
+          "text": "The important spots are nollama.py lines 130-154 (`needs_optimum`), line 142 (the Mamba2+MoE comment), and the `NEEDS_OPTIMUM` constant. Let's read around lines 100-180 of nollama.py.",
+          "time": {
+            "start": 1795287247860,
+            "end": 1795287248420
+          },
+          "id": "prt_1ff756bf4001cgF7x2FfTthXRz",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7563c7001xwIRF6RRTc3Vnl"
+        },
+        {
+          "type": "text",
+          "text": "The decision logic is in `nollama.py` around lines 130–160. Let me read that region in full.",
+          "time": {
+            "start": 1795287248422,
+            "end": 1795287248987
+          },
+          "id": "prt_1ff756e26001URoIIdnXZO7VsC",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7563c7001xwIRF6RRTc3Vnl"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_spjgtdlv",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "offset": 100,
+              "limit": 90
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n100: # ---------------------------------------------------------------------------\n101: \n102: def is_vlm(model_dir):\n103:     \"\"\"Detect if a model is a VLM.\n104: \n105:     The definitive signal is structural: OpenVINO exports a VLM as a\n106:     multi-component model with a separate vision encoder alongside the language\n107:     model, whereas a text-only LLM is a single openvino_model.xml. Match *any*\n108:     vision-encoder component file rather than one exact name — the filenames\n109:     vary across generations (Qwen3.5 ships three:\n110:     openvino_vision_embeddings_model.xml, ..._merger_model.xml, ..._pos_model.xml;\n111:     LLaVA-style exports use image_encoder), and a single hard-coded name would\n112:     miss a future variant. Architecture-name sniffing misses new generations\n113:     too — e.g. Qwen3.5 reports Qwen3_5ForConditionalGeneration / qwen3_5,\n114:     matching none of the keys below — so check the files first and fall back to\n115:     the config keys.\n116:     \"\"\"\n117:     try:\n118:         for fn in os.listdir(model_dir):\n119:             low = fn.lower()\n120:             if low.endswith(\".xml\") and (\"vision\" in low or \"image_encoder\" in low):\n121:                 return True\n122:     except OSError:\n123:         pass\n124:     cfg_path = os.path.join(model_dir, \"config.json\")\n125:     if not os.path.isfile(cfg_path):\n126:         return False\n127:     try:\n128:         with open(cfg_path) as f:\n129:             cfg = json.load(f)\n130:         arch = cfg.get(\"architectures\", [\"\"])[0].lower()\n131:         model_type = cfg.get(\"model_type\", \"\").lower()\n132:         return any(\n133:             k in arch or k in model_type\n134:             for k in (\"vl\", \"vision\", \"llava\", \"qwen2vl\", \"internvl\", \"minicpm\",\n135:                       \"multimodal\", \"image_text\", \"got_ocr\")\n136:         )\n137:     except Exception:\n138:         return False\n139: \n140: \n141: # Architectures openvino_genai pipelines cannot run — nemotron_h is hybrid\n142: # Mamba2+MoE with no GenAI path. Served through optimum-intel's python\n143: # runtime (OptimumSlot) instead. muse_glimmer left this set on 2026-08-18:\n144: # every Glimmer export in existence (Intel's official one and ours) is\n145: # VLM-shaped, and VLMPipeline feeds its language model from embeddings by\n146: # design — the \"takes inputs_embeds\" problem only ever ruled out\n147: # LLMPipeline. So Glimmer is served as a plain VLM (verified on the 2026.4\n148: # GenAI nightly, B60 2026-08-18, ~14 tok/s vs 8-11 on optimum). If an\n149: # LLM-shaped Glimmer export ever appears, put it back; meanwhile\n150: # --backend optimum still forces the python runtime for any model.\n151: NEEDS_OPTIMUM = {\"nemotron_h\"}\n152: \n153: \n154: def needs_optimum(model_dir):\n155:     \"\"\"True when this model must run on the optimum-intel python backend.\n156: \n157:     Reads the *top-level* model_type deliberately (not _text_config): for a\n158:     VLM-shaped export, the top-level type is the one that names the\n159:     architecture GenAI would have to support.\n160:     \"\"\"\n161:     try:\n162:         with open(os.path.join(model_dir, \"config.json\")) as f:\n163:             return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n164:     except Exception:\n165:         return False\n166: \n167: \n168: # Model families that compile cleanly, decode at full speed, and return wrong\n169: # tokens anyway — on one NPU generation only. Keyed by config.json model_type,\n170: # valued by the DEVICE_ARCHITECTURE strings where that was measured.\n171: #\n172: # [OBSERVED 2026-09-01] LFM2 350M and 1.2B int4-cw emit byte-identical word\n173: # salad on NPU 4 (arch 4000, Lunar Lake 258V) with NPU drivers 32.0.100.4778\n174: # and .5540, OpenVINO 2026.3.0 / 2026.3.1 / 2026.5-nightly, the plugin and the\n175: # driver compiler alike, and Intel's own LFM2.5-350M export — while the same\n176: # files on NPU 3 (arch 3720, Arrow Lake 285K) are correct, and CPU/GPU in the\n177: # same venv are correct. Filed as openvinotoolkit/openvino#38100. A 2.6B on a\n178: # 256V was reported working upstream, so this is not the whole family: warn,\n179: # never refuse.\n180: #\n181: # [OBSERVED 2026-10-23] Fixed in the runtime, not the driver. Same 258V,\n182: # driver 5540, same two files, same afternoon, bare genai `Say hello.`:\n183: # 'cohclclcl...' on 2026.3.1 and 2026.4.0, 'Hello! How can I assist you\n184: # today?' on 2026.4.1 and 2026.5.0.dev20261020 (the build Intel asked for in\n185: # #38100). Through the server on 2026.4.1: 'Oslo', finish_reason 'stop'. The\n186: # pairing is bad only below the fixed-in version, so the warning is gated on\n187: # it. A nightly older than the fix but numbered 2026.5 slips through; that\n188: # is accepted, nightlies are not the installer's runtime.\n189: #\n\n(Showing lines 100-189 of 7199. Use offset=190 to continue.)\n</content>",
+            "metadata": {
+              "preview": "# ---------------------------------------------------------------------------\n\ndef is_vlm(model_dir):\n    \"\"\"Detect if a model is a VLM.\n\n    The definitive signal is structural: OpenVINO exports a VLM as a\n    multi-component model with a separate vision encoder alongside the language\n    model, whereas a text-only LLM is a single openvino_model.xml. Match *any*\n    vision-encoder component file rather than one exact name — the filenames\n    vary across generations (Qwen3.5 ships three:\n    openvino_vision_embeddings_model.xml, ..._merger_model.xml, ..._pos_model.xml;\n    LLaVA-style exports use image_encoder), and a single hard-coded name would\n    miss a future variant. Architecture-name sniffing misses new generations\n    too — e.g. Qwen3.5 reports Qwen3_5ForConditionalGeneration / qwen3_5,\n    matching none of the keys below — so check the files first and fall back to\n    the config keys.\n    \"\"\"\n    try:\n        for fn in os.listdir(model_dir):\n            low = fn.lower()",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "# ---------------------------------------------------------------------------\n\ndef is_vlm(model_dir):\n    \"\"\"Detect if a model is a VLM.\n\n    The definitive signal is structural: OpenVINO exports a VLM as a\n    multi-component model with a separate vision encoder alongside the language\n    model, whereas a text-only LLM is a single openvino_model.xml. Match *any*\n    vision-encoder component file rather than one exact name — the filenames\n    vary across generations (Qwen3.5 ships three:\n    openvino_vision_embeddings_model.xml, ..._merger_model.xml, ..._pos_model.xml;\n    LLaVA-style exports use image_encoder), and a single hard-coded name would\n    miss a future variant. Architecture-name sniffing misses new generations\n    too — e.g. Qwen3.5 reports Qwen3_5ForConditionalGeneration / qwen3_5,\n    matching none of the keys below — so check the files first and fall back to\n    the config keys.\n    \"\"\"\n    try:\n        for fn in os.listdir(model_dir):\n            low = fn.lower()\n            if low.endswith(\".xml\") and (\"vision\" in low or \"image_encoder\" in low):\n                return True\n    except OSError:\n        pass\n    cfg_path = os.path.join(model_dir, \"config.json\")\n    if not os.path.isfile(cfg_path):\n        return False\n    try:\n        with open(cfg_path) as f:\n            cfg = json.load(f)\n        arch = cfg.get(\"architectures\", [\"\"])[0].lower()\n        model_type = cfg.get(\"model_type\", \"\").lower()\n        return any(\n            k in arch or k in model_type\n            for k in (\"vl\", \"vision\", \"llava\", \"qwen2vl\", \"internvl\", \"minicpm\",\n                      \"multimodal\", \"image_text\", \"got_ocr\")\n        )\n    except Exception:\n        return False\n\n\n# Architectures openvino_genai pipelines cannot run — nemotron_h is hybrid\n# Mamba2+MoE with no GenAI path. Served through optimum-intel's python\n# runtime (OptimumSlot) instead. muse_glimmer left this set on 2026-08-18:\n# every Glimmer export in existence (Intel's official one and ours) is\n# VLM-shaped, and VLMPipeline feeds its language model from embeddings by\n# design — the \"takes inputs_embeds\" problem only ever ruled out\n# LLMPipeline. So Glimmer is served as a plain VLM (verified on the 2026.4\n# GenAI nightly, B60 2026-08-18, ~14 tok/s vs 8-11 on optimum). If an\n# LLM-shaped Glimmer export ever appears, put it back; meanwhile\n# --backend optimum still forces the python runtime for any model.\nNEEDS_OPTIMUM = {\"nemotron_h\"}\n\n\ndef needs_optimum(model_dir):\n    \"\"\"True when this model must run on the optimum-intel python backend.\n\n    Reads the *top-level* model_type deliberately (not _text_config): for a\n    VLM-shaped export, the top-level type is the one that names the\n    architecture GenAI would have to support.\n    \"\"\"\n    try:\n        with open(os.path.join(model_dir, \"config.json\")) as f:\n            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n    except Exception:\n        return False\n\n\n# Model families that compile cleanly, decode at full speed, and return wrong\n# tokens anyway — on one NPU generation only. Keyed by config.json model_type,\n# valued by the DEVICE_ARCHITECTURE strings where that was measured.\n#\n# [OBSERVED 2026-09-01] LFM2 350M and 1.2B int4-cw emit byte-identical word\n# salad on NPU 4 (arch 4000, Lunar Lake 258V) with NPU drivers 32.0.100.4778\n# and .5540, OpenVINO 2026.3.0 / 2026.3.1 / 2026.5-nightly, the plugin and the\n# driver compiler alike, and Intel's own LFM2.5-350M export — while the same\n# files on NPU 3 (arch 3720, Arrow Lake 285K) are correct, and CPU/GPU in the\n# same venv are correct. Filed as openvinotoolkit/openvino#38100. A 2.6B on a\n# 256V was reported working upstream, so this is not the whole family: warn,\n# never refuse.\n#\n# [OBSERVED 2026-10-23] Fixed in the runtime, not the driver. Same 258V,\n# driver 5540, same two files, same afternoon, bare genai `Say hello.`:\n# 'cohclclcl...' on 2026.3.1 and 2026.4.0, 'Hello! How can I assist you\n# today?' on 2026.4.1 and 2026.5.0.dev20261020 (the build Intel asked for in\n# #38100). Through the server on 2026.4.1: 'Oslo', finish_reason 'stop'. The\n# pairing is bad only below the fixed-in version, so the warning is gated on\n# it. A nightly older than the fix but numbered 2026.5 slips through; that\n# is accepted, nightlies are not the installer's runtime.\n#",
+                "lineStart": 100,
+                "lineEnd": 189,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287248985,
+              "end": 1795287249003
+            }
+          },
+          "id": "prt_1ff757055001a19DGz1t9tfskS",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7563c7001xwIRF6RRTc3Vnl"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-finish",
+          "tokens": {
+            "total": 15800,
+            "input": 5927,
+            "output": 174,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 9699
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff7570fe001hB8jgex8aBdT6f",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff7563c7001xwIRF6RRTc3Vnl"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 17730,
+          "input": 1871,
+          "output": 237,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 15622
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287249293,
+          "completed": 1795287252080
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff75718d001BdgtCfWCHCe06L",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-start",
+          "id": "prt_1ff75754e001nKf2xrbzmeF4Mr",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff75718d001BdgtCfWCHCe06L"
+        },
+        {
+          "type": "reasoning",
+          "text": "Found it. The decision logic is as follows:\n- Line 151: `NEEDS_OPTIMUM = {\"nemotron_h\"}`\n- Lines 154–165: `needs_optimum(model_dir)` reads the top-level `model_type` from config.json and checks whether it's included in NEEDS_OPTIMUM.\n\nNext, let's look at how it's being applied — around lines 6994–7030 (slot selection), and also lines 1357–1365 (probably scan). Let me read lines 6980–7040.",
+          "time": {
+            "start": 1795287250255,
+            "end": 1795287251270
+          },
+          "id": "prt_1ff75754f001vbWjtlLLbpf4Wz",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff75718d001BdgtCfWCHCe06L"
+        },
+        {
+          "type": "text",
+          "text": "Found the core. Now let me confirm how the decision is applied — the slot-selection logic around line 6994.",
+          "time": {
+            "start": 1795287251272,
+            "end": 1795287251794
+          },
+          "id": "prt_1ff757948001Z7caiMiEaPkueS",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff75718d001BdgtCfWCHCe06L"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_88htqgbm",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "offset": 6980,
+              "limit": 60
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n6980:     if not embed_only and not os.path.isdir(model_dir):\n6981:         print(f\"ERROR: Model directory not found: {model_dir}\")\n6982:         sys.exit(1)\n6983:     if args.gpu_model_dir and not os.path.isdir(args.gpu_model_dir):\n6984:         print(f\"ERROR: GPU model directory not found: {args.gpu_model_dir}\")\n6985:         sys.exit(1)\n6986:     if args.whisper_dir and not os.path.isdir(args.whisper_dir):\n6987:         print(f\"ERROR: Whisper model directory not found: {args.whisper_dir}\")\n6988:         sys.exit(1)\n6989:     if args.embed_model_dir and not os.path.isdir(os.path.expanduser(args.embed_model_dir)):\n6990:         print(f\"ERROR: Embedding model directory not found: {args.embed_model_dir}\")\n6991:         sys.exit(1)\n6992: \n6993:     # 4b. Pick the serving backend per model. GenAI pipelines are the default;\n6994:     # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n6995:     # optimum-intel python runtime instead.\n6996:     def _slot_class(mdir):\n6997:         if args.backend == \"genai\":\n6998:             return DeviceSlot\n6999:         if args.backend == \"optimum\":\n7000:             return OptimumSlot\n7001:         return OptimumSlot if needs_optimum(mdir) else DeviceSlot\n7002: \n7003:     primary_cls = _slot_class(model_dir)\n7004:     secondary_cls = _slot_class(args.gpu_model_dir) if args.gpu_model_dir else None\n7005: \n7006:     if OptimumSlot in (primary_cls, secondary_cls):\n7007:         # Fast wrong-venv check (find_spec only — no heavy imports): the\n7008:         # common failure is running from a plain install, and the load-time\n7009:         # error would otherwise arrive minutes later, mid-startup.\n7010:         import importlib.util\n7011:         missing = [m for m in (\"optimum\", \"transformers\")\n7012:                    if importlib.util.find_spec(m) is None]\n7013:         if missing:\n7014:             print(f\"ERROR: this model needs the optimum-intel backend, but \"\n7015:                   f\"{'/'.join(missing)} is not installed in this python.\")\n7016:             print(\"Serve from the model-lab venv instead — see README \"\n7017:                   \"(scripts\\\\glimmer-export builds it; one-time: \"\n7018:                   \"pip install flask openvino-genai).\")\n7019:             sys.exit(1)\n7020: \n7021:     if primary_cls is OptimumSlot and device == \"NPU\":\n7022:         if args.device.upper() == \"NPU\":\n7023:             print(\"ERROR: this model runs on the optimum-intel backend, which \"\n7024:                   \"has no NPU path. Use --device GPU or CPU.\")\n7025:             sys.exit(1)\n7026:         # AUTO resolved to NPU — re-route to a device the backend can drive.\n7027:         device = \"GPU\" if \"GPU\" in devices else \"CPU\"\n7028:         print(f\"  [auto] optimum-backend model — using {device} (NPU has no \"\n7029:               f\"optimum path)\", flush=True)\n7030: \n7031:     # 5. Create device slots\n7032:     npu_plat = devices.get(\"NPU\", {}).get(\"platform\", \"\")\n7033:     if embed_only:\n7034:         primary = None\n7035:         all_slots = []\n7036:     else:\n7037:         primary = primary_cls(device, _id_of(device), npu_platform=npu_plat)\n7038:         all_slots = [primary]\n7039: \n\n(Showing lines 6980-7039 of 7199. Use offset=7040 to continue.)\n</content>",
+            "metadata": {
+              "preview": "    if not embed_only and not os.path.isdir(model_dir):\n        print(f\"ERROR: Model directory not found: {model_dir}\")\n        sys.exit(1)\n    if args.gpu_model_dir and not os.path.isdir(args.gpu_model_dir):\n        print(f\"ERROR: GPU model directory not found: {args.gpu_model_dir}\")\n        sys.exit(1)\n    if args.whisper_dir and not os.path.isdir(args.whisper_dir):\n        print(f\"ERROR: Whisper model directory not found: {args.whisper_dir}\")\n        sys.exit(1)\n    if args.embed_model_dir and not os.path.isdir(os.path.expanduser(args.embed_model_dir)):\n        print(f\"ERROR: Embedding model directory not found: {args.embed_model_dir}\")\n        sys.exit(1)\n\n    # 4b. Pick the serving backend per model. GenAI pipelines are the default;\n    # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n    # optimum-intel python runtime instead.\n    def _slot_class(mdir):\n        if args.backend == \"genai\":\n            return DeviceSlot\n        if args.backend == \"optimum\":",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "    if not embed_only and not os.path.isdir(model_dir):\n        print(f\"ERROR: Model directory not found: {model_dir}\")\n        sys.exit(1)\n    if args.gpu_model_dir and not os.path.isdir(args.gpu_model_dir):\n        print(f\"ERROR: GPU model directory not found: {args.gpu_model_dir}\")\n        sys.exit(1)\n    if args.whisper_dir and not os.path.isdir(args.whisper_dir):\n        print(f\"ERROR: Whisper model directory not found: {args.whisper_dir}\")\n        sys.exit(1)\n    if args.embed_model_dir and not os.path.isdir(os.path.expanduser(args.embed_model_dir)):\n        print(f\"ERROR: Embedding model directory not found: {args.embed_model_dir}\")\n        sys.exit(1)\n\n    # 4b. Pick the serving backend per model. GenAI pipelines are the default;\n    # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n    # optimum-intel python runtime instead.\n    def _slot_class(mdir):\n        if args.backend == \"genai\":\n            return DeviceSlot\n        if args.backend == \"optimum\":\n            return OptimumSlot\n        return OptimumSlot if needs_optimum(mdir) else DeviceSlot\n\n    primary_cls = _slot_class(model_dir)\n    secondary_cls = _slot_class(args.gpu_model_dir) if args.gpu_model_dir else None\n\n    if OptimumSlot in (primary_cls, secondary_cls):\n        # Fast wrong-venv check (find_spec only — no heavy imports): the\n        # common failure is running from a plain install, and the load-time\n        # error would otherwise arrive minutes later, mid-startup.\n        import importlib.util\n        missing = [m for m in (\"optimum\", \"transformers\")\n                   if importlib.util.find_spec(m) is None]\n        if missing:\n            print(f\"ERROR: this model needs the optimum-intel backend, but \"\n                  f\"{'/'.join(missing)} is not installed in this python.\")\n            print(\"Serve from the model-lab venv instead — see README \"\n                  \"(scripts\\\\glimmer-export builds it; one-time: \"\n                  \"pip install flask openvino-genai).\")\n            sys.exit(1)\n\n    if primary_cls is OptimumSlot and device == \"NPU\":\n        if args.device.upper() == \"NPU\":\n            print(\"ERROR: this model runs on the optimum-intel backend, which \"\n                  \"has no NPU path. Use --device GPU or CPU.\")\n            sys.exit(1)\n        # AUTO resolved to NPU — re-route to a device the backend can drive.\n        device = \"GPU\" if \"GPU\" in devices else \"CPU\"\n        print(f\"  [auto] optimum-backend model — using {device} (NPU has no \"\n              f\"optimum path)\", flush=True)\n\n    # 5. Create device slots\n    npu_plat = devices.get(\"NPU\", {}).get(\"platform\", \"\")\n    if embed_only:\n        primary = None\n        all_slots = []\n    else:\n        primary = primary_cls(device, _id_of(device), npu_platform=npu_plat)\n        all_slots = [primary]\n",
+                "lineStart": 6980,
+                "lineEnd": 7039,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287251772,
+              "end": 1795287251785
+            }
+          },
+          "id": "prt_1ff757b3900198Mf102vcztcd7",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff75718d001BdgtCfWCHCe06L"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-finish",
+          "tokens": {
+            "total": 17730,
+            "input": 1871,
+            "output": 237,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 15622
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff757bdf001QKquvgQ2QcoVUZ",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff75718d001BdgtCfWCHCe06L"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 18864,
+          "input": 1214,
+          "output": 161,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 17489
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287252083,
+          "completed": 1795287254561
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff757c73001X3rv5xLcVSQg2X",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-start",
+          "id": "prt_1ff757fcf001dZS9XJmGs0Ze2Y",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff757c73001X3rv5xLcVSQg2X"
+        },
+        {
+          "type": "reasoning",
+          "text": "I'm checking the OptimumSlot class to understand how it enforces the backend=\"optimum\" constraint and whether that's the complete picture, then looking at the /scan reporting around line 1357 to confirm the behavior. The core answer is becoming clear.",
+          "time": {
+            "start": 1795287252944,
+            "end": 1795287253587
+          },
+          "id": "prt_1ff757fd0001eUWENdJhtexO4T",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff757c73001X3rv5xLcVSQg2X"
+        },
+        {
+          "type": "text",
+          "text": "I have the full picture. Let me also verify the `OptimumSlot` class's backend pin to round out how the decision is applied.",
+          "time": {
+            "start": 1795287253589,
+            "end": 1795287254278
+          },
+          "id": "prt_1ff758255001KPhh9lorwN3658",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff757c73001X3rv5xLcVSQg2X"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_mkum6n90",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "offset": 3911,
+              "limit": 20
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n3911: \n3912: \n3913: class OptimumSlot(DeviceSlot):\n3914:     \"\"\"One model served through optimum-intel's python runtime instead of an\n3915:     openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n3916:     run (nemotron_h: hybrid Mamba2+MoE), and for anything forced here with\n3917:     --backend optimum. Muse Glimmer lived here until Intel's VLM-shaped\n3918:     export moved it to the GenAI path (2026-08-18); this slot remains its\n3919:     fallback on release runtimes whose VLMPipeline lacks the arch.\n3920: \n3921:     TEXT-ONLY for now: model_type reports \"llm\" even for a VLM-shaped export\n3922:     like Muse Glimmer, so the routes reject images with a clean 400 and hand\n3923:     us role-structured messages (the VLM paths flatten roles away). No prefix\n3924:     cache (that's a GenAI CB-scheduler feature) — prewarm and the KV-pool\n3925:     preflight are gated off via supports_prefix_cache.\n3926:     \"\"\"\n3927: \n3928:     backend = \"optimum\"\n3929: \n3930:     def __init__(self, device_name, device_id=None, npu_platform=None):\n\n(Showing lines 3911-3930 of 7199. Use offset=3931 to continue.)\n</content>",
+            "metadata": {
+              "preview": "\n\nclass OptimumSlot(DeviceSlot):\n    \"\"\"One model served through optimum-intel's python runtime instead of an\n    openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n    run (nemotron_h: hybrid Mamba2+MoE), and for anything forced here with\n    --backend optimum. Muse Glimmer lived here until Intel's VLM-shaped\n    export moved it to the GenAI path (2026-08-18); this slot remains its\n    fallback on release runtimes whose VLMPipeline lacks the arch.\n\n    TEXT-ONLY for now: model_type reports \"llm\" even for a VLM-shaped export\n    like Muse Glimmer, so the routes reject images with a clean 400 and hand\n    us role-structured messages (the VLM paths flatten roles away). No prefix\n    cache (that's a GenAI CB-scheduler feature) — prewarm and the KV-pool\n    preflight are gated off via supports_prefix_cache.\n    \"\"\"\n\n    backend = \"optimum\"\n\n    def __init__(self, device_name, device_id=None, npu_platform=None):",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "\n\nclass OptimumSlot(DeviceSlot):\n    \"\"\"One model served through optimum-intel's python runtime instead of an\n    openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n    run (nemotron_h: hybrid Mamba2+MoE), and for anything forced here with\n    --backend optimum. Muse Glimmer lived here until Intel's VLM-shaped\n    export moved it to the GenAI path (2026-08-18); this slot remains its\n    fallback on release runtimes whose VLMPipeline lacks the arch.\n\n    TEXT-ONLY for now: model_type reports \"llm\" even for a VLM-shaped export\n    like Muse Glimmer, so the routes reject images with a clean 400 and hand\n    us role-structured messages (the VLM paths flatten roles away). No prefix\n    cache (that's a GenAI CB-scheduler feature) — prewarm and the KV-pool\n    preflight are gated off via supports_prefix_cache.\n    \"\"\"\n\n    backend = \"optimum\"\n\n    def __init__(self, device_name, device_id=None, npu_platform=None):",
+                "lineStart": 3911,
+                "lineEnd": 3930,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287254260,
+              "end": 1795287254271
+            }
+          },
+          "id": "prt_1ff7584f1001fHQkajiMNNsQae",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff757c73001X3rv5xLcVSQg2X"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-finish",
+          "tokens": {
+            "total": 18864,
+            "input": 1214,
+            "output": 161,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 17489
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff758592001CCy4xQKdPoTqti",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff757c73001X3rv5xLcVSQg2X"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7553350019dJ93z1Asv3Nja",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 21016,
+          "input": 553,
+          "output": 1764,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 18699
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287254564,
+          "completed": 1795287267787
+        },
+        "finish": "stop",
+        "id": "msg_1ff758624001V7nWwyt6DZhted",
+        "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt"
+      },
+      "parts": [
+        {
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-start",
+          "id": "prt_1ff758854001QSLS4DvYr3X72M",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff758624001V7nWwyt6DZhted"
+        },
+        {
+          "type": "reasoning",
+          "text": "All confirmed. Now I'll write up the final answer.\n\nImportant details:\n- `NEEDS_OPTIMUM = {\"nemotron_h\"}` on line 151 (a hardcoded set of architecture names, a single element).\n- The `needs_optimum(model_dir)` on lines 154–165 reads the top-level `model_type` (not `architectures`) from config.json and checks membership in `NEEDS_OPTIMUM`.\n- Used in `_slot_class(mdir)` (defined inside `main`/the launch path) at lines 6996–7001: when `args.backend == \"auto\"`, `OptimumSlot if needs_optimum(mdir) else DeviceSlot`. `args.backend == \"optimum\"` forces OptimumSlot for all models; `args.backend == \"genai\"` forces DeviceSlot.\n- `OptimumSlot.backend = \"optimum\"` on line 3928.\n- Also, lines 1357–1365 use `needs_optimum` for scan/report annotations (not the decision itself, but part of the same logic).\n\nThe question asks for the exact architecture names that are forced: verbatim, `{\"nemotron_h\"}`.\n\nNote that it's keyed on `model_type` rather than the `architectures` field — worth calling out.\n\nAlso, note that the decision is not an override of args.backend per se; it's the slot-class selection in auto mode. When `--backend optimum` is set, OptimumSlot is used for all models (the forced path). The architecture-based decision only applies in `auto` mode (the default).\n\nFile references:\n- nollama.py:151 — the `NEEDS_OPTIMUM` constant.\n- nollama.py:154-165 — `needs_optimum()`.\n- nollama.py:6996-7001 — the `_slot_class()` closure that applies it.\n- nollama.py:3913/3928 — the `OptimumSlot` class with `backend = \"optimum\"`.\n- nollama.py:1357-1365 — the annotation uses needs_optimum (auxiliary).\n\nQuotes to include. Done. No file editing whatsoever.",
+          "time": {
+            "start": 1795287255126,
+            "end": 1795287259037
+          },
+          "id": "prt_1ff758856001w3CbCi9I8Pchzu",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff758624001V7nWwyt6DZhted"
+        },
+        {
+          "type": "text",
+          "text": "Found it. The decision lives entirely in `nollama.py`, as the user believed.\n\n## 1. Exact architecture name forced onto the optimum backend\n\nA single-name hardcoded **set** of config `model_type` strings:\n\n```python\nNEEDS_OPTIMUM = {\"nemotron_h\"}\n```\n\nThat's the whole mapping — one entry: `nemotron_h` (hybrid Mamba2+MoE, no GenAI path). Note: it is keyed on config.json's **top-level `model_type`**, not the `architectures` field (the code deliberately reads `model_type`, per the docstring: \"Reads the *top-level* model_type deliberately (not _text_config)\"). The comment block above it also records that `muse_glimmer` was removed from this set on 2026-08-18 (it now goes through the GenAI VLM pipeline).\n\n## 2. File:line references\n\n- `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:151` — the `NEEDS_OPTIMUM = {\"nemotron_h\"}` constant (decision mapping).\n- `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:154-165` — `needs_optimum(model_dir)` (the check function).\n- `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:6996-7001` — `_slot_class(mdir)`, where the decision is **applied** during server startup/model load (picks `OptimumSlot` vs `DeviceSlot` per model directory).\n- `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:3913-3928` — `class OptimumSlot(DeviceSlot)` with `backend = \"optimum\"` (the slot the decision routes to).\n- `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:1357-1365` — secondary consumer: `--scan`-style reporting annotates the slot kind/backend string via `needs_optimum(model_dir)` (annotation only, not the routing decision).\n\n## 3. Functions involved\n\n- **`needs_optimum(model_dir)`** (nollama.py:154) — reads the model dir's `config.json`, lowercases the top-level `model_type`, and returns True iff it is a member of `NEEDS_OPTIMUM`; any read error yields False (i.e. falls back to genai).\n- **`_slot_class(mdir)`** (nollama.py:6996, a closure in the startup path) — the point where the decision is applied: with `--backend genai` it always returns `DeviceSlot`; with `--backend optimum` it always returns `OptimumSlot` (manual force, applies to any model); with the default `auto`, it returns `OptimumSlot if needs_optimum(mdir) else DeviceSlot`. It is then used at line 7003-7004 to instantiate the primary (and optional secondary GPU) slot.\n\nSo it is **not** an override of `args.backend` after the fact — `args.backend` is a tri-state (`auto`/`genai`/`optimum`), and the architecture check only governs slot-class selection in `auto` mode. Downstream, line 7006-7019 does a fast wrong-venv check (`importlib.util.find_spec` for `optimum`/`transformers`) and line 7021-7029 re-routes an optimum model off the NPU to GPU/CPU since `OptimumSlot` has no NPU path.\n\n## 4. Verifiable quotes\n\nThe constant (nollama.py:141-151, abridged):\n\n```python\n# Architectures openvino_genai pipelines cannot run — nemotron_h is hybrid\n# Mamba2+MoE with no GenAI path. Served through optimum-intel's python\n# runtime (OptimumSlot) instead. muse_glimmer left this set on 2026-08-18: ...\n# --backend optimum still forces the python runtime for any model.\nNEEDS_OPTIMUM = {\"nemotron_h\"}\n```\n\nThe check (nollama.py:154-165):\n\n```python\ndef needs_optimum(model_dir):\n    \"\"\"True when this model must run on the optimum-intel python backend.\n\n    Reads the *top-level* model_type deliberately (not _text_config): for a\n    VLM-shaped export, the top-level type is the one that names the\n    architecture GenAI would have to support.\n    \"\"\"\n    try:\n        with open(os.path.join(model_dir, \"config.json\")) as f:\n            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n    except Exception:\n        return False\n```\n\nThe application (nollama.py:6993-7004):\n\n```python\n    # 4b. Pick the serving backend per model. GenAI pipelines are the default;\n    # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n    # optimum-intel python runtime instead.\n    def _slot_class(mdir):\n        if args.backend == \"genai\":\n            return DeviceSlot\n        if args.backend == \"optimum\":\n            return OptimumSlot\n        return OptimumSlot if needs_optimum(mdir) else DeviceSlot\n\n    primary_cls = _slot_class(model_dir)\n```\n\nNo files were edited.",
+          "time": {
+            "start": 1795287259038,
+            "end": 1795287267452
+          },
+          "id": "prt_1ff75979e0011rFt9yVzrgapms",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff758624001V7nWwyt6DZhted"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "bd36fd2250bdc65d2f9656f1eb25fd883aaf7c18",
+          "type": "step-finish",
+          "tokens": {
+            "total": 21016,
+            "input": 553,
+            "output": 1764,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 18699
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff75b93a001AnAaR9V4K3S4B6",
+          "sessionID": "ses_e008aacd0ffee28sii6wNUC2Pt",
+          "messageID": "msg_1ff758624001V7nWwyt6DZhted"
+        }
+      ]
+    }
+  ]
+}

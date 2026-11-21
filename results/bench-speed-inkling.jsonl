@@ -1,0 +1,6 @@
+{"ttft_s": 0.73, "decode_tok_s": 151.9, "out_tokens": 164, "prompt_tokens": 8638, "wall_s": 1.8, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 9850, "run": 1}
+{"ttft_s": 0.62, "decode_tok_s": 153.0, "out_tokens": 191, "prompt_tokens": 8638, "wall_s": 1.9, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 9850, "run": 2}
+{"ttft_s": 1.21, "decode_tok_s": 151.4, "out_tokens": 160, "prompt_tokens": 17238, "wall_s": 2.3, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 19700, "run": 1}
+{"ttft_s": 1.19, "decode_tok_s": 150.0, "out_tokens": 141, "prompt_tokens": 17239, "wall_s": 2.1, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 19700, "run": 2}
+{"ttft_s": 2.51, "decode_tok_s": 141.3, "out_tokens": 160, "prompt_tokens": 34439, "wall_s": 3.6, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 39400, "run": 1}
+{"ttft_s": 2.46, "decode_tok_s": 141.6, "out_tokens": 185, "prompt_tokens": 34438, "wall_s": 3.8, "when": "20261121-201614", "label": "inkling", "model": "thinkingmachines/Inkling-2-Mini", "target_tokens": 39400, "run": 2}

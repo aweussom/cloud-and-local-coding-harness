@@ -1,0 +1,12 @@
+{"ttft_s": 1.91, "decode_tok_s": 156.5, "out_tokens": 82, "prompt_tokens": 6519, "wall_s": 2.4, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 8000, "run": 1}
+{"ttft_s": 2.13, "decode_tok_s": 163.4, "out_tokens": 82, "prompt_tokens": 6517, "wall_s": 2.6, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 8000, "run": 2}
+{"ttft_s": 3.82, "decode_tok_s": 155.5, "out_tokens": 82, "prompt_tokens": 13001, "wall_s": 4.3, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 16000, "run": 1}
+{"ttft_s": 3.91, "decode_tok_s": 155.9, "out_tokens": 82, "prompt_tokens": 13000, "wall_s": 4.4, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 16000, "run": 2}
+{"ttft_s": 7.88, "decode_tok_s": 146.1, "out_tokens": 82, "prompt_tokens": 25997, "wall_s": 8.4, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 32000, "run": 1}
+{"ttft_s": 8.09, "decode_tok_s": 148.1, "out_tokens": 82, "prompt_tokens": 25995, "wall_s": 8.6, "when": "20261121-201306", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 32000, "run": 2}
+{"ttft_s": 2.35, "decode_tok_s": 161.4, "out_tokens": 82, "prompt_tokens": 8041, "wall_s": 2.8, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 9850, "run": 1}
+{"ttft_s": 2.52, "decode_tok_s": 160.7, "out_tokens": 82, "prompt_tokens": 8038, "wall_s": 3.0, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 9850, "run": 2}
+{"ttft_s": 4.75, "decode_tok_s": 159.4, "out_tokens": 82, "prompt_tokens": 16039, "wall_s": 5.3, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 19700, "run": 1}
+{"ttft_s": 4.88, "decode_tok_s": 158.3, "out_tokens": 82, "prompt_tokens": 16039, "wall_s": 5.4, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 19700, "run": 2}
+{"ttft_s": 10.17, "decode_tok_s": 146.6, "out_tokens": 73, "prompt_tokens": 32038, "wall_s": 10.7, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 39400, "run": 1}
+{"ttft_s": 10.37, "decode_tok_s": 151.3, "out_tokens": 83, "prompt_tokens": 32038, "wall_s": 10.9, "when": "20261121-201344", "label": "qwen", "model": "qwen3.8:27b", "target_tokens": 39400, "run": 2}

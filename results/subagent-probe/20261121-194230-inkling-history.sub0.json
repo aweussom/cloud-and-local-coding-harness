@@ -1,0 +1,392 @@
+{
+  "info": {
+    "id": "ses_e009578bfffe214SSEAiLhwhy6",
+    "slug": "jolly-knight",
+    "projectID": "04f30210bd814334c259957836f6ff91d3e8a943",
+    "directory": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+    "path": "",
+    "parentID": "ses_e00958a92ffeBm5y60xUnh1n4A",
+    "title": "Find NEEDS_OPTIMUM origin commit (@explore subagent)",
+    "agent": "explore",
+    "model": {
+      "id": "thinkingmachines/Inkling-2-Mini",
+      "providerID": "sub",
+      "variant": "default"
+    },
+    "version": "1.18.30",
+    "summary": {
+      "additions": 0,
+      "deletions": 0,
+      "files": 0
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 37462,
+      "output": 854,
+      "reasoning": 428,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "permission": [
+      {
+        "permission": "question",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_enter",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_exit",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "todowrite",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "task",
+        "pattern": "*",
+        "action": "deny"
+      }
+    ],
+    "time": {
+      "created": 1795286533952,
+      "updated": 1795286546227
+    }
+  },
+  "messages": [
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1795286533959
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "sub",
+          "modelID": "thinkingmachines/Inkling-2-Mini"
+        },
+        "summary": {
+          "diffs": []
+        },
+        "id": "msg_1ff6a87470011nu5SLIGlLDFvl",
+        "sessionID": "ses_e009578bfffe214SSEAiLhwhy6"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "This is a research-only task. Do NOT edit any file. Thoroughness: quick.\n\nWorking directory: C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe (a git repo).\n\nGoal: Find the git commit that FIRST introduced the `NEEDS_OPTIMUM` set (a Python set variable named NEEDS_OPTIMUM) in the file `nollama.py`.\n\nSteps:\n1. Confirm `NEEDS_OPTIMUM` currently exists in nollama.py (e.g. with git grep or rg).\n2. Use git log / git log -S\"NEEDS_OPTIMUM\" -- nollama.py (pickaxe) to find commits that added or changed it. The earliest commit that added the line (where the count goes from 0 to >0) is the introducing commit. `git log --reverse -S\"NEEDS_OPTIMUM\" --format=\"%h %ad %s\" --date=short -- nollama.py` is a good approach; the first line of output should be the introducing commit.\n3. Optionally verify with `git show <hash>` that the commit indeed adds NEEDS_OPTIMUM to nollama.py.\n4. Also report the commit's full hash and date.\n\nReturn in your final message:\n- The short commit hash (e.g. abc1234)\n- The commit date (YYYY-MM-DD, and the full author/commit date if available)\n- The commit subject line\n- The command(s) you ran and the key output lines proving this is the FIRST introduction of NEEDS_OPTIMUM in nollama.py.",
+          "id": "prt_1ff6a874a001F355ESgEmfhmgR",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87470011nu5SLIGlLDFvl"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff6a87470011nu5SLIGlLDFvl",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 10515,
+          "input": 10378,
+          "output": 107,
+          "reasoning": 30,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795286533972,
+          "completed": 1795286536559
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff6a87540017hMYL9hW1zfnva",
+        "sessionID": "ses_e009578bfffe214SSEAiLhwhy6"
+      },
+      "parts": [
+        {
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-start",
+          "id": "prt_1ff6a8b60001dED1yWQS0Pm0k5",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87540017hMYL9hW1zfnva"
+        },
+        {
+          "type": "reasoning",
+          "text": "Let me start by confirming NEEDS_OPTIMUM exists in nollama.py and then use git log pickaxe.",
+          "time": {
+            "start": 1795286535014,
+            "end": 1795286535493
+          },
+          "id": "prt_1ff6a8b66001pNtAi7L0pU3VlX",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87540017hMYL9hW1zfnva"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_bef14cc709be46b5b36c5852",
+          "state": {
+            "status": "completed",
+            "input": {
+              "path": ".",
+              "pattern": "NEEDS_OPTIMUM"
+            },
+            "output": "Found 17 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\Dockerfile:\n  Line 42: # NEEDS_OPTIMUM architectures (nemotron_h) cannot be served from this image.\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\DOCKER.md:\n  Line 139: downloaded inside a container. The `NEEDS_OPTIMUM` architectures\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\slot-lifecycle.mmd:\n  Line 23:   _slot_class{\"_slot_class<br/>--backend / NEEDS_OPTIMUM\"}\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\1-now\\033-2h-does-the-optimum-backend-still-serve-anything.md:\n  Line 4: `NEEDS_OPTIMUM`), `scripts/New-OptimumVenv.ps1`, `docs/dev/runtime-stacks.md`\n\n  Line 9: - `NEEDS_OPTIMUM = {\"nemotron_h\"}`, and **no nemotron_h model is in\n\n  Line 31:       `OptimumSlot`, `NEEDS_OPTIMUM`, `New-OptimumVenv.ps1` and the doc\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\waiting-on-time\\007-10min-upstream-ticket-watch.md:\n  Line 17: | [optimum-intel#2080](https://github.com/huggingface/optimum-intel/issues/2080) | `nemotron_h` exporter request (Lightning 30B-A3B; Bolt and Super-VL are `nemotron_h_omni` on top of it). Also flags the transformers `5.16.0.dev0` text-only `generate()` break (T-017). #1789 merged descoped, #1724/#1844 closed unmerged | filed 2026-10-24 (was N-003), offered testing on 140V/B60/CPU. When a PR appears: export Lightning, bare-probe, then `NEEDS_OPTIMUM` slot |\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\dev\\runtime-stacks.md:\n  Line 29: | `venv-optimum/` | `scripts\\New-OptimumVenv.ps1` | transformers **and** optimum-intel from git `main`, release runtime | `NEEDS_OPTIMUM` architectures via `--backend optimum` |\n\n  Line 55: python runtime** instead: `NEEDS_OPTIMUM` in `nollama.py`, currently just\n\n  Line 66: `NEEDS_OPTIMUM`. `--backend optimum` remains the escape hatch on a release\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 151: NEEDS_OPTIMUM = {\"nemotron_h\"}\n\n  Line 163:             return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n\n  Line 3915:     openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n\n  Line 6832:                         f\"{', '.join(sorted(NEEDS_OPTIMUM))}).\")\n\n  Line 6994:     # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\optimum.jsonl:\n  Line 2: {\"type\":\"tool_use\",\"timestamp\":1795285662223,\"sessionID\":\"ses_e00a30f56ffeTftnwp1aFIl29S\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_ccrh2df9\",\"state\":{\"status\":\"completed\",\"input\":{\"command\":\"Find which model architectures are forced onto the optimum backend in nollama.py, and where that's decided\",\"description\":\"Find optimum backend forcing logic\",\"prompt\":\"This is a research-only task. Do NOT edit any file. Thoroughness: medium.\\n\\nIn the repo at C:\\\\Users\\\\<user>\\\\AppData\\\\Local\\\\Temp\\\\subagent-probe, the file nollama.py is a Flask LLM server. Most models run on the openvino_genai backend, but a few model architectures need the \\\"optimum\\\" backend (optimum-intel python runtime), selected via a `--backend` flag or by automatic forcing.\\n\\nFind out:\\n1. Which model architecture names are force-routed onto the optimum backend (look for a list/dict/set of architecture name strings that trigger the optimum backend, e.g. things like \\\"phi3_v\\\", \\\"qwen2_vl\\\" or similar openvino_genai / optimum model_type strings).\\n2. The exact file:line references where this decision happens in nollama.py — both the place where the architecture names are listed/matched, and the place where the backend is actually forced/selected based on that match.\\n3. Briefly, how the architecture is detected (e.g. reading config.json's architectures field, model name matching, etc.).\\n\\nSearch hints: grep nollama.py for \\\"optimum\\\", \\\"backend\\\", \\\"arch\\\", \\\"model_type\\\", \\\"config.json\\\". Read the relevant sections of the file around matches.\\n\\nReturn in your final message:\\n- The list of architecture names that are forced onto optimum.\\n- The file:line references (nollama.py:LINE) for the list and the forcing logic.\\n- A one-or-two sentence explanation of how detection works.\",\"subagent_type\":\"explore\"},\"output\":\"<task id=\\\"ses_e00a2fc99ffeLI1rdPAF32Qjx2\\\" state=\\\"completed\\\">\\n<task_result>\\nFindings (all in `nollama.py`):\\n\\n**1. Architecture names forced onto the optimum backend**\\n\\n`NE...\n  Line 5: {\"type\":\"text\",\"timestamp\":1795285665139,\"sessionID\":\"ses_e00a30f56ffeTftnwp1aFIl29S\",\"part\":{\"id\":\"prt_1ff5d3ff0001SFVkLme7Xv0XJ4\",\"messageID\":\"msg_1ff5d3cbc001JM1kZMort87t92\",\"sessionID\":\"ses_e00a30f56ffeTftnwp1aFIl29S\",\"type\":\"text\",\"text\":\"`NEEDS_OPTIMUM` contains a single architecture: **`nemotron_h`**.\\n\\n- `nollama.py:151` — the set: `NEEDS_OPTIMUM = {\\\"nemotron_h\\\"}` (rationale comment at 141–150; `muse_glimmer` was removed 2026-08-18)\\n- `nollama.py:154-165` — `needs_optimum(model_dir)` reads the model's top-level `config.json` and tests lowercased `model_type` (comparison at line 163)\\n- `nollama.py:6993-7001` — `_slot_class()` forces `OptimumSlot` when `needs_optimum()` matches and `--backend auto` (default); explicit `--backend genai`/`optimum` overrides it (flag at 6826–6832)\",\"time\":{\"start\":1795285663728,\"end\":1795285665137}}}\r\n",
+            "metadata": {
+              "matches": 17,
+              "truncated": false
+            },
+            "title": "NEEDS_OPTIMUM",
+            "time": {
+              "start": 1795286535498,
+              "end": 1795286535545
+            }
+          },
+          "id": "prt_1ff6a8d4600148eOZdFPHF9NBR",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87540017hMYL9hW1zfnva"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_90729238bff341aa8f144b5a",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git log --reverse -S\"NEEDS_OPTIMUM\" --format=\"%h %ad %s\" --date=short -- nollama.py"
+            },
+            "output": "e1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\nce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\n",
+            "metadata": {
+              "output": "e1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\nce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git log --reverse -S\"NEEDS_OPTIMUM\" --format=\"%h %ad %s\" --date=short -- nollama.py",
+            "time": {
+              "start": 1795286535948,
+              "end": 1795286536231
+            }
+          },
+          "id": "prt_1ff6a8f08001bR5U7mlQrAjbze",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87540017hMYL9hW1zfnva"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 10515,
+            "input": 10378,
+            "output": 107,
+            "reasoning": 30,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff6a90dd001v5m24ux2gt12Pv",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a87540017hMYL9hW1zfnva"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff6a87470011nu5SLIGlLDFvl",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 12665,
+          "input": 12546,
+          "output": 76,
+          "reasoning": 43,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795286536561,
+          "completed": 1795286538346
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff6a9171001WLm4Z0esr3b5JF",
+        "sessionID": "ses_e009578bfffe214SSEAiLhwhy6"
+      },
+      "parts": [
+        {
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-start",
+          "id": "prt_1ff6a92e7001TsoGoEa3qFJasN",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a9171001WLm4Z0esr3b5JF"
+        },
+        {
+          "type": "reasoning",
+          "text": "The git log -S shows two commits. The first one (oldest) is `e1702f4` on 2026-08-13. Let me verify with git show.",
+          "time": {
+            "start": 1795286536950,
+            "end": 1795286537756
+          },
+          "id": "prt_1ff6a92f6001xcmzUqqYRCDS2o",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a9171001WLm4Z0esr3b5JF"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_698f7818360a479a975a74a5",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git show e1702f4 --format=\"%H%n%ad%n%an%n%cn%n%s\" --date=iso -- nollama.py | Select-Object -First 120"
+            },
+            "output": "e1702f4449e63317533c48bf0265da0012eaf463\r\n2026-08-13 08:54:49 +0200\r\nTommy Leonhardsen\r\nTommy Leonhardsen\r\nSteps 0-3: stream_tokens seam, backend detection, OptimumSlot class\r\n\r\ndiff --git a/nollama.py b/nollama.py\r\nindex 3f10c7d..1ad9a2d 100644\r\n--- a/nollama.py\r\n+++ b/nollama.py\r\n@@ -95,6 +95,27 @@ def is_vlm(model_dir):\r\n         return False\r\n \r\n \r\n+# Architectures openvino_genai pipelines cannot run — muse_glimmer's language\r\n+# model takes inputs_embeds (no LLMPipeline path) and VLMPipeline lacks the\r\n+# arch; nemotron_h is hybrid Mamba2+MoE. These are served through\r\n+# optimum-intel's python runtime (OptimumSlot) instead.\r\n+NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}\r\n+\r\n+\r\n+def needs_optimum(model_dir):\r\n+    \"\"\"True when this model must run on the optimum-intel python backend.\r\n+\r\n+    Reads the *top-level* model_type deliberately (not _text_config): for a\r\n+    VLM-shaped export like Muse Glimmer, the top-level type is the one that\r\n+    names the architecture GenAI would have to support.\r\n+    \"\"\"\r\n+    try:\r\n+        with open(os.path.join(model_dir, \"config.json\")) as f:\r\n+            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\r\n+    except Exception:\r\n+        return False\r\n+\r\n+\r\n # Suffixes describing the *export* rather than the model, dropped from the\r\n # display name (and so from the model ID clients configure).\r\n _NAME_SUFFIXES = (\"-ov\", \"-openvino\", \"-int8\", \"-int4\")\r\n@@ -490,12 +511,16 @@ def describe_model(model_dir):\r\n         kind = \"VLM (vision + text)\"\r\n     else:\r\n         kind = \"LLM (text)\"\r\n+    if needs_optimum(model_dir):\r\n+        kind += \", served text-only via optimum backend\"\r\n \r\n     return {\r\n         \"path\": os.path.abspath(model_dir),\r\n         \"name\": name,\r\n         \"name_source\": why,\r\n         \"kind\": kind,\r\n+        \"backend\": \"optimum-intel (python runtime)\" if needs_optimum(model_dir)\r\n+                   else \"openvino_genai\",\r\n         \"architecture\": (cfg.get(\"architectures\") or [None])[0],\r\n         \"model_type\": cfg.get(\"model_type\"),\r\n         \"layers\": geo.get(\"num_hidden_layers\"),\r\n@@ -582,6 +607,13 @@ def scan_models(paths):\r\n         if info[\"model_type\"] and info[\"architecture\"]:\r\n             arch += f\" / {info['model_type']}\"\r\n         print(f\"    Architecture   : {arch}\")\r\n+        if info[\"backend\"] != \"openvino_genai\":\r\n+            note = \"\"\r\n+            import importlib.util\r\n+            if importlib.util.find_spec(\"optimum\") is None:\r\n+                note = (\"  — NOT importable in this python; serve from the \"\r\n+                        \"model-lab venv (see README)\")\r\n+            print(f\"    Backend        : {info['backend']}{note}\")\r\n         print(f\"    Weights        : {info['precision']}\", end=\"\")\r\n         if info[\"size_bytes\"]:\r\n             print(f\"   {info['size_bytes'] / (1 << 30):,.1f} GB on disk\")\r\n@@ -1051,6 +1083,8 @@ def parse_tool_calls(text, tools):\r\n class DeviceSlot:\r\n     \"\"\"One loaded model on one device.\"\"\"\r\n \r\n+    backend = \"genai\"  # which runtime serves this slot (surfaced in /health)\r\n+\r\n     def __init__(self, device_name, device_id=None):\r\n         self.device_name = device_name   # canonical \"NPU\", \"GPU\", \"CPU\" (display + routing)\r\n         self.device_id = device_id or device_name  # OpenVINO id (may be \"GPU.1\" on multi-GPU)\r\n@@ -1061,10 +1095,12 @@ class DeviceSlot:\r\n         self.status = \"not_configured\"   # not_configured -> loading -> warming_up -> ready / error / idle_unloaded\r\n         self.lock = threading.Lock()\r\n         self._cancel = threading.Event()  # signal to stop generation\r\n+        self._stream_error = None        # last stream_tokens backend exception (single consumer per lock)\r\n         self.last_used = time.time()     # for idle-unload watchdog\r\n         self.model_dir = None            # remembered so we can reload after unload\r\n         self.last_ttft_ms = None         # last request's time-to-first-token (prefix-cache hit ≈ low)\r\n         self.prewarmed = False           # did _prewarm_slot succeed for this load\r\n+        self.supports_prefix_cache = True  # GenAI CB backend can prefix-cache; OptimumSlot can't\r\n \r\n     def load(self, model_dir):\r\n         \"\"\"Load model, auto-detecting VLM vs LLM.\"\"\"\r\n@@ -1141,7 +1177,8 @@ class DeviceSlot:\r\n         if not mem or not weights:\r\n             return  # can't estimate — stay quiet rather than guess\r\n         kv_pool = (PROMPT_CACHE_GB * gib\r\n-                   if PROMPT_CACHE and not vlm and self.device_name in (\"GPU\", \"CPU\")\r\n+                   if PROMPT_CACHE and not vlm and self.supports_prefix_cache\r\n+                   and self.device_name in (\"GPU\", \"CPU\")\r\n                    else 0)\r\n         need = (weights + kv_pool) * 1.1  # ~10% runtime/activation overhead\r\n         if need > mem:\r\n@@ -1255,6 +1292,67 @@ class DeviceSlot:\r\n         \"\"\"Signal the current generation to stop.\"\"\"\r\n         self._cancel.set()\r\n \r\n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\r\n+        \"\"\"Low-level token stream — the seam between backend and protocol.\r\n+\r\n+        Yields str (a decoded text chunk) as soon as one exists, or None when\r\n+        `heartbeat` seconds passed with no chunk and the generation worker is\r\n+        still alive (the caller decides: SSE pings, ndjson aborts). Terminates\r\n+        when generation completes, was cancelled, or the worker died.\r\n+\r\n+        Owns: the worker thread, self.lock around generate, clearing _cancel\r\n+        INSIDE the lock (racing the previous request's finally otherwise),\r\n+        last_used, and recording any backend exception in self._stream_error\r\n+        (None on success) before terminating.\r\n+\r\n+        Does NOT touch last_ttft_ms, set _cancel on exit, or emit protocol\r\n+        frames — those belong to the consumers. In particular the\r\n",
+            "metadata": {
+              "output": "e1702f4449e63317533c48bf0265da0012eaf463\r\n2026-08-13 08:54:49 +0200\r\nTommy Leonhardsen\r\nTommy Leonhardsen\r\nSteps 0-3: stream_tokens seam, backend detection, OptimumSlot class\r\n\r\ndiff --git a/nollama.py b/nollama.py\r\nindex 3f10c7d..1ad9a2d 100644\r\n--- a/nollama.py\r\n+++ b/nollama.py\r\n@@ -95,6 +95,27 @@ def is_vlm(model_dir):\r\n         return False\r\n \r\n \r\n+# Architectures openvino_genai pipelines cannot run — muse_glimmer's language\r\n+# model takes inputs_embeds (no LLMPipeline path) and VLMPipeline lacks the\r\n+# arch; nemotron_h is hybrid Mamba2+MoE. These are served through\r\n+# optimum-intel's python runtime (OptimumSlot) instead.\r\n+NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}\r\n+\r\n+\r\n+def needs_optimum(model_dir):\r\n+    \"\"\"True when this model must run on the optimum-intel python backend.\r\n+\r\n+    Reads the *top-level* model_type deliberately (not _text_config): for a\r\n+    VLM-shaped export like Muse Glimmer, the top-level type is the one that\r\n+    names the architecture GenAI would have to support.\r\n+    \"\"\"\r\n+    try:\r\n+        with open(os.path.join(model_dir, \"config.json\")) as f:\r\n+            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\r\n+    except Exception:\r\n+        return False\r\n+\r\n+\r\n # Suffixes describing the *export* rather than the model, dropped from the\r\n # display name (and so from the model ID clients configure).\r\n _NAME_SUFFIXES = (\"-ov\", \"-openvino\", \"-int8\", \"-int4\")\r\n@@ -490,12 +511,16 @@ def describe_model(model_dir):\r\n         kind = \"VLM (vision + text)\"\r\n     else:\r\n         kind = \"LLM (text)\"\r\n+    if needs_optimum(model_dir):\r\n+        kind += \", served text-only via optimum backend\"\r\n \r\n     return {\r\n         \"path\": os.path.abspath(model_dir),\r\n         \"name\": name,\r\n         \"name_source\": why,\r\n         \"kind\": kind,\r\n+        \"backend\": \"optimum-intel (python runtime)\" if needs_optimum(model_dir)\r\n+                   else \"openvino_genai\",\r\n         \"architecture\": (cfg.get(\"architectures\") or [None])[0],\r\n         \"model_type\": cfg.get(\"model_type\"),\r\n         \"layers\": geo.get(\"num_hidden_layers\"),\r\n@@ -582,6 +607,13 @@ def scan_models(paths):\r\n         if info[\"model_type\"] and info[\"architecture\"]:\r\n             arch += f\" / {info['model_type']}\"\r\n         print(f\"    Architecture   : {arch}\")\r\n+        if info[\"backend\"] != \"openvino_genai\":\r\n+            note = \"\"\r\n+            import importlib.util\r\n+            if importlib.util.find_spec(\"optimum\") is None:\r\n+                note = (\"  — NOT importable in this python; serve from the \"\r\n+                        \"model-lab venv (see README)\")\r\n+            print(f\"    Backend        : {info['backend']}{note}\")\r\n         print(f\"    Weights        : {info['precision']}\", end=\"\")\r\n         if info[\"size_bytes\"]:\r\n             print(f\"   {info['size_bytes'] / (1 << 30):,.1f} GB on disk\")\r\n@@ -1051,6 +1083,8 @@ def parse_tool_calls(text, tools):\r\n class DeviceSlot:\r\n     \"\"\"One loaded model on one device.\"\"\"\r\n \r\n+    backend = \"genai\"  # which runtime serves this slot (surfaced in /health)\r\n+\r\n     def __init__(self, device_name, device_id=None):\r\n         self.device_name = device_name   # canonical \"NPU\", \"GPU\", \"CPU\" (display + routing)\r\n         self.device_id = device_id or device_name  # OpenVINO id (may be \"GPU.1\" on multi-GPU)\r\n@@ -1061,10 +1095,12 @@ class DeviceSlot:\r\n         self.status = \"not_configured\"   # not_configured -> loading -> warming_up -> ready / error / idle_unloaded\r\n         self.lock = threading.Lock()\r\n         self._cancel = threading.Event()  # signal to stop generation\r\n+        self._stream_error = None        # last stream_tokens backend exception (single consumer per lock)\r\n         self.last_used = time.time()     # for idle-unload watchdog\r\n         self.model_dir = None            # remembered so we can reload after unload\r\n         self.last_ttft_ms = None         # last request's time-to-first-token (prefix-cache hit ≈ low)\r\n         self.prewarmed = False           # did _prewarm_slot succeed for this load\r\n+        self.supports_prefix_cache = True  # GenAI CB backend can prefix-cache; OptimumSlot can't\r\n \r\n     def load(self, model_dir):\r\n         \"\"\"Load model, auto-detecting VLM vs LLM.\"\"\"\r\n@@ -1141,7 +1177,8 @@ class DeviceSlot:\r\n         if not mem or not weights:\r\n             return  # can't estimate — stay quiet rather than guess\r\n         kv_pool = (PROMPT_CACHE_GB * gib\r\n-                   if PROMPT_CACHE and not vlm and self.device_name in (\"GPU\", \"CPU\")\r\n+                   if PROMPT_CACHE and not vlm and self.supports_prefix_cache\r\n+                   and self.device_name in (\"GPU\", \"CPU\")\r\n                    else 0)\r\n         need = (weights + kv_pool) * 1.1  # ~10% runtime/activation overhead\r\n         if need > mem:\r\n@@ -1255,6 +1292,67 @@ class DeviceSlot:\r\n         \"\"\"Signal the current generation to stop.\"\"\"\r\n         self._cancel.set()\r\n \r\n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\r\n+        \"\"\"Low-level token stream — the seam between backend and protocol.\r\n+\r\n+        Yields str (a decoded text chunk) as soon as one exists, or None when\r\n+        `heartbeat` seconds passed with no chunk and the generation worker is\r\n+        still alive (the caller decides: SSE pings, ndjson aborts). Terminates\r\n+        when generation completes, was cancelled, or the worker died.\r\n+\r\n+        Owns: the worker thread, self.lock around generate, clearing _cancel\r\n+        INSIDE the lock (racing the previous request's finally otherwise),\r\n+        last_used, and recording any backend exception in self._stream_error\r\n+        (None on success) before terminating.\r\n+\r\n+        Does NOT touch last_ttft_ms, set _cancel on exit, or emit protocol\r\n+        frames — those belong to the consumers. In particular the\r\n",
+              "exit": 1,
+              "truncated": false
+            },
+            "title": "git show e1702f4 --format=\"%H%n%ad%n%an%n%cn%n%s\" --date=iso -- nollama.py | Select-Object -First 120",
+            "time": {
+              "start": 1795286537762,
+              "end": 1795286538026
+            }
+          },
+          "id": "prt_1ff6a961d001u5XOOj0Ym7BN97",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a9171001WLm4Z0esr3b5JF"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 12665,
+            "input": 12546,
+            "output": 76,
+            "reasoning": 43,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff6a97b7001P4xwM4HcguQxAm",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a9171001WLm4Z0esr3b5JF"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff6a87470011nu5SLIGlLDFvl",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 15564,
+          "input": 14538,
+          "output": 671,
+          "reasoning": 355,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795286538348,
+          "completed": 1795286546218
+        },
+        "finish": "stop",
+        "id": "msg_1ff6a986c001D11o0mtY0L0VjE",
+        "sessionID": "ses_e009578bfffe214SSEAiLhwhy6"
+      },
+      "parts": [
+        {
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-start",
+          "id": "prt_1ff6a99c700154G1ICum5DfBjp",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a986c001D11o0mtY0L0VjE"
+        },
+        {
+          "type": "reasoning",
+          "text": "The commit e1702f4 shows NEEDS_OPTIMUM added in nollama.py. This is the first commit from the reverse log. Let me also confirm there's no earlier commit that introduced it — the git log --reverse -S output showed e1702f4 first, then ce2ac34. So e1702f4 is the earliest. Let me double-check with git log --reverse -S\"NEEDS_OPTIMUM\" (without -- nollama.py filter limit? no, with filter is right). Also verify with git show --stat to ensure it's the right file. The output confirms it added the set.\n\nLet me also check whether there's an even earlier commit with different formatting — the -S pickaxe finds any change in count, which is correct. The earliest is e1702f4.\n\nAlso, let me check the date format — \"2026-08-13 08:54:49 +0200\", short date 2026-08-13.\n\nLet me also double-check the second commit ce2ac34 to confirm it doesn't also add (it likely just modified). Not necessary but the pickaxe output shows both. The first is the introducing one. Good.\n\nI could also run git log --reverse with --diff-filter to be thorough, but it's quick enough. Let me just run one more command to confirm e1702f4 is the earliest and there's no commit before it that added it (e.g., in a different file then moved). The task only asks about nollama.py. Done.\n\nReport findings.",
+          "time": {
+            "start": 1795286538701,
+            "end": 1795286541210
+          },
+          "id": "prt_1ff6a99cd001Coc1vPUijbsTvl",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a986c001D11o0mtY0L0VjE"
+        },
+        {
+          "type": "text",
+          "text": "Confirmed. Here are the results.\n\n## Answer\n\n- **Short hash:** `e1702f4`\n- **Full hash:** `e1702f4449e63317533c48bf0265da0012eaf463`\n- **Date:** 2026-08-13 (full timestamp: `2026-08-13 08:54:49 +0200`, author/committer Tommy Leonhardsen)\n- **Subject:** `Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class`\n\n## How this was verified\n\n**Step 1 — current existence (confirmed):** `rg NEEDS_OPTIMUM` finds it in `nollama.py:151` (`NEEDS_OPTIMUM = {\"nemotron_h\"}`) plus usages at lines 163, 3915, 6832, 6994. (Note: the set was later trimmed from `{muse_glimmer, nemotron_h}` down to `{nemotron_h}`.)\n\n**Step 2 — pickaxe (the key proof):**\n```\ngit log --reverse -S\"NEEDS_OPTIMUM\" --format=\"%h %ad %s\" --date=short -- nollama.py\ne1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\nce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\n```\n`e1702f4` is the first/oldest commit in reverse order — the one where the line count goes from 0 to >0. The only later-touching commit listed is `ce2ac34` (Step 4), which changed it further, not introduced it.\n\n**Step 3 — `git show e1702f4 -- nollama.py`** shows the hunk:\n```diff\n+# Architectures openvino_genai pipelines cannot run — muse_glimmer's language\n+# model takes inputs_embeds (no LLMPipeline path) and VLMPipeline lacks the\n+# arch; nemotron_h is hybrid Mamba2+MoE. These are served through\n+# optimum-intel's python runtime (OptimumSlot) instead.\n+NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}\n```\ni.e. the string `NEEDS_OPTIMUM` is added to `nollama.py` in this commit (alongside `needs_optimum()`, the doc-string/comment rationale, and `OptimumSlot`-adjacent changes). No earlier commit in the log adds it.\n\nSo the FIRST commit to introduce the `NEEDS_OPTIMUM` set into `nollama.py` is **e1702f4** (2026-08-13).",
+          "time": {
+            "start": 1795286541212,
+            "end": 1795286545938
+          },
+          "id": "prt_1ff6aa39b001G0tV7lJ3dyBBtl",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a986c001D11o0mtY0L0VjE"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "ba6477180cfc19e7f65a218a350d933c59dece0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 15564,
+            "input": 14538,
+            "output": 671,
+            "reasoning": 355,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff6ab6a00011WMBF2thydsPUP",
+          "sessionID": "ses_e009578bfffe214SSEAiLhwhy6",
+          "messageID": "msg_1ff6a986c001D11o0mtY0L0VjE"
+        }
+      ]
+    }
+  ]
+}

@@ -214,6 +214,24 @@ parallel runs corrupt each other's fixtures and measure queueing, not the model.
 
 A per-config workdir plus config D (two slots) proven to fit in VRAM.
 
+## Do Not Use DeepSeek Harness for Scripted Model Evaluation, Yet
+
+**Considered:** 2026-11-21, as the harness for the Inkling 2 Mini subagent evaluation.
+
+**Decision:** Evaluate subagent models with OpenCode 1.x (`probe-subagent.ps1`), not `dsh`.
+
+### Why This Is Rejected
+
+`deepseek-ai/deepseek-harness` is a developer preview whose README says "THERE WILL BE COMPATIBILITY-BREAKING
+CHANGES", has no release, and documents only a web UI (`dsh web` on :3080), no headless run [DOCUMENTED repo README,
+2026-11-21]. A probe needs a scripted, non-interactive run with machine-readable output; OpenCode 1.x has
+`opencode run --format json` and per-agent models across providers, so `dsh` would add a harness to the variables
+without adding a capability.
+
+### Would Change This Decision
+
+A documented headless run mode with structured output, and a tagged release.
+
 ## Do Not Expect the Hybrid Setup to Offload on Small Repos
 
 **Tested:** 2026-10-29, 5 probe tasks, glm-5.3:cloud main, qwen3.8:27b subagents.

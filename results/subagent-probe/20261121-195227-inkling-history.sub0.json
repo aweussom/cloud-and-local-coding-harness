@@ -1,0 +1,574 @@
+{
+  "info": {
+    "id": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+    "slug": "jolly-mountain",
+    "projectID": "04f30210bd814334c259957836f6ff91d3e8a943",
+    "directory": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+    "path": "",
+    "parentID": "ses_e008c72a8ffevoSbX9fl5KLmUH",
+    "title": "Find NEEDS_OPTIMUM introduction commit (@explore subagent)",
+    "agent": "explore",
+    "model": {
+      "id": "thinkingmachines/Inkling-2-Mini",
+      "providerID": "sub",
+      "variant": "default"
+    },
+    "version": "1.18.30",
+    "summary": {
+      "additions": 0,
+      "deletions": 0,
+      "files": 0
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 63540,
+      "output": 670,
+      "reasoning": 511,
+      "cache": {
+        "read": 0,
+        "write": 0
+      }
+    },
+    "permission": [
+      {
+        "permission": "question",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_enter",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_exit",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "todowrite",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "task",
+        "pattern": "*",
+        "action": "deny"
+      }
+    ],
+    "time": {
+      "created": 1795287130025,
+      "updated": 1795287144084
+    }
+  },
+  "messages": [
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1795287130033
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "sub",
+          "modelID": "thinkingmachines/Inkling-2-Mini"
+        },
+        "summary": {
+          "diffs": []
+        },
+        "id": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "This is a research-only task. Do NOT edit any file.\n\nIn the git repo at C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe, find the commit that FIRST introduced the `NEEDS_OPTIMUM` set in the file `nollama.py` (likely defined as `NEEDS_OPTIMUM = {...}`).\n\nApproach:\n1. Confirm `NEEDS_OPTIMUM` currently exists in nollama.py (use Grep).\n2. Use `git log` with pickaxe options to find when it was added, e.g.:\n   - `git log --follow --date=short --format=\"%h %ad %s\" -S \"NEEDS_OPTIMUM\" -- nollama.py`\n   - or `git log --date=short --format=\"%h %ad %s\" -G \"NEEDS_OPTIMATE|NEEDS_OPTIMUM\" -- nollama.py`\n   The OLDEST commit matching (the first in history that added the string) is the answer. Note that -S lists commits where the occurrence count changed, so the earliest one is the introduction (verify with `git show <hash> -- nollama.py` or `git log --reverse -S ...` piped so the first line is the introduction).\n3. Verify by running `git show <hash>` (or `git show <hash> -- nollama.py`) and confirm the diff adds `NEEDS_OPTIMUM`.\n\nReturn in your final message:\n- The short commit hash (e.g. `abc1234`)\n- The commit date (use `--date=short` format, i.e. YYYY-MM-DD)\n- The commit subject line\n- One sentence on how you verified it is the first introduction.",
+          "id": "prt_1ff739fb3001pakphaJGdgESDd",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fb0001qYvHJtrSyKb3LD"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 10557,
+          "input": 10417,
+          "output": 109,
+          "reasoning": 31,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287130047,
+          "completed": 1795287132770
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff739fbf001A2AKXFZmp5IFuX",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-start",
+          "id": "prt_1ff73a3d2001pxf232GzHqGGc3",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fbf001A2AKXFZmp5IFuX"
+        },
+        {
+          "type": "reasoning",
+          "text": "Let me start by confirming NEEDS_OPTIMUM exists in nollama.py, then use git log with pickaxe.",
+          "time": {
+            "start": 1795287131122,
+            "end": 1795287131784
+          },
+          "id": "prt_1ff73a3f2001tRcLqVV00RbPQw",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fbf001A2AKXFZmp5IFuX"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_e21b4307877943e9a5ae7257",
+          "state": {
+            "status": "completed",
+            "input": {
+              "include": "nollama.py",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+              "pattern": "NEEDS_OPTIMUM"
+            },
+            "output": "Found 5 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 151: NEEDS_OPTIMUM = {\"nemotron_h\"}\n\n  Line 163:             return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n\n  Line 3915:     openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n\n  Line 6832:                         f\"{', '.join(sorted(NEEDS_OPTIMUM))}).\")\n\n  Line 6994:     # NEEDS_OPTIMUM architectures (or --backend optimum) go through the\n",
+            "metadata": {
+              "matches": 5,
+              "truncated": false
+            },
+            "title": "NEEDS_OPTIMUM",
+            "time": {
+              "start": 1795287131790,
+              "end": 1795287131827
+            }
+          },
+          "id": "prt_1ff73a68a001nAkbB9l2iazJ8F",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fbf001A2AKXFZmp5IFuX"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_5a272b070f0c45679076d57f",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git status --short; git log --oneline -3"
+            },
+            "output": "?? .probe-stdin\n?? flags.jsonl\n?? flags.jsonl.err\n?? history.jsonl\n?? history.jsonl.err\n?? optimum.jsonl\n?? optimum.jsonl.err\n?? routes.jsonl\n?? routes.jsonl.err\n?? tuning.jsonl\n?? tuning.jsonl.err\n6ad999b T-056: optimum-intel#2085 merged; retarget the re-bench at main\n21bbe6c T-056: watch optimum-intel#2085 for a new head, nudge on 2026-11-16\n04b9f39 T-056: reply posted on optimum-intel#2085\n",
+            "metadata": {
+              "output": "?? .probe-stdin\n?? flags.jsonl\n?? flags.jsonl.err\n?? history.jsonl\n?? history.jsonl.err\n?? optimum.jsonl\n?? optimum.jsonl.err\n?? routes.jsonl\n?? routes.jsonl.err\n?? tuning.jsonl\n?? tuning.jsonl.err\n6ad999b T-056: optimum-intel#2085 merged; retarget the re-bench at main\n21bbe6c T-056: watch optimum-intel#2085 for a new head, nudge on 2026-11-16\n04b9f39 T-056: reply posted on optimum-intel#2085\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git status --short; git log --oneline -3",
+            "time": {
+              "start": 1795287132052,
+              "end": 1795287132397
+            }
+          },
+          "id": "prt_1ff73a78f001sN04ZU79UpULta",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fbf001A2AKXFZmp5IFuX"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 10557,
+            "input": 10417,
+            "output": 109,
+            "reasoning": 31,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff73a9be0018TT69fxTz6mau9",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff739fbf001A2AKXFZmp5IFuX"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11015,
+          "input": 10898,
+          "output": 66,
+          "reasoning": 51,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287132774,
+          "completed": 1795287134520
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff73aa65001tpLYx413J0PRZO",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-start",
+          "id": "prt_1ff73ab8a001l3rkLpTEYoN0Hl",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73aa65001tpLYx413J0PRZO"
+        },
+        {
+          "type": "reasoning",
+          "text": "NEEDS_OPTIMUM exists at line 151: `NEEDS_OPTIMUM = {\"nemotron_h\"}`. Now find the first commit that added it. Use git log with -S.",
+          "time": {
+            "start": 1795287133068,
+            "end": 1795287133848
+          },
+          "id": "prt_1ff73ab8c001H8V4zuUAeuvfLW",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73aa65001tpLYx413J0PRZO"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_eb3c0643517e494b8b417016",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git log --follow --date=short --format=\"%h %ad %s\" -S \"NEEDS_OPTIMUM\" -- nollama.py"
+            },
+            "output": "ce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\ne1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\n",
+            "metadata": {
+              "output": "ce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\ne1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git log --follow --date=short --format=\"%h %ad %s\" -S \"NEEDS_OPTIMUM\" -- nollama.py",
+            "time": {
+              "start": 1795287133857,
+              "end": 1795287134148
+            }
+          },
+          "id": "prt_1ff73ae9a001kFz0PIEY2owiAu",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73aa65001tpLYx413J0PRZO"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 11015,
+            "input": 10898,
+            "output": 66,
+            "reasoning": 51,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff73b0630015iEJkfyAW19RqR",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73aa65001tpLYx413J0PRZO"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11313,
+          "input": 11081,
+          "output": 66,
+          "reasoning": 166,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287134523,
+          "completed": 1795287137072
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff73b13b0013zYZESlnQyz9cs",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-start",
+          "id": "prt_1ff73b25f00168HBJbzoHNws2V",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73b13b0013zYZESlnQyz9cs"
+        },
+        {
+          "type": "reasoning",
+          "text": "Two commits match. The OLDEST in history is e1702f4 (Steps 0-3) — but the log shows in reverse chronological order, so the last line is the oldest. Wait, the output shows:\n- ce2ac34 2026-08-13 Step 4\n- e1702f4 2026-08-13 Steps 0-3\n\nSo e1702f4 is older (Steps 0-3 comes before Step 4). Let me verify with --reverse to confirm the first introduction is e1702f4. But also note the pickaxe with -S might match because occurrence count changed. e1702f4 is the introduction if it added the string. Let me check with git show.",
+          "time": {
+            "start": 1795287134817,
+            "end": 1795287136400
+          },
+          "id": "prt_1ff73b261001Ix223qybu0o4E2",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73b13b0013zYZESlnQyz9cs"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_f409dc3edaee470f99b23b3e",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git log --reverse --date=short --format=\"%h %ad %s\" -S \"NEEDS_OPTIMUM\" -- nollama.py"
+            },
+            "output": "e1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\nce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\n",
+            "metadata": {
+              "output": "e1702f4 2026-08-13 Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\nce2ac34 2026-08-13 Step 4: --backend flag, per-model slot class pick, NPU exclusion\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git log --reverse --date=short --format=\"%h %ad %s\" -S \"NEEDS_OPTIMUM\" -- nollama.py",
+            "time": {
+              "start": 1795287136407,
+              "end": 1795287136700
+            }
+          },
+          "id": "prt_1ff73b8920014bDUj6NrsKpWeM",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73b13b0013zYZESlnQyz9cs"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 11313,
+            "input": 11081,
+            "output": 66,
+            "reasoning": 166,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff73ba5d001U6jLcL4efD6238",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73b13b0013zYZESlnQyz9cs"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11418,
+          "input": 11379,
+          "output": 1,
+          "reasoning": 38,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287137075,
+          "completed": 1795287138206
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff73bb33001qlQXCh27SWZFMr",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-start",
+          "id": "prt_1ff73bc3c001frfyjwej0ltqhJ",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bb33001qlQXCh27SWZFMr"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_4c31a92905474190a33baa3b",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "git show e1702f4 -- nollama.py"
+            },
+            "output": "commit e1702f4449e63317533c48bf0265da0012eaf463\nAuthor: Tommy Leonhardsen <tommy.leonhardsen@gmail.com>\nDate:   Thu Aug 13 08:54:49 2026 +0200\n\n    Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\n    \n    - stream_tokens(raw_messages, gen, heartbeat, tag) is the new backend/\n      protocol seam: owns worker thread, lock, _cancel.clear-inside-lock,\n      _stream_error; consumers (stream_llm SSE, both Ollama ndjson emitters)\n      own framing, TTFT, heartbeat policy, and the disconnect safety net.\n      Fixes the ndjson paths reaching into slot.pipe directly.\n    - NEEDS_OPTIMUM detection (muse_glimmer, nemotron_h) + Backend line in\n      --scan + backend field in /health; supports_prefix_cache gates the\n      prewarm prefill and the KV-pool preflight arm off for optimum slots.\n    - OptimumSlot(DeviceSlot): optimum-intel python runtime, text-only\n      (model_type llm even for VLM-shaped exports), TextIteratorStreamer\n      over the same seam, GLOBAL_WORKERS=1 shard-load workaround, lazy\n      imports so plain installs never pay the torch tax.\n    - _idle_watchdog: skip slots without last_used (WhisperSlot crash).\n    \n    GenAI regression on SmolLM3/CPU: stream+non-stream OpenAI, both Ollama\n    ndjson paths, cancel mid-stream (finish_reason cancelled, clean next\n    request), /health — all green, frames byte-identical.\n    \n    Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>\n\ndiff --git a/nollama.py b/nollama.py\nindex 3f10c7d..1ad9a2d 100644\n--- a/nollama.py\n+++ b/nollama.py\n@@ -95,6 +95,27 @@ def is_vlm(model_dir):\n         return False\n \n \n+# Architectures openvino_genai pipelines cannot run — muse_glimmer's language\n+# model takes inputs_embeds (no LLMPipeline path) and VLMPipeline lacks the\n+# arch; nemotron_h is hybrid Mamba2+MoE. These are served through\n+# optimum-intel's python runtime (OptimumSlot) instead.\n+NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}\n+\n+\n+def needs_optimum(model_dir):\n+    \"\"\"True when this model must run on the optimum-intel python backend.\n+\n+    Reads the *top-level* model_type deliberately (not _text_config): for a\n+    VLM-shaped export like Muse Glimmer, the top-level type is the one that\n+    names the architecture GenAI would have to support.\n+    \"\"\"\n+    try:\n+        with open(os.path.join(model_dir, \"config.json\")) as f:\n+            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n+    except Exception:\n+        return False\n+\n+\n # Suffixes describing the *export* rather than the model, dropped from the\n # display name (and so from the model ID clients configure).\n _NAME_SUFFIXES = (\"-ov\", \"-openvino\", \"-int8\", \"-int4\")\n@@ -490,12 +511,16 @@ def describe_model(model_dir):\n         kind = \"VLM (vision + text)\"\n     else:\n         kind = \"LLM (text)\"\n+    if needs_optimum(model_dir):\n+        kind += \", served text-only via optimum backend\"\n \n     return {\n         \"path\": os.path.abspath(model_dir),\n         \"name\": name,\n         \"name_source\": why,\n         \"kind\": kind,\n+        \"backend\": \"optimum-intel (python runtime)\" if needs_optimum(model_dir)\n+                   else \"openvino_genai\",\n         \"architecture\": (cfg.get(\"architectures\") or [None])[0],\n         \"model_type\": cfg.get(\"model_type\"),\n         \"layers\": geo.get(\"num_hidden_layers\"),\n@@ -582,6 +607,13 @@ def scan_models(paths):\n         if info[\"model_type\"] and info[\"architecture\"]:\n             arch += f\" / {info['model_type']}\"\n         print(f\"    Architecture   : {arch}\")\n+        if info[\"backend\"] != \"openvino_genai\":\n+            note = \"\"\n+            import importlib.util\n+            if importlib.util.find_spec(\"optimum\") is None:\n+                note = (\"  — NOT importable in this python; serve from the \"\n+                        \"model-lab venv (see README)\")\n+            print(f\"    Backend        : {info['backend']}{note}\")\n         print(f\"    Weights        : {info['precision']}\", end=\"\")\n         if info[\"size_bytes\"]:\n             print(f\"   {info['size_bytes'] / (1 << 30):,.1f} GB on disk\")\n@@ -1051,6 +1083,8 @@ def parse_tool_calls(text, tools):\n class DeviceSlot:\n     \"\"\"One loaded model on one device.\"\"\"\n \n+    backend = \"genai\"  # which runtime serves this slot (surfaced in /health)\n+\n     def __init__(self, device_name, device_id=None):\n         self.device_name = device_name   # canonical \"NPU\", \"GPU\", \"CPU\" (display + routing)\n         self.device_id = device_id or device_name  # OpenVINO id (may be \"GPU.1\" on multi-GPU)\n@@ -1061,10 +1095,12 @@ class DeviceSlot:\n         self.status = \"not_configured\"   # not_configured -> loading -> warming_up -> ready / error / idle_unloaded\n         self.lock = threading.Lock()\n         self._cancel = threading.Event()  # signal to stop generation\n+        self._stream_error = None        # last stream_tokens backend exception (single consumer per lock)\n         self.last_used = time.time()     # for idle-unload watchdog\n         self.model_dir = None            # remembered so we can reload after unload\n         self.last_ttft_ms = None         # last request's time-to-first-token (prefix-cache hit ≈ low)\n         self.prewarmed = False           # did _prewarm_slot succeed for this load\n+        self.supports_prefix_cache = True  # GenAI CB backend can prefix-cache; OptimumSlot can't\n \n     def load(self, model_dir):\n         \"\"\"Load model, auto-detecting VLM vs LLM.\"\"\"\n@@ -1141,7 +1177,8 @@ class DeviceSlot:\n         if not mem or not weights:\n             return  # can't estimate — stay quiet rather than guess\n         kv_pool = (PROMPT_CACHE_GB * gib\n-                   if PROMPT_CACHE and not vlm and self.device_name in (\"GPU\", \"CPU\")\n+                   if PROMPT_CACHE and not vlm and self.supports_prefix_cache\n+                   and self.device_name in (\"GPU\", \"CPU\")\n                    else 0)\n         need = (weights + kv_pool) * 1.1  # ~10% runtime/activation overhead\n         if need > mem:\n@@ -1255,6 +1292,67 @@ class DeviceSlot:\n         \"\"\"Signal the current generation to stop.\"\"\"\n         self._cancel.set()\n \n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\n+        \"\"\"Low-level token stream — the seam between backend and protocol.\n+\n+        Yields str (a decoded text chunk) as soon as one exists, or None when\n+        `heartbeat` seconds passed with no chunk and the generation worker is\n+        still alive (the caller decides: SSE pings, ndjson aborts). Terminates\n+        when generation completes, was cancelled, or the worker died.\n+\n+        Owns: the worker thread, self.lock around generate, clearing _cancel\n+        INSIDE the lock (racing the previous request's finally otherwise),\n+        last_used, and recording any backend exception in self._stream_error\n+        (None on success) before terminating.\n+\n+        Does NOT touch last_ttft_ms, set _cancel on exit, or emit protocol\n+        frames — those belong to the consumers. In particular the\n+        client-disconnect safety net (finally: _cancel.set()) MUST stay in the\n+        consumers: a generator's finally also runs on normal exhaustion, which\n+        would make the consumer's `was_cancelled = _cancel.is_set()` read True\n+        on every completed stream.\n+        \"\"\"\n+        history = ovg.ChatHistory()\n+        for msg in raw_messages:\n+            history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n+\n+        token_queue = Queue()\n+        self._stream_error = None\n+\n+        def streamer_callback(token):\n+            if self._cancel.is_set():\n+                return True  # stop generation\n+            token_queue.put(token)\n+            return False\n+\n+        def _generate():\n+            try:\n+                with self.lock:\n+                    self._cancel.clear()\n+                    self.pipe.generate(history, gen, streamer_callback)\n+                    self.last_used = time.time()\n+            except Exception as e:\n+                self._stream_error = e\n+                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n+                      f\"{tag}generate error: {explain_genai_error(e)}\", flush=True)\n+            finally:\n+                token_queue.put(None)\n+\n+        t = threading.Thread(target=_generate, daemon=True)\n+        t.start()\n+\n+        while True:\n+            try:\n+                token = token_queue.get(timeout=heartbeat)\n+            except Empty:\n+                if not t.is_alive():\n+                    return  # worker died without the sentinel — defensive\n+                yield None  # heartbeat marker\n+                continue\n+            if token is None:\n+                return\n+            yield token\n+\n     def stream_vlm(self, text_prompt, images, gen, completion_id, created, t0):\n         \"\"\"VLM generate — SSE streaming. openvino-genai 2026.1+.\"\"\"\n         token_queue = Queue()\n@@ -1346,40 +1444,8 @@ class DeviceSlot:\n               flush=True)\n \n     def stream_llm(self, raw_messages, gen, completion_id, created, t0):\n-        \"\"\"LLM generate — SSE streaming.\"\"\"\n-        history = ovg.ChatHistory()\n-        for msg in raw_messages:\n-            history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-        token_queue = Queue()\n+        \"\"\"LLM generate — SSE streaming. Protocol layer over stream_tokens().\"\"\"\n         token_count = 0\n-        cancelled = False\n-\n-        def streamer_callback(token):\n-            if self._cancel.is_set():\n-                return True  # stop generation\n-            token_queue.put(token)\n-            return False\n-\n-        gen_error = [None]  # captured from generate thread\n-\n-        def _generate():\n-            try:\n-                with self.lock:\n-                    # Clear inside the lock, just before generation, to avoid\n-                    # racing with the previous request's finally: _cancel.set()\n-                    self._cancel.clear()\n-                    self.pipe.generate(history, gen, streamer_callback)\n-                    self.last_used = time.time()\n-            except Exception as e:\n-                gen_error[0] = e\n-                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n-                      f\"generate error: {explain_genai_error(e)}\", flush=True)\n-            finally:\n-                token_queue.put(None)\n-\n-        t = threading.Thread(target=_generate, daemon=True)\n-        t.start()\n \n         try:\n             chunk = {\n@@ -1389,18 +1455,14 @@ class DeviceSlot:\n             }\n             yield f\"data: {json.dumps(chunk)}\\n\\n\"\n \n-            while True:\n-                try:\n-                    token = token_queue.get(timeout=HEARTBEAT_SECS)\n-                except Empty:\n+            for token in self.stream_tokens(raw_messages, gen, heartbeat=HEARTBEAT_SECS):\n+                if token is None:\n                     # No token yet — likely a long prefill on a big prompt.\n                     # Emit an empty-content delta to keep the client's idle\n                     # watchdog from aborting (a real chunk resets content-based\n                     # watchdogs, not just byte-based ones; empty string is a\n                     # no-op for assembly). The background thread delivers tokens\n-                    # or the None sentinel when ready.\n-                    if not t.is_alive():\n-                        break\n+                    # or the sentinel when ready.\n                     ka = {\n                         \"id\": completion_id, \"object\": \"chat.completion.chunk\",\n                         \"created\": created, \"model\": self.model_name,\n@@ -1409,8 +1471,6 @@ class DeviceSlot:\n                     }\n                     yield f\"data: {json.dumps(ka)}\\n\\n\"\n                     continue\n-                if token is None:\n-                    break\n                 if token_count == 0:\n                     # Wall-clock TTFT: prefill is over when the first token lands.\n                     self.last_ttft_ms = (time.perf_counter() - t0) * 1000\n@@ -1424,6 +1484,7 @@ class DeviceSlot:\n \n             # Capture state BEFORE the finally-block safety-net sets _cancel\n             was_cancelled = self._cancel.is_set()\n+            gen_error = [self._stream_error]\n             if gen_error[0] is not None:\n                 finish_reason = \"error\"\n                 err_chunk = {\n@@ -1464,6 +1525,7 @@ class DeviceSlot:\n             \"type\": self.model_type,\n             \"device\": self.device_full,\n             \"device_name\": self.device_name,   # canonical NPU/GPU/CPU (routing/checks)\n+            \"backend\": self.backend,            # genai or optimum runtime\n             \"tools\": _tools_supported(self),    # can this slot drive an agent loop?\n             \"prewarmed\": self.prewarmed,        # did the --prewarm prefill succeed\n             \"last_ttft_ms\": (round(self.last_ttft_ms)\n@@ -1471,6 +1533,202 @@ class DeviceSlot:\n         }\n \n \n+# ---------------------------------------------------------------------------\n+# Optimum-intel slot — python-runtime backend for architectures GenAI can't run\n+# ---------------------------------------------------------------------------\n+\n+_HF_PENALTY_NOTED = [False]\n+\n+\n+def _hf_gen_kwargs(gen):\n+    \"\"\"Translate the routes' ovg.GenerationConfig into transformers generate\n+    kwargs. The routes keep building GenAI configs (no churn there); the\n+    optimum backend translates at the edge.\"\"\"\n+    kw = dict(max_new_tokens=gen.max_new_tokens, do_sample=bool(gen.do_sample),\n+              repetition_penalty=gen.repetition_penalty)\n+    if gen.do_sample:\n+        # Greedy is do_sample=False alone — the routes' top_k=1 is a GenAI-ism.\n+        kw.update(temperature=gen.temperature, top_p=gen.top_p, top_k=int(gen.top_k))\n+    if any(getattr(gen, a, 0) for a in (\"frequency_penalty\", \"presence_penalty\")):\n+        if not _HF_PENALTY_NOTED[0]:\n+            print(\"  [optimum] frequency/presence penalties are not supported by \"\n+                  \"transformers generate — ignored (repetition_penalty still applies)\",\n+                  flush=True)\n+            _HF_PENALTY_NOTED[0] = True\n+    return kw\n+\n+\n+class OptimumSlot(DeviceSlot):\n+    \"\"\"One model served through optimum-intel's python runtime instead of an\n+    openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n+    run: muse_glimmer's language model takes inputs_embeds (no LLMPipeline\n+    path, and VLMPipeline lacks the arch); nemotron_h is hybrid Mamba2+MoE.\n+\n+    TEXT-ONLY for now: model_type reports \"llm\" even for a VLM-shaped export\n+    like Muse Glimmer, so the routes reject images with a clean 400 and hand\n+    us role-structured messages (the VLM paths flatten roles away). No prefix\n+    cache (that's a GenAI CB-scheduler feature) — prewarm and the KV-pool\n+    preflight are gated off via supports_prefix_cache.\n+    \"\"\"\n+\n+    backend = \"optimum\"\n+\n+    def __init__(self, device_name, device_id=None):\n+        super().__init__(device_name, device_id)\n+        self.supports_prefix_cache = False\n+        self.model = None\n+        self.tokenizer = None\n+\n+    def _lazy_import(self):\n+        \"\"\"Import the heavy stack at load time (soundfile pattern): plain\n+        installs don't carry optimum/transformers, and GenAI-only serving\n+        must not pay the torch import.\"\"\"\n+        try:\n+            import transformers  # noqa: F401\n+            import optimum.intel  # noqa: F401\n+        except ImportError as e:\n+            raise RuntimeError(\n+                f\"{self.model_name} needs the optimum-intel python backend, \"\n+                f\"but it is not installed in this python ({e}). Serve from the \"\n+                f\"model-lab venv instead (see README: scripts/glimmer-export \"\n+                f\"builds it; one-time 'pip install flask openvino-genai').\"\n+            )\n+        # transformers 5.16-dev materializes checkpoint shards in a 4-worker\n+        # thread pool with no env knob; parallel mmap copies die with a native\n+        # access violation (0xC0000005) on 32 GB machines. Serialize — same\n+        # workaround as scripts/glimmer-export/run-export.py.\n+        import transformers.core_model_loading as _cml\n+        _cml.GLOBAL_WORKERS = 1\n+\n+    def load(self, model_dir):\n+        self.status = \"loading\"\n+        self.model_dir = model_dir\n+        self.model_name = model_display_name(model_dir)\n+        self.model_type = \"llm\"  # text-only phase, even when the export is VLM-shaped\n+        print(f\"  [{self.device_name}] Detected: LLM ({self.model_name}, \"\n+              f\"optimum backend)\")\n+        integrity_err = _verify_weights_integrity(model_dir)\n+        if integrity_err:\n+            raise RuntimeError(integrity_err)\n+        self._preflight_memory(vlm=False)\n+        self._lazy_import()\n+        print(f\"  [{self.device_name}] Loading (optimum-intel runtime)...\",\n+              flush=True)\n+        from optimum.intel import OVModelForCausalLM, OVModelForVisualCausalLM\n+        from transformers import AutoTokenizer\n+        # Structural pick: a VLM-shaped export (Glimmer) must go through the\n+        # visual class even for text-only generate; nemotron_h is a plain LM.\n+        cls = OVModelForVisualCausalLM if is_vlm(model_dir) else OVModelForCausalLM\n+        try:\n+            self.model = cls.from_pretrained(model_dir, device=self.device_id)\n+        except KeyError as e:\n+            raise RuntimeError(\n+                f\"transformers {__import__('transformers').__version__} does not \"\n+                f\"know this architecture ({e}) — the model-lab venv carries \"\n+                f\"transformers from git main, which does.\")\n+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)\n+        self.pipe = self.model  # inherited ensure_loaded/unload key on .pipe\n+\n+    def _stopping_criteria(self):\n+        from transformers import StoppingCriteria, StoppingCriteriaList\n+\n+        slot = self\n+\n+        class _CancelStop(StoppingCriteria):\n+            def __call__(self, input_ids, scores, **kwargs):\n+                return slot._cancel.is_set()\n+\n+        return StoppingCriteriaList([_CancelStop()])\n+\n+    def _generate_unlocked(self, raw_messages, hf_kwargs, streamer=None):\n+        \"\"\"The bare generate call, no locking — exists because ensure_loaded()\n+        calls warmup() while HOLDING self.lock (non-reentrant), mirroring how\n+        DeviceSlot.warmup talks to the pipeline directly.\"\"\"\n+        inputs = self.tokenizer.apply_chat_template(\n+            raw_messages, add_generation_prompt=True,\n+            return_tensors=\"pt\", return_dict=True)\n+        self.model.generate(\n+            **inputs, streamer=streamer,\n+            stopping_criteria=self._stopping_criteria(),\n+            pad_token_id=self.tokenizer.eos_token_id, **hf_kwargs)\n+\n+    def warmup(self):\n+        self.status = \"warming_up\"\n+        print(f\"  [{self.device_name}] Warmup...\", flush=True)\n+        t0 = time.perf_counter()\n+        self._generate_unlocked([{\"role\": \"user\", \"content\": \"Hi\"}],\n+                                dict(max_new_tokens=5, do_sample=False))\n+        print(f\"  [{self.device_name}] Warmup done \"\n+              f\"({time.perf_counter() - t0:.1f}s)\", flush=True)\n+        self.status = \"ready\"\n+        self.last_used = time.time()\n+\n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\n+        \"\"\"Same contract as DeviceSlot.stream_tokens, over TextIteratorStreamer.\"\"\"\n+        from transformers import TextIteratorStreamer\n+\n+        streamer = TextIteratorStreamer(\n+            self.tokenizer, skip_prompt=True, skip_special_tokens=True,\n+            timeout=heartbeat)  # None → block forever (non-stream join)\n+        self._stream_error = None\n+\n+        def _generate():\n+            try:\n+                with self.lock:\n+                    self._cancel.clear()\n+                    self._generate_unlocked(raw_messages, _hf_gen_kwargs(gen),\n+                                            streamer=streamer)\n+                    self.last_used = time.time()\n+            except Exception as e:\n+                self._stream_error = e\n+                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n+                      f\"{tag}generate error: {e}\", flush=True)\n+                streamer.end()  # unblock the consumer even on pre-generate failure\n+\n+        t = threading.Thread(target=_generate, daemon=True)\n+        t.start()\n+\n+        it = iter(streamer)\n+        while True:\n+            try:\n+                chunk = next(it)\n+            except Empty:  # TextIteratorStreamer raises queue.Empty on timeout\n+                if not t.is_alive():\n+                    return\n+                yield None  # heartbeat marker\n+                continue\n+            except StopIteration:\n+                return\n+            if chunk:\n+                yield chunk\n+\n+    def generate_llm(self, raw_messages, gen):\n+        \"\"\"Non-streaming = joined stream: one code path, wall-clock TTFT\n+        (extract_perf has nothing to read on this backend).\"\"\"\n+        t0 = time.perf_counter()\n+        chunks = []\n+        for chunk in self.stream_tokens(raw_messages, gen, heartbeat=None):\n+            if not chunks:\n+                self.last_ttft_ms = (time.perf_counter() - t0) * 1000\n+            chunks.append(chunk)\n+        if self._stream_error is not None:\n+            raise self._stream_error\n+        return \"\".join(chunks).strip()\n+\n+    def generate_vlm(self, text_prompt, images, gen):\n+        raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n+\n+    def stream_vlm(self, text_prompt, images, gen, completion_id, created, t0):\n+        raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n+\n+    def unload(self):\n+        if self.pipe is None:\n+            return\n+        self.model = None\n+        self.tokenizer = None\n+        super().unload()\n+\n+\n # ---------------------------------------------------------------------------\n # Whisper (speech-to-text) slot\n # ---------------------------------------------------------------------------\n@@ -1819,7 +2077,10 @@ def _prewarm_slot(slot):\n     cache hit. Only meaningful on a GPU/CPU LLM slot with prefix caching on.\n     \"\"\"\n     if not (PREWARM_FILE and PROMPT_CACHE and slot.model_type == \"llm\"\n-            and slot.device_name in (\"GPU\", \"CPU\")):\n+            and slot.device_name in (\"GPU\", \"CPU\")\n+            and getattr(slot, \"supports_prefix_cache\", False)):\n+        # OptimumSlot has no prefix cache — a prewarm prefill would burn a\n+        # full 30B-scale prefill at startup for nothing.\n         return\n     if not os.path.isfile(PREWARM_FILE):\n         return\n@@ -2399,41 +2660,14 @@ def ollama_chat():\n \n \n def _ollama_stream_chat(slot, raw_messages, gen, t0):\n-    \"\"\"Ollama streaming: newline-delimited JSON (not SSE).\"\"\"\n-    history = ovg.ChatHistory()\n-    for msg in raw_messages:\n-        history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-    token_queue = Queue()\n+    \"\"\"Ollama streaming: newline-delimited JSON (not SSE). Protocol layer over\n+    slot.stream_tokens() — a None marker after 120 s of silence aborts the\n+    stream, preserving this path's historical no-token timeout.\"\"\"\n     token_count = 0\n \n-    def streamer_callback(token):\n-        if slot._cancel.is_set():\n-            return True\n-        token_queue.put(token)\n-        return False\n-\n-    def _generate():\n-        try:\n-            with slot.lock:\n-                slot._cancel.clear()\n-                slot.pipe.generate(history, gen, streamer_callback)\n-                slot.last_used = time.time()\n-        except Exception as e:\n-            print(f\"{datetime.now():%H:%M:%S} !! [{slot.device_name}] [Ollama] \"\n-                  f\"generate error: {explain_genai_error(e)}\", flush=True)\n-        finally:\n-            token_queue.put(None)\n-\n-    t = threading.Thread(target=_generate, daemon=True)\n-    t.start()\n-\n     try:\n-        while True:\n-            try:\n-                token = token_queue.get(timeout=120)\n-            except Empty:\n-                break\n+        for token in slot.stream_tokens(raw_messages, gen, heartbeat=120,\n+                                        tag=\"[Ollama] \"):\n             if token is None:\n                 break\n             if token_count == 0:\n@@ -2559,41 +2793,13 @@ def ollama_generate():\n \n \n def _ollama_stream_generate(slot, raw_messages, gen, t0):\n-    \"\"\"Ollama /api/generate streaming.\"\"\"\n-    history = ovg.ChatHistory()\n-    for msg in raw_messages:\n-        history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-    token_queue = Queue()\n+    \"\"\"Ollama /api/generate streaming. Protocol layer over slot.stream_tokens();\n+    None after 120 s of silence aborts (historical behavior, no TTFT here).\"\"\"\n     token_count = 0\n \n-    def streamer_callback(token):\n-        if slot._cancel.is_set():\n-            return True\n-        token_queue.put(token)\n-        return False\n-\n-    def _generate():\n-        try:\n-            with slot.lock:\n-                slot._cancel.clear()\n-                slot.pipe.generate(history, gen, streamer_callback)\n-                slot.last_used = time.time()\n-        except Exception as e:\n-            print(f\"{datetime.now():%H:%M:%S} !! [{slot.device_name}] [Ollama] \"\n-                  f\"generate error: {explain_genai_error(e)}\", flush=True)\n-        finally:\n-            token_queue.put(None)\n-\n-    t = threading.Thread(target=_generate, daemon=True)\n-    t.start()\n-\n     try:\n-        while True:\n-            try:\n-                token = token_queue.get(timeout=120)\n-            except Empty:\n-                break\n+        for token in slot.stream_tokens(raw_messages, gen, heartbeat=120,\n+                                        tag=\"[Ollama] \"):\n             if token is None:\n                 break\n             token_count += 1\n@@ -2746,6 +2952,9 @@ def _idle_watchdog(slots, idle_timeout, check_interval=30):\n         for slot in slots:\n             if not slot or slot.status != \"ready\":\n                 continue\n+            # WhisperSlot has no last_used/unload — never idle-unloaded\n+            if getattr(slot, \"last_used\", None) is None:\n+                continue\n             if now - slot.last_used < idle_timeout:\n                 continue\n             # Try non-blocking lock acquire — skip if a request is in progress\n",
+            "metadata": {
+              "output": "commit e1702f4449e63317533c48bf0265da0012eaf463\nAuthor: Tommy Leonhardsen <tommy.leonhardsen@gmail.com>\nDate:   Thu Aug 13 08:54:49 2026 +0200\n\n    Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\n    \n    - stream_tokens(raw_messages, gen, heartbeat, tag) is the new backend/\n      protocol seam: owns worker thread, lock, _cancel.clear-inside-lock,\n      _stream_error; consumers (stream_llm SSE, both Ollama ndjson emitters)\n      own framing, TTFT, heartbeat policy, and the disconnect safety net.\n      Fixes the ndjson paths reaching into slot.pipe directly.\n    - NEEDS_OPTIMUM detection (muse_glimmer, nemotron_h) + Backend line in\n      --scan + backend field in /health; supports_prefix_cache gates the\n      prewarm prefill and the KV-pool preflight arm off for optimum slots.\n    - OptimumSlot(DeviceSlot): optimum-intel python runtime, text-only\n      (model_type llm even for VLM-shaped exports), TextIteratorStreamer\n      over the same seam, GLOBAL_WORKERS=1 shard-load workaround, lazy\n      imports so plain installs never pay the torch tax.\n    - _idle_watchdog: skip slots without last_used (WhisperSlot crash).\n    \n    GenAI regression on SmolLM3/CPU: stream+non-stream OpenAI, both Ollama\n    ndjson paths, cancel mid-stream (finish_reason cancelled, clean next\n    request), /health — all green, frames byte-identical.\n    \n    Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>\n\ndiff --git a/nollama.py b/nollama.py\nindex 3f10c7d..1ad9a2d 100644\n--- a/nollama.py\n+++ b/nollama.py\n@@ -95,6 +95,27 @@ def is_vlm(model_dir):\n         return False\n \n \n+# Architectures openvino_genai pipelines cannot run — muse_glimmer's language\n+# model takes inputs_embeds (no LLMPipeline path) and VLMPipeline lacks the\n+# arch; nemotron_h is hybrid Mamba2+MoE. These are served through\n+# optimum-intel's python runtime (OptimumSlot) instead.\n+NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}\n+\n+\n+def needs_optimum(model_dir):\n+    \"\"\"True when this model must run on the optimum-intel python backend.\n+\n+    Reads the *top-level* model_type deliberately (not _text_config): for a\n+    VLM-shaped export like Muse Glimmer, the top-level type is the one that\n+    names the architecture GenAI would have to support.\n+    \"\"\"\n+    try:\n+        with open(os.path.join(model_dir, \"config.json\")) as f:\n+            return json.load(f).get(\"model_type\", \"\").lower() in NEEDS_OPTIMUM\n+    except Exception:\n+        return False\n+\n+\n # Suffixes describing the *export* rather than the model, dropped from the\n # display name (and so from the model ID clients configure).\n _NAME_SUFFIXES = (\"-ov\", \"-openvino\", \"-int8\", \"-int4\")\n@@ -490,12 +511,16 @@ def describe_model(model_dir):\n         kind = \"VLM (vision + text)\"\n     else:\n         kind = \"LLM (text)\"\n+    if needs_optimum(model_dir):\n+        kind += \", served text-only via optimum backend\"\n \n     return {\n         \"path\": os.path.abspath(model_dir),\n         \"name\": name,\n         \"name_source\": why,\n         \"kind\": kind,\n+        \"backend\": \"optimum-intel (python runtime)\" if needs_optimum(model_dir)\n+                   else \"openvino_genai\",\n         \"architecture\": (cfg.get(\"architectures\") or [None])[0],\n         \"model_type\": cfg.get(\"model_type\"),\n         \"layers\": geo.get(\"num_hidden_layers\"),\n@@ -582,6 +607,13 @@ def scan_models(paths):\n         if info[\"model_type\"] and info[\"architecture\"]:\n             arch += f\" / {info['model_type']}\"\n         print(f\"    Architecture   : {arch}\")\n+        if info[\"backend\"] != \"openvino_genai\":\n+            note = \"\"\n+            import importlib.util\n+            if importlib.util.find_spec(\"optimum\") is None:\n+                note = (\"  — NOT importable in this python; serve from the \"\n+                        \"model-lab venv (see README)\")\n+            print(f\"    Backend        : {info['backend']}{note}\")\n         print(f\"    Weights        : {info['precision']}\", end=\"\")\n         if info[\"size_bytes\"]:\n             print(f\"   {info['size_bytes'] / (1 << 30):,.1f} GB on disk\")\n@@ -1051,6 +1083,8 @@ def parse_tool_calls(text, tools):\n class DeviceSlot:\n     \"\"\"One loaded model on one device.\"\"\"\n \n+    backend = \"genai\"  # which runtime serves this slot (surfaced in /health)\n+\n     def __init__(self, device_name, device_id=None):\n         self.device_name = device_name   # canonical \"NPU\", \"GPU\", \"CPU\" (display + routing)\n         self.device_id = device_id or device_name  # OpenVINO id (may be \"GPU.1\" on multi-GPU)\n@@ -1061,10 +1095,12 @@ class DeviceSlot:\n         self.status = \"not_configured\"   # not_configured -> loading -> warming_up -> ready / error / idle_unloaded\n         self.lock = threading.Lock()\n         self._cancel = threading.Event()  # signal to stop generation\n+        self._stream_error = None        # last stream_tokens backend exception (single consumer per lock)\n         self.last_used = time.time()     # for idle-unload watchdog\n         self.model_dir = None            # remembered so we can reload after unload\n         self.last_ttft_ms = None         # last request's time-to-first-token (prefix-cache hit ≈ low)\n         self.prewarmed = False           # did _prewarm_slot succeed for this load\n+        self.supports_prefix_cache = True  # GenAI CB backend can prefix-cache; OptimumSlot can't\n \n     def load(self, model_dir):\n         \"\"\"Load model, auto-detecting VLM vs LLM.\"\"\"\n@@ -1141,7 +1177,8 @@ class DeviceSlot:\n         if not mem or not weights:\n             return  # can't estimate — stay quiet rather than guess\n         kv_pool = (PROMPT_CACHE_GB * gib\n-                   if PROMPT_CACHE and not vlm and self.device_name in (\"GPU\", \"CPU\")\n+                   if PROMPT_CACHE and not vlm and self.supports_prefix_cache\n+                   and self.device_name in (\"GPU\", \"CPU\")\n                    else 0)\n         need = (weights + kv_pool) * 1.1  # ~10% runtime/activation overhead\n         if need > mem:\n@@ -1255,6 +1292,67 @@ class DeviceSlot:\n         \"\"\"Signal the current generation to stop.\"\"\"\n         self._cancel.set()\n \n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\n+        \"\"\"Low-level token stream — the seam between backend and protocol.\n+\n+        Yields str (a decoded text chunk) as soon as one exists, or None when\n+        `heartbeat` seconds passed with no chunk and the generation worker is\n+        still alive (the caller decides: SSE pings, ndjson aborts). Terminates\n+        when generation completes, was cancelled, or the worker died.\n+\n+        Owns: the worker thread, self.lock around generate, clearing _cancel\n+        INSIDE the lock (racing the previous request's finally otherwise),\n+        last_used, and recording any backend exception in self._stream_error\n+        (None on success) before terminating.\n+\n+        Does NOT touch last_ttft_ms, set _cancel on exit, or emit protocol\n+        frames — those belong to the consumers. In particular the\n+        client-disconnect safety net (finally: _cancel.set()) MUST stay in the\n+        consumers: a generator's finally also runs on normal exhaustion, which\n+        would make the consumer's `was_cancelled = _cancel.is_set()` read True\n+        on every completed stream.\n+        \"\"\"\n+        history = ovg.ChatHistory()\n+        for msg in raw_messages:\n+            history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n+\n+        token_queue = Queue()\n+        self._stream_error = None\n+\n+        def streamer_callback(token):\n+            if self._cancel.is_set():\n+                return True  # stop generation\n+            token_queue.put(token)\n+            return False\n+\n+        def _generate():\n+            try:\n+                with self.lock:\n+                    self._cancel.clear()\n+                    self.pipe.generate(history, gen, streamer_callback)\n+                    self.last_used = time.time()\n+            except Exception as e:\n+                self._stream_error = e\n+                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n+                      f\"{tag}generate error: {explain_genai_error(e)}\", flush=True)\n+            finally:\n+                token_queue.put(None)\n+\n+        t = threading.Thread(target=_generate, daemon=True)\n+        t.start()\n+\n+        while True:\n+            try:\n+                token = token_queue.get(timeout=heartbeat)\n+            except Empty:\n+                if not t.is_alive():\n+                    return  # worker died without the sentinel — defensive\n+                yield None  # heartbeat marker\n+                continue\n+            if token is None:\n+                return\n+            yield token\n+\n     def stream_vlm(self, text_prompt, images, gen, completion_id, created, t0):\n         \"\"\"VLM generate — SSE streaming. openvino-genai 2026.1+.\"\"\"\n         token_queue = Queue()\n@@ -1346,40 +1444,8 @@ class DeviceSlot:\n               flush=True)\n \n     def stream_llm(self, raw_messages, gen, completion_id, created, t0):\n-        \"\"\"LLM generate — SSE streaming.\"\"\"\n-        history = ovg.ChatHistory()\n-        for msg in raw_messages:\n-            history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-        token_queue = Queue()\n+        \"\"\"LLM generate — SSE streaming. Protocol layer over stream_tokens().\"\"\"\n         token_count = 0\n-        cancelled = False\n-\n-        def streamer_callback(token):\n-            if self._cancel.is_set():\n-                return True  # stop generation\n-            token_queue.put(token)\n-            return False\n-\n-        gen_error = [None]  # captured from generate thread\n-\n-        def _generate():\n-            try:\n-                with self.lock:\n-                    # Clear inside the lock, just before generation, to avoid\n-                    # racing with the previous request's finally: _cancel.set()\n-                    self._cancel.clear()\n-                    self.pipe.generate(history, gen, streamer_callback)\n-                    self.last_used = time.time()\n-            except Exception as e:\n-                gen_error[0] = e\n-                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n-                      f\"generate error: {explain_genai_error(e)}\", flush=True)\n-            finally:\n-                token_queue.put(None)\n-\n-        t = threading.Thread(target=_generate, daemon=True)\n-        t.start()\n \n         try:\n             chunk = {\n@@ -1389,18 +1455,14 @@ class DeviceSlot:\n             }\n             yield f\"data: {json.dumps(chunk)}\\n\\n\"\n \n-            while True:\n-                try:\n-                    token = token_queue.get(timeout=HEARTBEAT_SECS)\n-                except Empty:\n+            for token in self.stream_tokens(raw_messages, gen, heartbeat=HEARTBEAT_SECS):\n+                if token is None:\n                     # No token yet — likely a long prefill on a big prompt.\n                     # Emit an empty-content delta to keep the client's idle\n                     # watchdog from aborting (a real chunk resets content-based\n                     # watchdogs, not just byte-based ones; empty string is a\n                     # no-op for assembly). The background thread delivers tokens\n-                    # or the None sentinel when ready.\n-                    if not t.is_alive():\n-                        break\n+                    # or the sentinel when ready.\n                     ka = {\n                         \"id\": completion_id, \"object\": \"chat.completion.chunk\",\n                         \"created\": created, \"model\": self.model_name,\n@@ -1409,8 +1471,6 @@ class DeviceSlot:\n                     }\n                     yield f\"data: {json.dumps(ka)}\\n\\n\"\n                     continue\n-                if token is None:\n-                    break\n                 if token_count == 0:\n                     # Wall-clock TTFT: prefill is over when the first token lands.\n                     self.last_ttft_ms = (time.perf_counter() - t0) * 1000\n@@ -1424,6 +1484,7 @@ class DeviceSlot:\n \n             # Capture state BEFORE the finally-block safety-net sets _cancel\n             was_cancelled = self._cancel.is_set()\n+            gen_error = [self._stream_error]\n             if gen_error[0] is not None:\n                 finish_reason = \"error\"\n                 err_chunk = {\n@@ -1464,6 +1525,7 @@ class DeviceSlot:\n             \"type\": self.model_type,\n             \"device\": self.device_full,\n             \"device_name\": self.device_name,   # canonical NPU/GPU/CPU (routing/checks)\n+            \"backend\": self.backend,            # genai or optimum runtime\n             \"tools\": _tools_supported(self),    # can this slot drive an agent loop?\n             \"prewarmed\": self.prewarmed,        # did the --prewarm prefill succeed\n             \"last_ttft_ms\": (round(self.last_ttft_ms)\n@@ -1471,6 +1533,202 @@ class DeviceSlot:\n         }\n \n \n+# ---------------------------------------------------------------------------\n+# Optimum-intel slot — python-runtime backend for architectures GenAI can't run\n+# ---------------------------------------------------------------------------\n+\n+_HF_PENALTY_NOTED = [False]\n+\n+\n+def _hf_gen_kwargs(gen):\n+    \"\"\"Translate the routes' ovg.GenerationConfig into transformers generate\n+    kwargs. The routes keep building GenAI configs (no churn there); the\n+    optimum backend translates at the edge.\"\"\"\n+    kw = dict(max_new_tokens=gen.max_new_tokens, do_sample=bool(gen.do_sample),\n+              repetition_penalty=gen.repetition_penalty)\n+    if gen.do_sample:\n+        # Greedy is do_sample=False alone — the routes' top_k=1 is a GenAI-ism.\n+        kw.update(temperature=gen.temperature, top_p=gen.top_p, top_k=int(gen.top_k))\n+    if any(getattr(gen, a, 0) for a in (\"frequency_penalty\", \"presence_penalty\")):\n+        if not _HF_PENALTY_NOTED[0]:\n+            print(\"  [optimum] frequency/presence penalties are not supported by \"\n+                  \"transformers generate — ignored (repetition_penalty still applies)\",\n+                  flush=True)\n+            _HF_PENALTY_NOTED[0] = True\n+    return kw\n+\n+\n+class OptimumSlot(DeviceSlot):\n+    \"\"\"One model served through optimum-intel's python runtime instead of an\n+    openvino_genai pipeline — for the NEEDS_OPTIMUM architectures GenAI can't\n+    run: muse_glimmer's language model takes inputs_embeds (no LLMPipeline\n+    path, and VLMPipeline lacks the arch); nemotron_h is hybrid Mamba2+MoE.\n+\n+    TEXT-ONLY for now: model_type reports \"llm\" even for a VLM-shaped export\n+    like Muse Glimmer, so the routes reject images with a clean 400 and hand\n+    us role-structured messages (the VLM paths flatten roles away). No prefix\n+    cache (that's a GenAI CB-scheduler feature) — prewarm and the KV-pool\n+    preflight are gated off via supports_prefix_cache.\n+    \"\"\"\n+\n+    backend = \"optimum\"\n+\n+    def __init__(self, device_name, device_id=None):\n+        super().__init__(device_name, device_id)\n+        self.supports_prefix_cache = False\n+        self.model = None\n+        self.tokenizer = None\n+\n+    def _lazy_import(self):\n+        \"\"\"Import the heavy stack at load time (soundfile pattern): plain\n+        installs don't carry optimum/transformers, and GenAI-only serving\n+        must not pay the torch import.\"\"\"\n+        try:\n+            import transformers  # noqa: F401\n+            import optimum.intel  # noqa: F401\n+        except ImportError as e:\n+            raise RuntimeError(\n+                f\"{self.model_name} needs the optimum-intel python backend, \"\n+                f\"but it is not installed in this python ({e}). Serve from the \"\n+                f\"model-lab venv instead (see README: scripts/glimmer-export \"\n+                f\"builds it; one-time 'pip install flask openvino-genai').\"\n+            )\n+        # transformers 5.16-dev materializes checkpoint shards in a 4-worker\n+        # thread pool with no env knob; parallel mmap copies die with a native\n+        # access violation (0xC0000005) on 32 GB machines. Serialize — same\n+        # workaround as scripts/glimmer-export/run-export.py.\n+        import transformers.core_model_loading as _cml\n+        _cml.GLOBAL_WORKERS = 1\n+\n+    def load(self, model_dir):\n+        self.status = \"loading\"\n+        self.model_dir = model_dir\n+        self.model_name = model_display_name(model_dir)\n+        self.model_type = \"llm\"  # text-only phase, even when the export is VLM-shaped\n+        print(f\"  [{self.device_name}] Detected: LLM ({self.model_name}, \"\n+              f\"optimum backend)\")\n+        integrity_err = _verify_weights_integrity(model_dir)\n+        if integrity_err:\n+            raise RuntimeError(integrity_err)\n+        self._preflight_memory(vlm=False)\n+        self._lazy_import()\n+        print(f\"  [{self.device_name}] Loading (optimum-intel runtime)...\",\n+              flush=True)\n+        from optimum.intel import OVModelForCausalLM, OVModelForVisualCausalLM\n+        from transformers import AutoTokenizer\n+        # Structural pick: a VLM-shaped export (Glimmer) must go through the\n+        # visual class even for text-only generate; nemotron_h is a plain LM.\n+        cls = OVModelForVisualCausalLM if is_vlm(model_dir) else OVModelForCausalLM\n+        try:\n+            self.model = cls.from_pretrained(model_dir, device=self.device_id)\n+        except KeyError as e:\n+            raise RuntimeError(\n+                f\"transformers {__import__('transformers').__version__} does not \"\n+                f\"know this architecture ({e}) — the model-lab venv carries \"\n+                f\"transformers from git main, which does.\")\n+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir)\n+        self.pipe = self.model  # inherited ensure_loaded/unload key on .pipe\n+\n+    def _stopping_criteria(self):\n+        from transformers import StoppingCriteria, StoppingCriteriaList\n+\n+        slot = self\n+\n+        class _CancelStop(StoppingCriteria):\n+            def __call__(self, input_ids, scores, **kwargs):\n+                return slot._cancel.is_set()\n+\n+        return StoppingCriteriaList([_CancelStop()])\n+\n+    def _generate_unlocked(self, raw_messages, hf_kwargs, streamer=None):\n+        \"\"\"The bare generate call, no locking — exists because ensure_loaded()\n+        calls warmup() while HOLDING self.lock (non-reentrant), mirroring how\n+        DeviceSlot.warmup talks to the pipeline directly.\"\"\"\n+        inputs = self.tokenizer.apply_chat_template(\n+            raw_messages, add_generation_prompt=True,\n+            return_tensors=\"pt\", return_dict=True)\n+        self.model.generate(\n+            **inputs, streamer=streamer,\n+            stopping_criteria=self._stopping_criteria(),\n+            pad_token_id=self.tokenizer.eos_token_id, **hf_kwargs)\n+\n+    def warmup(self):\n+        self.status = \"warming_up\"\n+        print(f\"  [{self.device_name}] Warmup...\", flush=True)\n+        t0 = time.perf_counter()\n+        self._generate_unlocked([{\"role\": \"user\", \"content\": \"Hi\"}],\n+                                dict(max_new_tokens=5, do_sample=False))\n+        print(f\"  [{self.device_name}] Warmup done \"\n+              f\"({time.perf_counter() - t0:.1f}s)\", flush=True)\n+        self.status = \"ready\"\n+        self.last_used = time.time()\n+\n+    def stream_tokens(self, raw_messages, gen, heartbeat, tag=\"\"):\n+        \"\"\"Same contract as DeviceSlot.stream_tokens, over TextIteratorStreamer.\"\"\"\n+        from transformers import TextIteratorStreamer\n+\n+        streamer = TextIteratorStreamer(\n+            self.tokenizer, skip_prompt=True, skip_special_tokens=True,\n+            timeout=heartbeat)  # None → block forever (non-stream join)\n+        self._stream_error = None\n+\n+        def _generate():\n+            try:\n+                with self.lock:\n+                    self._cancel.clear()\n+                    self._generate_unlocked(raw_messages, _hf_gen_kwargs(gen),\n+                                            streamer=streamer)\n+                    self.last_used = time.time()\n+            except Exception as e:\n+                self._stream_error = e\n+                print(f\"{datetime.now():%H:%M:%S} !! [{self.device_name}] \"\n+                      f\"{tag}generate error: {e}\", flush=True)\n+                streamer.end()  # unblock the consumer even on pre-generate failure\n+\n+        t = threading.Thread(target=_generate, daemon=True)\n+        t.start()\n+\n+        it = iter(streamer)\n+        while True:\n+            try:\n+                chunk = next(it)\n+            except Empty:  # TextIteratorStreamer raises queue.Empty on timeout\n+                if not t.is_alive():\n+                    return\n+                yield None  # heartbeat marker\n+                continue\n+            except StopIteration:\n+                return\n+            if chunk:\n+                yield chunk\n+\n+    def generate_llm(self, raw_messages, gen):\n+        \"\"\"Non-streaming = joined stream: one code path, wall-clock TTFT\n+        (extract_perf has nothing to read on this backend).\"\"\"\n+        t0 = time.perf_counter()\n+        chunks = []\n+        for chunk in self.stream_tokens(raw_messages, gen, heartbeat=None):\n+            if not chunks:\n+                self.last_ttft_ms = (time.perf_counter() - t0) * 1000\n+            chunks.append(chunk)\n+        if self._stream_error is not None:\n+            raise self._stream_error\n+        return \"\".join(chunks).strip()\n+\n+    def generate_vlm(self, text_prompt, images, gen):\n+        raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n+\n+    def stream_vlm(self, text_prompt, images, gen, completion_id, created, t0):\n+        raise RuntimeError(\"vision path not enabled on the optimum backend yet\")\n+\n+    def unload(self):\n+        if self.pipe is None:\n+            return\n+        self.model = None\n+        self.tokenizer = None\n+        super().unload()\n+\n+\n # ---------------------------------------------------------------------------\n # Whisper (speech-to-text) slot\n # ---------------------------------------------------------------------------\n@@ -1819,7 +2077,10 @@ def _prewarm_slot(slot):\n     cache hit. Only meaningful on a GPU/CPU LLM slot with prefix caching on.\n     \"\"\"\n     if not (PREWARM_FILE and PROMPT_CACHE and slot.model_type == \"llm\"\n-            and slot.device_name in (\"GPU\", \"CPU\")):\n+            and slot.device_name in (\"GPU\", \"CPU\")\n+            and getattr(slot, \"supports_prefix_cache\", False)):\n+        # OptimumSlot has no prefix cache — a prewarm prefill would burn a\n+        # full 30B-scale prefill at startup for nothing.\n         return\n     if not os.path.isfile(PREWARM_FILE):\n         return\n@@ -2399,41 +2660,14 @@ def ollama_chat():\n \n \n def _ollama_stream_chat(slot, raw_messages, gen, t0):\n-    \"\"\"Ollama streaming: newline-delimited JSON (not SSE).\"\"\"\n-    history = ovg.ChatHistory()\n-    for msg in raw_messages:\n-        history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-    token_queue = Queue()\n+    \"\"\"Ollama streaming: newline-delimited JSON (not SSE). Protocol layer over\n+    slot.stream_tokens() — a None marker after 120 s of silence aborts the\n+    stream, preserving this path's historical no-token timeout.\"\"\"\n     token_count = 0\n \n-    def streamer_callback(token):\n-        if slot._cancel.is_set():\n-            return True\n-        token_queue.put(token)\n-        return False\n-\n-    def _generate():\n-        try:\n-            with slot.lock:\n-                slot._cancel.clear()\n-                slot.pipe.generate(history, gen, streamer_callback)\n-                slot.last_used = time.time()\n-        except Exception as e:\n-            print(f\"{datetime.now():%H:%M:%S} !! [{slot.device_name}] [Ollama] \"\n-                  f\"generate error: {explain_genai_error(e)}\", flush=True)\n-        finally:\n-            token_queue.put(None)\n-\n-    t = threading.Thread(target=_generate, daemon=True)\n-    t.start()\n-\n     try:\n-        while True:\n-            try:\n-                token = token_queue.get(timeout=120)\n-            except Empty:\n-                break\n+        for token in slot.stream_tokens(raw_messages, gen, heartbeat=120,\n+                                        tag=\"[Ollama] \"):\n             if token is None:\n                 break\n             if token_count == 0:\n@@ -2559,41 +2793,13 @@ def ollama_generate():\n \n \n def _ollama_stream_generate(slot, raw_messages, gen, t0):\n-    \"\"\"Ollama /api/generate streaming.\"\"\"\n-    history = ovg.ChatHistory()\n-    for msg in raw_messages:\n-        history.append({\"role\": msg[\"role\"], \"content\": msg[\"content\"]})\n-\n-    token_queue = Queue()\n+    \"\"\"Ollama /api/generate streaming. Protocol layer over slot.stream_tokens();\n+    None after 120 s of silence aborts (historical behavior, no TTFT here).\"\"\"\n     token_count = 0\n \n-    def streamer_callback(token):\n-        if slot._cancel.is_set():\n-            return True\n-        token_queue.put(token)\n-        return False\n-\n-    def _generate():\n-        try:\n-            with slot.lock:\n-                slot._cancel.clear()\n-                slot.pipe.generate(history, gen, streamer_callback)\n-                slot.last_used = time.time()\n-        except Exception as e:\n-            print(f\"{datetime.now():%H:%M:%S} !! [{slot.device_name}] [Ollama] \"\n-                  f\"generate error: {explain_genai_error(e)}\", flush=True)\n-        finally:\n-            token_queue.put(None)\n-\n-    t = threading.Thread(target=_generate, daemon=True)\n-    t.start()\n-\n     try:\n-        while True:\n-            try:\n-                token = token_queue.get(timeout=120)\n-            except Empty:\n-                break\n+        for token in slot.stream_tokens(raw_messages, gen, heartbeat=120,\n+                                        tag=\"[Ollama] \"):\n             if token is None:\n                 break\n             token_count += 1\n@@ -2746,6 +2952,9 @@ def _idle_watchdog(slots, idle_timeout, check_interval=30):\n         for slot in slots:\n             if not slot or slot.status != \"ready\":\n                 continue\n+            # WhisperSlot has no last_used/unload — never idle-unloaded\n+            if getattr(slot, \"last_used\", None) is None:\n+                continue\n             if now - slot.last_used < idle_timeout:\n                 continue\n             # Try non-blocking lock acquire — skip if a request is in progress\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "git show e1702f4 -- nollama.py",
+            "time": {
+              "start": 1795287137614,
+              "end": 1795287137884
+            }
+          },
+          "id": "prt_1ff73bd4a001phEtO5uNhJx6pW",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bb33001qlQXCh27SWZFMr"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 11418,
+            "input": 11379,
+            "output": 1,
+            "reasoning": 38,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff73bf00001BSJ7IC8ax3eAKY",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bb33001qlQXCh27SWZFMr"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff739fb0001qYvHJtrSyKb3LD",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 20418,
+          "input": 19765,
+          "output": 428,
+          "reasoning": 225,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "thinkingmachines/Inkling-2-Mini",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287138209,
+          "completed": 1795287144065
+        },
+        "finish": "stop",
+        "id": "msg_1ff73bfa10012V4RvUYQLcD1tA",
+        "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl"
+      },
+      "parts": [
+        {
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-start",
+          "id": "prt_1ff73c303001SwyxQnsH2MGT61",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bfa10012V4RvUYQLcD1tA"
+        },
+        {
+          "type": "reasoning",
+          "text": "The diff for e1702f4 confirms that `NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}` was added in that commit — it's a new `+` block at line 95-ish. This is the first introduction. Commit ce2ac34 modified it (removed muse_glimmer presumably).\n\nLet me also double check that no earlier commit in the history added it — the -S with --reverse confirmed e1702f4 is the first line. Also I could check if the string existed in earlier versions via git log -S on the full history — it didn't show anything earlier, so this is confirmed.\n\nAlso verify the current file has NEEDS_OPTIMUM = {\"nemotron_h\"} (removed muse_glimmer in ce2ac34 presumably). Yes.\n\nAnswer: e1702f4, 2026-08-13, \"Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\".",
+          "time": {
+            "start": 1795287139086,
+            "end": 1795287140693
+          },
+          "id": "prt_1ff73c30e001nDXADfrA6aQSSG",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bfa10012V4RvUYQLcD1tA"
+        },
+        {
+          "type": "text",
+          "text": "**Answer**\n\n- **Short hash:** `e1702f4`\n- **Date:** 2026-08-13\n- **Subject:** `Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class`\n\n**How I verified it is the first introduction**\n\n- `grep` on the working tree confirmed `NEEDS_OPTIMUM` exists in `nollama.py` (line 151, `NEEDS_OPTIMUM = {\"nemotron_h\"}`).\n- `git log --follow -S \"NEEDS_OPTIMUM\" -- nollama.py` returned exactly two commits: `ce2ac34` (Step 4, 2026-08-13) and `e1702f4` (Steps 0-3, 2026-08-13).\n- `git log --reverse --date=short -S \"NEEDS_OPTIMUM\" -- nollama.py` lists `e1702f4` first — i.e. it is the earliest commit in history where the occurrence count changed (the introduction), with `ce2ac34` later modifying it.\n- `git show e1702f4 -- nollama.py` shows the diff adds the block verbatim: `NEEDS_OPTIMUM = {\"muse_glimmer\", \"nemotron_h\"}` plus `needs_optimum()`, which is the origin of the set. (The later commit `ce2ac34` shrank the set to just `{\"nemotron_h\"}`, which is why the current file only has that.)\n\nSo the first introduction of `NEEDS_OPTIMUM` is commit `e1702f4` (2026-08-13, \"Steps 0-3: stream_tokens seam, backend detection, OptimumSlot class\").",
+          "time": {
+            "start": 1795287140695,
+            "end": 1795287143738
+          },
+          "id": "prt_1ff73c957001o3bxnxtKYm1NEr",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bfa10012V4RvUYQLcD1tA"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "6ecdcedaf4a78ca98224f15a622be3aec829db0a",
+          "type": "step-finish",
+          "tokens": {
+            "total": 20418,
+            "input": 19765,
+            "output": 428,
+            "reasoning": 225,
+            "cache": {
+              "write": 0,
+              "read": 0
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff73d5de00170m1TJToVYZgs7",
+          "sessionID": "ses_e008c6056ffeYiM5bQyF1bMGDl",
+          "messageID": "msg_1ff73bfa10012V4RvUYQLcD1tA"
+        }
+      ]
+    }
+  ]
+}

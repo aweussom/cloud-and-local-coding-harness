@@ -1,0 +1,1370 @@
+{
+  "info": {
+    "id": "ses_e0087ef0affeEB8w2llYI1nG0R",
+    "slug": "gentle-garden",
+    "projectID": "04f30210bd814334c259957836f6ff91d3e8a943",
+    "directory": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+    "path": "",
+    "parentID": "ses_e00880070ffem1BFoV46y1b73M",
+    "title": "List HTTP routes in nollama.py (@explore subagent)",
+    "agent": "explore",
+    "model": {
+      "id": "qwen3.8:27b",
+      "providerID": "sub",
+      "variant": "default"
+    },
+    "version": "1.18.30",
+    "summary": {
+      "additions": 0,
+      "deletions": 0,
+      "files": 0
+    },
+    "cost": 0,
+    "tokens": {
+      "input": 23691,
+      "output": 8222,
+      "reasoning": 0,
+      "cache": {
+        "read": 209497,
+        "write": 0
+      }
+    },
+    "permission": [
+      {
+        "permission": "question",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_enter",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "plan_exit",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "todowrite",
+        "pattern": "*",
+        "action": "deny"
+      },
+      {
+        "permission": "task",
+        "pattern": "*",
+        "action": "deny"
+      }
+    ],
+    "time": {
+      "created": 1795287421173,
+      "updated": 1795287493596
+    }
+  },
+  "messages": [
+    {
+      "info": {
+        "role": "user",
+        "time": {
+          "created": 1795287421184
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "sub",
+          "modelID": "qwen3.8:27b"
+        },
+        "summary": {
+          "diffs": []
+        },
+        "id": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "type": "text",
+          "text": "This is a research-only task. Do NOT edit any file. Be very thorough.\n\nIn the repo at C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe, examine the file nollama.py (a Flask server). Find every HTTP route the server exposes. Flask routes are declared with decorators like @app.route('/path', methods=['GET', 'POST']) or @app.post('/path'), @app.get('/path'), etc. Also check for any routes registered programmatically (e.g. app.add_url_rule(...)), any Flask blueprint routes, and any routes served on the alternate Ollama-compatible port if they are defined in this file.\n\nFor each route, report:\n1. The exact URL path (including any path parameters, e.g. /v1/models/<id>)\n2. The HTTP method(s) it accepts (if a decorator lists no methods, Flask defaults to GET; note HEAD/OPTIONS are implicit — do not report those unless explicitly listed)\n3. The line number where the route handler is defined\n\nReturn your findings as a complete list, one route per line, formatted as: METHOD(s)  path  (line N). Cover every single route in the file — search for all of @app.route, @app.get, @app.post, @app.put, @app.delete, add_url_rule, and any other registration mechanism. Also state whether routes are conditionally registered (e.g. only registered under certain flags/devices), if that applies.",
+          "id": "prt_1ff781102001o4DGepGdC1fbv2",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7810ff001DtOnGW6bmdX0iA"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 9724,
+          "input": 426,
+          "output": 107,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 9191
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287421193,
+          "completed": 1795287423220
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff781109001B1BKtSAFLYC4kE",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78148b001GpgRcnPes7RuXt",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff781109001B1BKtSAFLYC4kE"
+        },
+        {
+          "type": "reasoning",
+          "text": "Let's start by investigating the repository structure and the nollama.py file.",
+          "time": {
+            "start": 1795287422092,
+            "end": 1795287422593
+          },
+          "id": "prt_1ff78148c00114HYXC2TbzAC1g",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff781109001B1BKtSAFLYC4kE"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_fy9dby47",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "Get-Item \"nollama.py\" | Select-Object Name, Length; (Get-Content \"nollama.py\" | Measure-Object -Line).Lines"
+            },
+            "output": "\r\nName       Length\r\n----       ------\r\nnollama.py 337012\r\n6365\r\n\r\n\r\n",
+            "metadata": {
+              "output": "\r\nName       Length\r\n----       ------\r\nnollama.py 337012\r\n6365\r\n\r\n\r\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "Get-Item \"nollama.py\" | Select-Object Name, Length; (Get-Content \"nollama.py\" | Measure-Object -Line).Lines",
+            "time": {
+              "start": 1795287422599,
+              "end": 1795287422926
+            }
+          },
+          "id": "prt_1ff781683001qGalZ4yguMRJ16",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff781109001B1BKtSAFLYC4kE"
+        },
+        {
+          "type": "tool",
+          "tool": "glob",
+          "callID": "call_wnyqtri8",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "**/*.py"
+            },
+            "output": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\qa_vlm.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\test_npu_vlm_imagesize.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\test_npu_multimodal.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\benchmark.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\check_docs.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_whisper_guard.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_vlm_state_reset.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_vlm_penalty_guard.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_stream_tools.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_seed.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_scan_sdpa.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_reload_failure.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_preflight.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_poisoned_gpu.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_npu_pin.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_npu_arch_guard.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_ir_runtime_check.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_hf_download.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_finish_reason_length.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_embed_slot.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_cancel_token.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\model-test.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\longrope-recall-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\judge.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\idle-residency-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\hf_download.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-npu-repro.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-concurrency.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-build-set.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\vlm-bench.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\upstream_watch.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\side-lane-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\ram-hog.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\ollama_client.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\embed_rag.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\chat_stdlib.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\chat.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\transcribe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\tools.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\vision.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\decay-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\bonsai-bench.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\bare-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\agent-loop-test.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\agent-load-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\device-divergence.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\device-divergence-genai.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\export-embed-onnx.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\glimmer-37419-repro.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\nemotron-bench.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\moe-fold-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\model_watch.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\offload-test.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\pelican-probe.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\glimmer-export\\run-export.py\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\test-dual-device.py",
+            "metadata": {
+              "count": 58,
+              "truncated": false
+            },
+            "title": "",
+            "time": {
+              "start": 1795287422759,
+              "end": 1795287422802
+            }
+          },
+          "id": "prt_1ff781723001DSLJprBky18HHT",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff781109001B1BKtSAFLYC4kE"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 9724,
+            "input": 426,
+            "output": 107,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 9191
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff78185b001X8rTNGg523VNMD",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff781109001B1BKtSAFLYC4kE"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11400,
+          "input": 1619,
+          "output": 168,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 9613
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287423223,
+          "completed": 1795287425377
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff7818f7001qUqQJGzR0sdtBT",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff781c53001Ss2kWWixHfJTKj",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7818f7001qUqQJGzR0sdtBT"
+        },
+        {
+          "type": "reasoning",
+          "text": "The file has 6365 lines. Let me search for all the route registration patterns.",
+          "time": {
+            "start": 1795287424084,
+            "end": 1795287424644
+          },
+          "id": "prt_1ff781c54001DbuWjojOy7pVMB",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7818f7001qUqQJGzR0sdtBT"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_gl3vt19k",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "@app\\.(route|get|post|put|delete|patch|head|options)",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 14 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\WEB-UI-PLAN.md:\n  Line 23: @app.route('/')\n\n  Line 284: @app.route('/')\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\OLLAMA-API-PLAN.md:\n  Line 204: @app.route('/api/chat', methods=['POST'])\n\n  Line 205: @app.route('/api/generate', methods=['POST'])\n\n  Line 206: @app.route('/api/tags', methods=['GET'])\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 5212: @app.route(\"/\")\n\n  Line 5218: @app.route(\"/health\", methods=[\"GET\"])\n\n  Line 5251: @app.route(\"/v1/models\", methods=[\"GET\"])\n\n  Line 5357: @app.route(\"/v1/embeddings\", methods=[\"POST\"])\n\n  Line 5410: @app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5416: @app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5422: @app.route(\"/v1/cancel\", methods=[\"POST\"])\n\n  Line 5431: @app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\n\n  Line 5474: @app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n",
+            "metadata": {
+              "matches": 14,
+              "truncated": false
+            },
+            "title": "@app\\.(route|get|post|put|delete|patch|head|options)",
+            "time": {
+              "start": 1795287424650,
+              "end": 1795287424701
+            }
+          },
+          "id": "prt_1ff781e86001zPe3e8elh3ovzT",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7818f7001qUqQJGzR0sdtBT"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_wli6u3wc",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "add_url_rule|Blueprint|url_map|register_blueprint|add_template",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "No files found",
+            "metadata": {
+              "matches": 0,
+              "truncated": false
+            },
+            "title": "add_url_rule|Blueprint|url_map|register_blueprint|add_template",
+            "time": {
+              "start": 1795287425055,
+              "end": 1795287425100
+            }
+          },
+          "id": "prt_1ff78201b0013cJtGrUOgEXL4m",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7818f7001qUqQJGzR0sdtBT"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 11400,
+            "input": 1619,
+            "output": 168,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 9613
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff7820d8001n9xI2BdEbjeMd0",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7818f7001qUqQJGzR0sdtBT"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 12187,
+          "input": 528,
+          "output": 431,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 11228
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287425380,
+          "completed": 1795287430221
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff782164001pJCpkdkyLnaf7G",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff7823a5001dS6wdPKE90sP3z",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff782164001pJCpkdkyLnaf7G"
+        },
+        {
+          "type": "reasoning",
+          "text": "Interesting — the grep on nollama.py only found 9 `@app.route` decorators. But this file is 6365 lines long and is a Flask server with many endpoints (the OpenAI-compatible `/v1/chat/completions`, Ollama's `/api/chat`, `/api/generate`, `/api/tags`, etc. are mentioned in the docs). There's a possibility that the routes are registered in a different way. Let me try a broader search — the grep pattern only matched `@app.` with those exact words. Maybe there's a different app variable name, or the routes are defined with a helper, or perhaps they're registered via `add_url_rule`. The second grep for `add_url_rule|Blueprint` found nothing in nollama.py (no matches). Hmm, that's weird.\n\nWait — the second grep said \"No files found,\" meaning no matches across the whole file. So there's no add_url_rule and no blueprints. Then how are routes like `/api/chat` exposed? Maybe they're registered via a helper function like `def route(...)`, or maybe the file uses a different registration mechanism. For example, an `ENDPOINTS = [...]` list with a loop that does `app.add_url_rule`. But the grep for `add_url_rule` didn't find anything. Let me search for `\"route\"`, `\"/api/`\", and `\"/v1/`\" within nollama.py.",
+          "time": {
+            "start": 1795287425958,
+            "end": 1795287429269
+          },
+          "id": "prt_1ff7823a6001vB06QMsqmsvcyh",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff782164001pJCpkdkyLnaf7G"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_560awmep",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "route",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 100 matches (more matches available)\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\CLAUDE.md:\n  Line 23:   exempt from the idle watchdog and never enters `_route_request`;\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\benchmark.py:\n  Line 367:     routes to a handful of experts [INFERRED, brain N-006]. The repo's own\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs-toolkit-conventions\\DOCUMENTING-A-CODEBASE.md:\n  Line 290:    `thread` / `route` / `store` / `upstream` / `browser` / `broken`. Per-file\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\BENCHMARKS.md:\n  Line 84: ### Where does your hardware land? (big-MoE routes, measured 2026-08)\n\n  Line 86: Same model family (Qwen3 MoE, A3B-class), steady-state decode, best route\n\n  Line 88: quants and sizes, so read it as *routes*, not a controlled A/B:\n\n  Line 90: | Hardware | Stack & route | Model | tok/s |\n\n  Line 106: Takeaways: a dedicated CUDA card is now ~1.4× the best Intel route — but\n\n  Line 183: resident — the three things the 140V's offload route lacks. Same tester,\n\n  Line 694: **not Vulkan, not SYCL**, so there is no Intel GPU route for it yet. The base\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\API.md:\n  Line 464: The two embedding routes are served on **both** ports. A RAG client is\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\AGENTS.md:\n  Line 71: here: `small_model` traffic is routed to the NPU/CPU slot, so handing over\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\bench\\decay-lfm25-24b-285k-cpu.json:\n  Line 180:       \"text\": \"A reverse proxy routes client requests to backend servers and returns the responses. ###END\",\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\brain\\next\\3-someday\\038-1d-kolibri-1-norwegian-on-the-mac-studio.md:\n  Line 9: 3.46B active, 384 experts (6 routed + 1 shared), 50 layers, sliding window\n\n  Line 31:    and shared expert. Training all 384 routed experts is not.\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\webui-render.mmd:\n  Line 6: %% Palette: route (blue) = event/state handling, gen (green) = rendering,\n\n  Line 73:   classDef route fill:#e6f0ff,stroke:#0066cc,color:#000\n\n  Line 77:   class sendMessage,justAnswerMe,buildRequestBody,sse,appendDelta,updateStreamBubble,attachThinkScroll,syncAnswerNodes route\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\webui-ptt.mmd:\n  Line 46:   classDef route fill:#dbeafe,stroke:#1e40af,color:#000\n\n  Line 50:   class initPushToTalk,pttDefaultLanguage,pttStart,pttStop,pttFinish,pttStopTracks route\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\stream-plumbing.mmd:\n  Line 11: %% Palette: route (blue) = protocol consumers, gen (green) = backend/worker,\n\n  Line 70:   poisoned[\"_note_poisoned<br/>CL_OUT_OF_RESOURCES only:<br/>status = error, reason set,<br/>_slot_serviceable routes around it,<br/>and _idle_watchdog leaves it alone<br/>(slot-lifecycle.mmd)\"]\n\n  Line 200:   classDef route fill:#e6f0ff,stroke:#0066cc,color:#000\n\n  Line 204:   class _sse_stream,stream_llm,tool_stream,_ollama_stream_chat,_ollama_stream_generate,generate_llm route\n\n  Line 207:   class poison_gate route\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\slot-lifecycle.mmd:\n  Line 14: %% Palette: route (blue) = decisions, gen (green) = live pipeline states,\n\n  Line 89:   It also never reaches _route_request - there is one embedding slot and\n\n  Line 155:   Resolved in main() and NOT via _route_request, which consults\n\n  Line 232:   classDef route fill:#e6f0ff,stroke:#0066cc,color:#000\n\n  Line 236:   class _gpu_keepalive,main,_slot_class,_verify_weights_integrity,ir_runtime_mismatch,_resolve_kv_pool,_preflight_memory,alloc_gate,_gpu_large_alloc_props,pipebuild,npu_arch,_prewarm_slot,_idle_watchdog,_load_in_background route\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\request-flow.mmd:\n  Line 10: %% Palette: route (blue) = request handling, gen (green) = generation paths,\n\n  Line 12: %% covers: nollama.py:_hit_token_cap,chat_completions,ollama_chat,ollama_generate,ollama_v1_chat_completions,parse_messages,_route_request,_tools_supported,prepare_messages_for_tools,_maybe_capture_prewarm,_sse_tool_stream,_assistant_message,parse_tool_calls,render_native_tool_prompt,_load_native_template\n\n  Line 23:   _route_request{\"_route_request\"}\n\n  Line 39:   chat_completions --> parse_messages --> _route_request\n\n  Line 41:   ollama_generate --> _route_request\n\n  Line 43:   _route_request -->|\"explicit model@DEVICE match\"| _tools_supported\n\n  Line 44:   _route_request -->|\"images: VLM slot; text: LLM-bearing<br/>secondary else primary\"| _tools_supported\n\n  Line 45:   _route_request -.->|\"images but no VLM loaded\"| refuse400[\"400 no vision model\"]\n\n  Line 46:   _route_request -.->|\"nothing serviceable\"| refuse503[\"503 not ready\"]\n\n  Line 93:   classDef route fill:#e6f0ff,stroke:#0066cc,color:#000\n\n  Line 97:   class chat_completions,ollama_chat,ollama_generate,ollama_v1_chat_completions,parse_messages,_route_request,_tools_supported,prepare_messages_for_tools,_maybe_capture_prewarm,pathpick route\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\optimum.jsonl:\n  Line 2: {\"type\":\"tool_use\",\"timestamp\":1795287267798,\"sessionID\":\"ses_e008ac02bffeIGmf8gais1PuIJ\",\"part\":{\"type\":\"tool\",\"tool\":\"task\",\"callID\":\"call_kn216fte\",\"state\":{\"status\":\"completed\",\"input\":{\"command\":\"Find which model architectures nollama.py forces onto the optimum backend\",\"description\":\"Find optimum backend architectures\",\"prompt\":\"This is a research task in the NoLlama repo at C:\\\\Users\\\\<user>\\\\AppData\\\\Local\\\\Temp\\\\subagent-probe. Do NOT edit any file.\\n\\nContext: NoLlama is a Flask LLM/VLM server (nollama.py at the repo root). Most models run on openvino_genai, but a few need the optimum-intel python runtime, selected via the `--backend` runtime flag (see docs/dev/runtime-stacks.md for background). Somewhere in nollama.py there is logic that decides, based on the model architecture name, whether to force the optimum backend instead of the genai backend.\\n\\nYour job: find that decision logic. Look in nollama.py (and, only if the decision actually lives elsewhere, other Python files — but the user believes it is in nollama.py). Search for terms like \\\"optimum\\\", \\\"backend\\\", \\\"architecture\\\", \\\"arch\\\", \\\"gemma\\\", \\\"mpt\\\", model config reading (e.g. config.json's \\\"architectures\\\" field), and any mapping of architecture names to backends.\\n\\nBe thorough (\\\"medium\\\" level): confirm whether the mapping is a hardcoded set/list of architecture names, and note the function name(s) involved and how the decision is applied (e.g. an override of args.backend, a check during model load).\\n\\nReturn in your final message:\\n1. The exact architecture names that are forced onto the optimum backend (verbatim, as written in code).\\n2. The file:line references where the decision is made (path:line for the mapping/constant and the function that uses it).\\n3. The function name(s) that implement the decision, with a one-sentence description of each.\\n4. A short quote of the relevant code lines (a few lines of context) so the answer is verifiable.\\n\\nDo not edit any files. This is rea...\n  Line 5: {\"type\":\"text\",\"timestamp\":1795287270282,\"sessionID\":\"ses_e008ac02bffeIGmf8gais1PuIJ\",\"part\":{\"id\":\"prt_1ff75c06d001YnMoFTajFXAGuE\",\"messageID\":\"msg_1ff75bc5c001HElYYVpGor66WJ\",\"sessionID\":\"ses_e008ac02bffeIGmf8gais1PuIJ\",\"type\":\"text\",\"text\":\"Only one architecture is forced onto the optimum backend: **`nemotron_h`** (hybrid Mamba2+MoE, no GenAI path). Keyed on config.json's top-level `model_type`, not `architectures`. (`muse_glimmer` left the set on 2026-08-18.)\\n\\nWhere it's decided:\\n- `nollama.py:151` — `NEEDS_OPTIMUM = {\\\"nemotron_h\\\"}` constant\\n- `nollama.py:154-165` — `needs_optimum(model_dir)` reads config.json and checks membership\\n- `nollama.py:6996-7001` — `_slot_class(mdir)` applies it in `auto` mode: `OptimumSlot if needs_optimum(mdir) else DeviceSlot` (`--backend optimum` forces it for any model; `--backend genai` never)\\n- `nollama.py:3913` — `class OptimumSlot(DeviceSlot)` with `backend = \\\"optimum\\\"` is where the decision routes to\",\"time\":{\"start\":1795287269485,\"end\":1795287270280}}}\r\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\OPENCODE-PLAN.md:\n  Line 369: - Does OpenCode route **compaction** to `small_model`? The docs say \"tasks\n\n  Line 385: and `:8002/v1` (the Windows host address from `ip route`), and `opencode run\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\MODELS.md:\n  Line 300: | nomic-embed-text v1.5 | 768 | What Ollama-shaped RAG clients ask for by name. Needs the ONNX route below. |\n\n  Line 404: design. NoLlama routes any VLM-shaped `muse_glimmer` export there\n\n  Line 407: is VLM-shaped too and reroutes the same way — it is **superseded** by\n\n  Line 547: optimum` is now required for Glimmer: auto-detection routes its VLM-shaped\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\bench\\decay-lfm25-24b-b60-gpu-v2.json:\n  Line 336:       \"text\": \"A reverse proxy intercepts client requests and routes them to appropriate backend services, providing load balancing, caching, and security.\",\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 3071:         issue #38]. Marking status \"error\" makes _slot_serviceable route\n\n  Line 3080:         leaves that abort reachable, which is how the non-streaming routes\n\n  Line 3896:     \"\"\"Translate the routes' ovg.GenerationConfig into transformers generate\n\n  Line 3897:     kwargs. The routes keep building GenAI configs (no churn there); the\n\n  Line 3902:         # Greedy is do_sample=False alone — the routes' top_k=1 is a GenAI-ism.\n\n  Line 3922:     like Muse Glimmer, so the routes reject images with a clean 400 and hand\n\n  Line 4193:         \"\"\"Refuse loudly: the routes reject images first (model_type is 'llm'),\n\n  Line 4882:     def route(pieces):\n\n  Line 4908:             for f in route(splitter.feed(token)):\n\n  Line 4923:         yield from route(splitter.close())\n\n  Line 5001: def _route_request(has_images, requested_model):\n\n  Line 5092:     # Only the slot plain text routes to. In dual mode the OTHER slot exists\n\n  Line 5102:     # _route_request: routing consults _slot_serviceable, and slots finish\n\n  Line 5212: @app.route(\"/\")\n\n  Line 5218: @app.route(\"/health\", methods=[\"GET\"])\n\n  Line 5251: @app.route(\"/v1/models\", methods=[\"GET\"])\n\n  Line 5254:     both slots distinctly; _route_request accepts either form back.\n\n  Line 5280:         # routed to by name (there is only one), and a RAG client looks its\n\n  Line 5357: @app.route(\"/v1/embeddings\", methods=[\"POST\"])\n\n  Line 5405: # The Ollama-shaped embedding routes are served on BOTH ports. A RAG client is\n\n  Line 5410: @app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5416: @app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5422: @app.route(\"/v1/cancel\", methods=[\"POST\"])\n\n  Line 5431: @app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\n\n  Line 5474: @app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n\n  Line 5476:     \"\"\"The main OpenAI chat endpoint — parse, route, gate tools, then pick one\n\n  Line 5515:     slot = _route_request(bool(images), requested_model)\n\n  Line 5733: @ollama_app.route(\"/\")\n\n  Line 5740: @ollama_app.route(\"/api/version\", methods=[\"GET\"])\n\n  Line 5752: @ollama_app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5758: @ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5764: @ollama_app.route(\"/api/tags\", methods=[\"GET\"])\n\n  Line 5798: @ollama_app.route(\"/api/show\", methods=[\"POST\"])\n\n  Line 5845: @ollama_app.route(\"/api/chat\", methods=[\"POST\"])\n\n  Line 5886:     slot = _route_request(has_images, requested_model)\n\n  Line 6079: @ollama_app.route(\"/api/generate\", methods=[\"POST\"])\n\n  Line 6096:     slot = _route_request(has_images, requested_model)\n\n  Line 6209: @ollama_app.route(\"/api/pull\", methods=[\"POST\"])\n\n  Line 6216: @ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\n\n  Line 6222: @ollama_app.route(\"/api/copy\", methods=[\"POST\"])\n\n  Line 6228: @ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n\n  Line 6297:     and which one answers depends on the caller's route. Asking \"does\n\n  Line 7026:         # AUTO resolved to NPU — re-route to a device the backend can drive.\n\n  Line 7049:     # _route_request at load time. Plain text goes to the GPU slot when that\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\install.ps1:\n  Line 1247: # because dual mode routes plain text to the NPU slot (_route_request), so\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\prewarm-8000.json:\n  Line 1: [{\"role\": \"system\", \"content\": \"You are opencode, an interactive CLI tool that helps users with software engineering tasks. Use the instructions below and the tools available to you to assist the user.\\n\\nIMPORTANT: You must NEVER generate or guess URLs for the user unless you are confident that the URLs are for helping the user with programming. You may use URLs provided by the user in their messages or local files.\\n\\nIf the user asks for help or wants to give feedback inform them of the following:\\n- /help: Get help with using opencode\\n- To give feedback, users should report the issue at https://github.com/anomalyco/opencode/issues\\n\\nWhen the user directly asks about opencode (eg 'can opencode do...', 'does opencode have...') or asks in second person (eg 'are you able...', 'can you do...'), first use the WebFetch tool to gather information to answer the question from opencode docs at https://opencode.ai\\n\\n# Tone and style\\nYou should be concise, direct, and to the point. When you run a non-trivial bash command, you should explain what the command does and why you are running it, to make sure the user understands what you are doing (this is especially important when you are running a command that will make changes to the user's system).\\nRemember that your output will be displayed on a command line interface. Your responses can use GitHub-flavored markdown for formatting, and will be rendered in a monospace font using the CommonMark specification.\\nOutput text to communicate with the user; all text you output outside of tool use is displayed to the user. Only use tools to complete tasks. Never use tools like Bash or code comments as means to communicate with the user during the session.\\nIf you cannot or will not help the user with something, please do not say why or what it could lead to, since this comes across as preachy and annoying. Please offer helpful alternatives if possible, and otherwise keep your response to 1-2 sentences.\\nOnly use emojis if the use...\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\WEB-UI-PLAN.md:\n  Line 20: Flask adds one route:\n\n  Line 23: @app.route('/')\n\n  Line 284: @app.route('/')\n\n  Line 316: 1. **Add `/` route** to arc-server.py + browser auto-open\n\n\n(Results truncated. Consider using a more specific path or pattern.)",
+            "metadata": {
+              "matches": 100,
+              "truncated": true
+            },
+            "title": "route",
+            "time": {
+              "start": 1795287429274,
+              "end": 1795287429560
+            }
+          },
+          "id": "prt_1ff783097001KHDLCTSs6iMtDy",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff782164001pJCpkdkyLnaf7G"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_x440lg6a",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "[\"']/[a-z0-9_/\\.<>-]*[\"']",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 100 matches (more matches available)\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\check-docs.ps1:\n  Line 148:     foreach ($part in ($relPath -replace '\\\\', '/').Split('/')) {\n\n  Line 237:         $rel = ($parts[0] -replace [regex]::Escape($root + '\\'), '') -replace '\\\\', '/'\n\n  Line 354:             $hasDoc = $prev.StartsWith('//')\n\n  Line 448:         ForEach-Object { ($_.FullName.Substring($root.Length + 1)) -replace '\\\\', '/' } |\n\n  Line 454:         ForEach-Object { ($_.FullName.Substring($root.Length + 1)) -replace '\\\\', '/' } |\n\n  Line 459:         ForEach-Object { ($_.FullName.Substring($root.Length + 1)) -replace '\\\\', '/' } |\n\n  Line 531:             $rel = ($mmd.FullName.Substring($root.Length + 1)) -replace '\\\\', '/'\n\n  Line 703:             $rel = ($f.FullName.Substring($root.Length + 1)) -replace '\\\\', '/'\n\n  Line 720:             $rel = ($md.FullName.Substring($root.Length + 1)) -replace '\\\\', '/'\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\download-model.ps1:\n  Line 115: $RepoName = ($HfId -split '/')[-1]\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\benchmark.py:\n  Line 77:         url + \"/v1/chat/completions\",\n\n  Line 143:         url + \"/v1/chat/completions\",\n\n  Line 165:     req = urllib.request.Request(url + \"/v1/models\")\n\n  Line 209:     req = urllib.request.Request(url + \"/health\")\n\n  Line 704:             safe = model.replace(\":\", \"-\").replace(\"/\", \"-\").replace(\"@\", \"-at-\")\n\n  Line 788:         model_for_file = (llm_model or vlm_model or \"unknown\").replace(\":\", \"-\").replace(\"/\", \"-\").replace(\"@\", \"-at-\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\check_docs.py:\n  Line 361:             has_doc = prev.startswith(\"//\")\n\n  Line 476:             str(p.relative_to(root)).replace(\"\\\\\", \"/\")\n\n  Line 523:             rel_dir = str(d.relative_to(root)).replace(\"\\\\\", \"/\")\n\n  Line 527:                 rel = str(f.relative_to(root)).replace(\"\\\\\", \"/\")\n\n  Line 744:             rel = str(md.relative_to(root)).replace(\"\\\\\", \"/\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\Dockerfile:\n  Line 63: ENTRYPOINT [\"python3\", \"/app/nollama.py\"]\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\install.ps1:\n  Line 336:         foreach ($f in \"/sys/fs/cgroup/memory.max\", \"/sys/fs/cgroup/memory/memory.limit_in_bytes\") {\n\n  Line 766:         $repoName = ($dm.hf_id -split '/')[-1]\n\n  Line 945:         $cacheName = ($Selected.HfId -split '/')[-1]\n\n  Line 987:         $cacheName = \"$(($Selected.HfId -split '/')[-1])-$($Selected.Weight)\"\n\n  Line 1086:             if ((($e.hf_id -split '/')[-1]) -ieq $Name) { return $e }\n\n  Line 1096:             $rstem = ((($e.hf_id -split '/')[-1]) -replace '-(int4|int8|fp16|bf16)(-cw)?(-ov)?$', '') -replace '-ov$', ''\n\n  Line 1291:     $repo = ($Sel.HfId -split '/')[-1]\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\chat_stdlib.py:\n  Line 19:     args.base_url + \"/v1/chat/completions\",\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\chat.py:\n  Line 19: client = OpenAI(base_url=args.base_url + \"/v1\", api_key=\"unused\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\vision.py:\n  Line 26: client = OpenAI(base_url=args.base_url + \"/v1\", api_key=\"unused\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 429:     for path in (\"/sys/fs/cgroup/memory.max\",                  # cgroup v2\n\n  Line 430:                  \"/sys/fs/cgroup/memory/memory.limit_in_bytes\"):  # cgroup v1\n\n  Line 560:             with open(\"/proc/meminfo\") as f:\n\n  Line 1136:         out.update(_flatten_rt_info(child, key + \"/\"))\n\n  Line 2349:         In: canonical device kind (\"NPU\"/\"GPU\"/\"CPU\") plus the OpenVINO id\n\n  Line 5212: @app.route(\"/\")\n\n  Line 5218: @app.route(\"/health\", methods=[\"GET\"])\n\n  Line 5251: @app.route(\"/v1/models\", methods=[\"GET\"])\n\n  Line 5357: @app.route(\"/v1/embeddings\", methods=[\"POST\"])\n\n  Line 5410: @app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5416: @app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5422: @app.route(\"/v1/cancel\", methods=[\"POST\"])\n\n  Line 5431: @app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\n\n  Line 5474: @app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n\n  Line 5733: @ollama_app.route(\"/\")\n\n  Line 5740: @ollama_app.route(\"/api/version\", methods=[\"GET\"])\n\n  Line 5752: @ollama_app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5758: @ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5764: @ollama_app.route(\"/api/tags\", methods=[\"GET\"])\n\n  Line 5798: @ollama_app.route(\"/api/show\", methods=[\"POST\"])\n\n  Line 5845: @ollama_app.route(\"/api/chat\", methods=[\"POST\"])\n\n  Line 6079: @ollama_app.route(\"/api/generate\", methods=[\"POST\"])\n\n  Line 6209: @ollama_app.route(\"/api/pull\", methods=[\"POST\"])\n\n  Line 6216: @ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\n\n  Line 6222: @ollama_app.route(\"/api/copy\", methods=[\"POST\"])\n\n  Line 6228: @ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n\n  Line 7015:                   f\"{'/'.join(missing)} is not installed in this python.\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\embed_rag.py:\n  Line 27: client = OpenAI(base_url=args.base_url + \"/v1\", api_key=\"unused\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\transcribe.py:\n  Line 40: client = OpenAI(base_url=args.base_url + \"/v1\", api_key=\"unused\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\WEB-UI-PLAN.md:\n  Line 23: @app.route('/')\n\n  Line 97: const response = await fetch('/v1/chat/completions', {\n\n  Line 183: const resp = await fetch('/v1/models');\n\n  Line 224:     const resp = await fetch('/health');\n\n  Line 284: @app.route('/')\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\examples\\tools.py:\n  Line 26: client = OpenAI(base_url=args.base_url + \"/v1\", api_key=\"unused\")\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\qa_vlm.py:\n  Line 111:     endpoint = args.url.rstrip(\"/\") + \"/v1/chat/completions\"\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\OLLAMA-API-PLAN.md:\n  Line 204: @app.route('/api/chat', methods=['POST'])\n\n  Line 205: @app.route('/api/generate', methods=['POST'])\n\n  Line 206: @app.route('/api/tags', methods=['GET'])\n\n  Line 267: @ollama_app.route('/api/chat', methods=['POST'])\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\templates\\index.html:\n  Line 7: <link rel=\"stylesheet\" href=\"/static/css/style.css\">\n\n  Line 51: <script src=\"/static/js/app.js\"></script>\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\static\\js\\app.js:\n  Line 60:     fetch('/v1/cancel', { method: 'POST' }).catch(() => {});\n\n  Line 233:         const resp = await fetch('/health');\n\n  Line 262:         const [modelsResp, healthResp] = await Promise.all([fetch('/v1/models'), fetch('/health')]);\n\n  Line 348:     fetch('/v1/cancel', { method: 'POST' }).catch(() => {});\n\n  Line 386:         const resp = await fetch('/v1/chat/completions', {\n\n  Line 925:             const r = await fetch('/health');\n\n  Line 940:         const resp = await fetch('/v1/chat/completions', {\n\n  Line 1106:         const r = await fetch('/health');\n\n  Line 1286:         fetch('/v1/cancel', { method: 'POST' }).catch(() => {});\n\n  Line 1319:         const r = await fetch('/health');\n\n  Line 1436:         const r = await fetch('/v1/audio/transcriptions', { method: 'POST', body: form });\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\agent-load-probe.py:\n  Line 72:         d, s = post(args.url + \"/v1/chat/completions\", body, args.timeout)\n\n  Line 79:     d, s = post(args.url + \"/api/chat\", body, args.timeout)\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\agent-loop-test.py:\n  Line 24: BASE = (sys.argv[1] if len(sys.argv) > 1 else \"http://127.0.0.1:8000\").rstrip(\"/\")\n\n  Line 44:     with urllib.request.urlopen(BASE + \"/v1/models\", timeout=30) as r:\n\n  Line 64:     req = urllib.request.Request(BASE + \"/v1/chat/completions\",\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\agent-probe.ps1:\n  Line 249:         \"*.cmd\" { \"cmd.exe\",  @(\"/c\", $cmd.Source, \"run\", $Prompt) }\n\n  Line 250:         \"*.bat\" { \"cmd.exe\",  @(\"/c\", $cmd.Source, \"run\", $Prompt) }\n\n  Line 311: $base = $Url.TrimEnd('/')\n\n  Line 317:     $smallBase = $SmallUrl.TrimEnd('/')\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\bonsai-bench.py:\n  Line 98:         self.url = url.rstrip(\"/\")\n\n  Line 118:             info[\"version\"] = _get_json(self.url + \"/api/version\")\n\n  Line 121:                 with _post_json(self.url + \"/api/show\", {\"model\": self.model}, 20) as r:\n\n  Line 132:         props = _get_json(self.url + \"/props\")\n\n  Line 138:         health = _get_json(self.url + \"/health\")\n\n  Line 141:         models = _get_json(self.url + \"/v1/models\")\n\n\n(Results truncated. Consider using a more specific path or pattern.)",
+            "metadata": {
+              "matches": 100,
+              "truncated": true
+            },
+            "title": "[\"']/[a-z0-9_/\\.<>-]*[\"']",
+            "time": {
+              "start": 1795287429683,
+              "end": 1795287429939
+            }
+          },
+          "id": "prt_1ff783230001kJvOAO56YgGJiX",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff782164001pJCpkdkyLnaf7G"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 12187,
+            "input": 528,
+            "output": 431,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 11228
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff7833bf001UsiB3N4R1g64UP",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff782164001pJCpkdkyLnaf7G"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 19704,
+          "input": 7672,
+          "output": 280,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 11752
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287430224,
+          "completed": 1795287435202
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff7834500011muWwZNzpsOjmB",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff783ea6001AnCPM3r4HwBEyv",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        },
+        {
+          "type": "reasoning",
+          "text": "I found the route for nollama.py. Let me read through the relevant section to check the handler and confirm that there are no other registration mechanisms (like add_url_rule, etc.). Let me read from line 5200 to line 6300, and also check the creation of ollama_app, as well as how the two apps are served (ports).\n\nI'll read the sections around each route to get the exact line numbers where the handler functions are defined (the def line after the decorator).",
+          "time": {
+            "start": 1795287432871,
+            "end": 1795287433841
+          },
+          "id": "prt_1ff783ea7001M7TXQwNfluMb1N",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        },
+        {
+          "type": "text",
+          "text": "I found all routes. Let me verify the handler definitions and check for any conditional registration or additional mechanisms.",
+          "time": {
+            "start": 1795287433843,
+            "end": 1795287434896
+          },
+          "id": "prt_1ff7842730016ioHC2FdQZlm71",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_9dwj0byt",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "offset": 5200,
+              "limit": 260
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n5200: \n5201: \n5202: @app.before_request\n5203: def _debug_openai():\n5204:     \"\"\"Tag --debug dumps from the OpenAI-port app (see _log_request).\"\"\"\n5205:     _log_request(\"OpenAI\")\n5206: \n5207: \n5208: # ---------------------------------------------------------------------------\n5209: # Endpoints\n5210: # ---------------------------------------------------------------------------\n5211: \n5212: @app.route(\"/\")\n5213: def gui():\n5214:     \"\"\"The chat web UI (templates/index.html + static/).\"\"\"\n5215:     return render_template(\"index.html\")\n5216: \n5217: \n5218: @app.route(\"/health\", methods=[\"GET\"])\n5219: def health():\n5220:     \"\"\"Liveness + per-slot state. Contract notes are inline below; the\n5221:     field set is consumed by the web UI status dot and external launchers.\n5222:     ``provenance`` is the runtime/driver/flags block benchmark.py copies into\n5223:     every results file (build_provenance).\"\"\"\n5224:     devices = {}\n5225:     if primary and primary.status != \"not_configured\":\n5226:         devices[primary.device_name.lower()] = primary.info\n5227:     if secondary and secondary.status != \"not_configured\":\n5228:         devices[secondary.device_name.lower()] = secondary.info\n5229:     # prompt_cache stays a bare bool — launcher health checks truth-test\n5230:     # it; the details live in prompt_cache_info (per-slot TTFT\n5231:     # and prewarm state are in each device's info block).\n5232:     result = {\"status\": overall_status(), \"version\": __version__,\n5233:               \"devices\": devices,\n5234:               \"provenance\": PROVENANCE,\n5235:               \"prompt_cache\": PROMPT_CACHE,\n5236:               \"prompt_cache_info\": {\n5237:                   \"enabled\": PROMPT_CACHE,\n5238:                   # pinned --cache-size-gb value; null = auto-sized (the\n5239:                   # resolved size is per-slot: devices[*].kv_pool_gb)\n5240:                   \"pool_gb\": PROMPT_CACHE_GB,\n5241:                   \"auto\": PROMPT_CACHE_GB is None,\n5242:                   \"prewarm_file\": PREWARM_FILE,\n5243:               }}\n5244:     if whisper_slot and whisper_slot.status != \"not_configured\":\n5245:         result[\"whisper\"] = whisper_slot.info\n5246:     if embed_slot and embed_slot.status != \"not_configured\":\n5247:         result[\"embed\"] = embed_slot.info\n5248:     return jsonify(result)\n5249: \n5250: \n5251: @app.route(\"/v1/models\", methods=[\"GET\"])\n5252: def list_models():\n5253:     \"\"\"OpenAI model list. Ids are \"name@DEVICE\" so a dual-mode setup exposes\n5254:     both slots distinctly; _route_request accepts either form back.\n5255: \n5256:     Whisper (\"whisper@DEVICE\") and the embedder (bare name) are listed too,\n5257:     for API clients. The web UI's chat picker (loadModels) keeps only ids of\n5258:     the form f\"{info['model']}@{info['device_name']}\" from /health's\n5259:     `devices`, so a slot that cannot chat must report outside `devices`\n5260:     (as whisper and embed do), and these two id shapes must stay in step.\n5261:     \"\"\"\n5262:     data = []\n5263:     for slot in (primary, secondary):\n5264:         if slot and slot.status == \"ready\":\n5265:             data.append({\n5266:                 \"id\": f\"{slot.model_name}@{slot.device_name}\",\n5267:                 \"object\": \"model\",\n5268:                 \"created\": 0,\n5269:                 \"owned_by\": f\"local-{slot.device_name.lower()}\",\n5270:             })\n5271:     if whisper_slot and whisper_slot.status == \"ready\":\n5272:         data.append({\n5273:             \"id\": f\"whisper@{whisper_slot.device_name}\",\n5274:             \"object\": \"model\",\n5275:             \"created\": 0,\n5276:             \"owned_by\": f\"local-{whisper_slot.device_name.lower()}\",\n5277:         })\n5278:     if embed_slot and embed_slot.status == \"ready\":\n5279:         # Bare name, no @DEVICE: unlike the generative slots this one is never\n5280:         # routed to by name (there is only one), and a RAG client looks its\n5281:         # embedding model up by the exact string it has hard-coded.\n5282:         data.append({\n5283:             \"id\": embed_slot.model_name,\n5284:             \"object\": \"model\",\n5285:             \"created\": 0,\n5286:             \"owned_by\": f\"local-{embed_slot.device_name.lower()}\",\n5287:         })\n5288:     return jsonify({\"object\": \"list\", \"data\": data})\n5289: \n5290: \n5291: def _embed_inputs(body):\n5292:     \"\"\"Pull the texts out of whichever embedding request shape arrived.\n5293: \n5294:     Why: the three clients that matter disagree. OpenAI sends `input` as a\n5295:     string or a list, current Ollama sends `input`, pre-0.3 Ollama sends\n5296:     `prompt` as a single string, and LangChain-shaped callers send `text`.\n5297:     Accepting all four costs four lines and removes a whole class of\n5298:     \"returns 400 and the index stays empty\" reports.\n5299: \n5300:     In: the parsed JSON body. Out: a list of strings, empty when the body\n5301:     carries no recognizable input (the caller turns that into a 400).\n5302:     \"\"\"\n5303:     value = body.get(\"input\", body.get(\"prompt\", body.get(\"text\")))\n5304:     if value is None:\n5305:         return []\n5306:     if isinstance(value, str):\n5307:         return [value]\n5308:     if not isinstance(value, (list, tuple)):\n5309:         return [str(value)]\n5310:     return [v if isinstance(v, str) else str(v) for v in value]\n5311: \n5312: \n5313: def _embed_or_error(body):\n5314:     \"\"\"Run one embedding request. Returns (vectors, None) or (None, response).\n5315: \n5316:     Why a tuple rather than raising: both wire shapes (OpenAI and Ollama)\n5317:     need the same three failure replies with different success envelopes, and\n5318:     an exception here would surface to the client as a Flask HTML 500 page.\n5319: \n5320:     In: the parsed body. Out: 503 when no embedding model is loaded, 400 on\n5321:     an empty input list, 500 with the reason when the pipeline itself fails.\n5322:     \"\"\"\n5323:     if not embed_slot or embed_slot.status != \"ready\":\n5324:         return None, (jsonify({\"error\": {\n5325:             \"message\": \"No embedding model loaded. Start NoLlama with --embed-model-dir.\",\n5326:             \"type\": \"server_error\"}}), 503)\n5327:     texts = _embed_inputs(body)\n5328:     if not texts:\n5329:         return None, (jsonify({\"error\": {\n5330:             \"message\": \"No input provided. Send `input` as a string or a list of strings.\",\n5331:             \"type\": \"invalid_request_error\"}}), 400)\n5332:     print(f\"{datetime.now():%H:%M:%S} <- [{embed_slot.device_name}] \"\n5333:           f\"{len(texts)} texts, {sum(len(t) for t in texts)} chars (embed)\", flush=True)\n5334:     t0 = time.time()\n5335:     try:\n5336:         vectors = embed_slot.embed(texts)\n5337:     except Exception as e:\n5338:         print(f\"{datetime.now():%H:%M:%S} !! [{embed_slot.device_name}] \"\n5339:               f\"embed error: {e}\", flush=True)\n5340:         return None, (jsonify({\"error\": {\n5341:             \"message\": f\"Embedding failed: {e}\", \"type\": \"server_error\"}}), 500)\n5342:     print(f\"{datetime.now():%H:%M:%S} -> [{embed_slot.device_name}] \"\n5343:           f\"{len(vectors)} embeddings in {time.time() - t0:.2f}s\", flush=True)\n5344:     return vectors, None\n5345: \n5346: \n5347: def _embed_token_estimate(texts):\n5348:     \"\"\"Rough prompt_tokens for an embedding usage block: ~4 chars per token.\n5349: \n5350:     Why an estimate is honest here: the embedding pipeline does not report a\n5351:     token count, and clients use this field for logging rather than billing.\n5352:     Named so nobody mistakes it for a measurement.\n5353:     \"\"\"\n5354:     return sum(len(t) for t in texts) // 4\n5355: \n5356: \n5357: @app.route(\"/v1/embeddings\", methods=[\"POST\"])\n5358: def openai_embeddings():\n5359:     \"\"\"OpenAI-compatible embeddings. `data` is index-ordered, as clients assume.\"\"\"\n5360:     body = request.get_json(silent=True) or {}\n5361:     vectors, err = _embed_or_error(body)\n5362:     if err:\n5363:         return err\n5364:     tokens = _embed_token_estimate(_embed_inputs(body))\n5365:     return jsonify({\n5366:         \"object\": \"list\",\n5367:         \"model\": body.get(\"model\") or embed_slot.model_name,\n5368:         \"data\": [{\"object\": \"embedding\", \"index\": i, \"embedding\": v}\n5369:                  for i, v in enumerate(vectors)],\n5370:         \"usage\": {\"prompt_tokens\": tokens, \"total_tokens\": tokens},\n5371:     })\n5372: \n5373: \n5374: def _ollama_embed_body():\n5375:     \"\"\"Ollama /api/embed response: the batch shape, `embeddings` plural.\"\"\"\n5376:     body = request.get_json(silent=True) or {}\n5377:     t0 = time.time()\n5378:     vectors, err = _embed_or_error(body)\n5379:     if err:\n5380:         return err\n5381:     return jsonify({\n5382:         \"model\": body.get(\"model\") or embed_slot.model_name,\n5383:         \"embeddings\": vectors,\n5384:         \"total_duration\": int((time.time() - t0) * 1e9),\n5385:         \"load_duration\": 0,\n5386:         \"prompt_eval_count\": _embed_token_estimate(_embed_inputs(body)),\n5387:     })\n5388: \n5389: \n5390: def _ollama_embeddings_legacy_body():\n5391:     \"\"\"Ollama's pre-0.3 /api/embeddings: one vector, key `embedding` singular.\n5392: \n5393:     Why keep it: it is the shape several RAG clients still send, and the two\n5394:     endpoints differ by one letter — a client on the old path against a\n5395:     server that only serves the new one gets a 404 and reports \"embeddings\n5396:     are broken\" with nothing else to go on.\n5397:     \"\"\"\n5398:     body = request.get_json(silent=True) or {}\n5399:     vectors, err = _embed_or_error(body)\n5400:     if err:\n5401:         return err\n5402:     return jsonify({\"embedding\": vectors[0]})\n5403: \n5404: \n5405: # The Ollama-shaped embedding routes are served on BOTH ports. A RAG client is\n5406: # configured with ONE base URL for chat and embeddings, and with\n5407: # --ollama-port 0 the Ollama port does not exist at all — so without these the\n5408: # client silently gets no vectors. (Mirrors ollama_v1_chat_completions, which\n5409: # serves the OpenAI path on the Ollama port for the same reason.)\n5410: @app.route(\"/api/embed\", methods=[\"POST\"])\n5411: def openai_port_ollama_embed():\n5412:     \"\"\"Ollama batch embeddings on the OpenAI port. See _ollama_embed_body.\"\"\"\n5413:     return _ollama_embed_body()\n5414: \n5415: \n5416: @app.route(\"/api/embeddings\", methods=[\"POST\"])\n5417: def openai_port_ollama_embeddings_legacy():\n5418:     \"\"\"Legacy single-vector embeddings on the OpenAI port.\"\"\"\n5419:     return _ollama_embeddings_legacy_body()\n5420: \n5421: \n5422: @app.route(\"/v1/cancel\", methods=[\"POST\"])\n5423: def cancel_generation():\n5424:     \"\"\"Stop any in-progress generation. Returns immediately.\"\"\"\n5425:     for slot in (primary, secondary):\n5426:         if slot:\n5427:             slot.cancel()\n5428:     return jsonify({\"status\": \"ok\"})\n5429: \n5430: \n5431: @app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\n5432: def audio_transcriptions():\n5433:     \"\"\"OpenAI-compatible speech-to-text. Accepts multipart form with audio file.\"\"\"\n5434:     if not whisper_slot or whisper_slot.status != \"ready\":\n5435:         return openai_error(\n5436:             \"No speech-to-text model loaded. Use --whisper-dir.\", \"server_error\", 503,\n5437:         )\n5438: \n5439:     if \"file\" not in request.files:\n5440:         return openai_error(\"'file' is required (multipart form upload)\")\n5441: \n5442:     audio_file = request.files[\"file\"]\n5443:     language = request.form.get(\"language\")\n5444:     response_format = request.form.get(\"response_format\", \"json\")\n5445: \n5446:     try:\n5447:         audio_samples = _load_audio(audio_file)\n5448:     except Exception as e:\n5449:         return openai_error(f\"Failed to read audio: {e}\")\n5450: \n5451:     duration = len(audio_samples) / 16000\n5452:     lang_tag = f\", lang={language}\" if language else \"\"\n5453:     print(f\"\\n{datetime.now():%H:%M:%S} <- [{whisper_slot.device_name}] \"\n5454:           f\"Whisper {duration:.1f}s audio{lang_tag}\", flush=True)\n5455: \n5456:     t0 = time.perf_counter()\n5457:     try:\n5458:         text = whisper_slot.transcribe(audio_samples, language=language)\n5459:     except Exception as e:\n\n(Showing lines 5200-5459 of 7199. Use offset=5460 to continue.)\n</content>",
+            "metadata": {
+              "preview": "\n\n@app.before_request\ndef _debug_openai():\n    \"\"\"Tag --debug dumps from the OpenAI-port app (see _log_request).\"\"\"\n    _log_request(\"OpenAI\")\n\n\n# ---------------------------------------------------------------------------\n# Endpoints\n# ---------------------------------------------------------------------------\n\n@app.route(\"/\")\ndef gui():\n    \"\"\"The chat web UI (templates/index.html + static/).\"\"\"\n    return render_template(\"index.html\")\n\n\n@app.route(\"/health\", methods=[\"GET\"])\ndef health():",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "\n\n@app.before_request\ndef _debug_openai():\n    \"\"\"Tag --debug dumps from the OpenAI-port app (see _log_request).\"\"\"\n    _log_request(\"OpenAI\")\n\n\n# ---------------------------------------------------------------------------\n# Endpoints\n# ---------------------------------------------------------------------------\n\n@app.route(\"/\")\ndef gui():\n    \"\"\"The chat web UI (templates/index.html + static/).\"\"\"\n    return render_template(\"index.html\")\n\n\n@app.route(\"/health\", methods=[\"GET\"])\ndef health():\n    \"\"\"Liveness + per-slot state. Contract notes are inline below; the\n    field set is consumed by the web UI status dot and external launchers.\n    ``provenance`` is the runtime/driver/flags block benchmark.py copies into\n    every results file (build_provenance).\"\"\"\n    devices = {}\n    if primary and primary.status != \"not_configured\":\n        devices[primary.device_name.lower()] = primary.info\n    if secondary and secondary.status != \"not_configured\":\n        devices[secondary.device_name.lower()] = secondary.info\n    # prompt_cache stays a bare bool — launcher health checks truth-test\n    # it; the details live in prompt_cache_info (per-slot TTFT\n    # and prewarm state are in each device's info block).\n    result = {\"status\": overall_status(), \"version\": __version__,\n              \"devices\": devices,\n              \"provenance\": PROVENANCE,\n              \"prompt_cache\": PROMPT_CACHE,\n              \"prompt_cache_info\": {\n                  \"enabled\": PROMPT_CACHE,\n                  # pinned --cache-size-gb value; null = auto-sized (the\n                  # resolved size is per-slot: devices[*].kv_pool_gb)\n                  \"pool_gb\": PROMPT_CACHE_GB,\n                  \"auto\": PROMPT_CACHE_GB is None,\n                  \"prewarm_file\": PREWARM_FILE,\n              }}\n    if whisper_slot and whisper_slot.status != \"not_configured\":\n        result[\"whisper\"] = whisper_slot.info\n    if embed_slot and embed_slot.status != \"not_configured\":\n        result[\"embed\"] = embed_slot.info\n    return jsonify(result)\n\n\n@app.route(\"/v1/models\", methods=[\"GET\"])\ndef list_models():\n    \"\"\"OpenAI model list. Ids are \"name@DEVICE\" so a dual-mode setup exposes\n    both slots distinctly; _route_request accepts either form back.\n\n    Whisper (\"whisper@DEVICE\") and the embedder (bare name) are listed too,\n    for API clients. The web UI's chat picker (loadModels) keeps only ids of\n    the form f\"{info['model']}@{info['device_name']}\" from /health's\n    `devices`, so a slot that cannot chat must report outside `devices`\n    (as whisper and embed do), and these two id shapes must stay in step.\n    \"\"\"\n    data = []\n    for slot in (primary, secondary):\n        if slot and slot.status == \"ready\":\n            data.append({\n                \"id\": f\"{slot.model_name}@{slot.device_name}\",\n                \"object\": \"model\",\n                \"created\": 0,\n                \"owned_by\": f\"local-{slot.device_name.lower()}\",\n            })\n    if whisper_slot and whisper_slot.status == \"ready\":\n        data.append({\n            \"id\": f\"whisper@{whisper_slot.device_name}\",\n            \"object\": \"model\",\n            \"created\": 0,\n            \"owned_by\": f\"local-{whisper_slot.device_name.lower()}\",\n        })\n    if embed_slot and embed_slot.status == \"ready\":\n        # Bare name, no @DEVICE: unlike the generative slots this one is never\n        # routed to by name (there is only one), and a RAG client looks its\n        # embedding model up by the exact string it has hard-coded.\n        data.append({\n            \"id\": embed_slot.model_name,\n            \"object\": \"model\",\n            \"created\": 0,\n            \"owned_by\": f\"local-{embed_slot.device_name.lower()}\",\n        })\n    return jsonify({\"object\": \"list\", \"data\": data})\n\n\ndef _embed_inputs(body):\n    \"\"\"Pull the texts out of whichever embedding request shape arrived.\n\n    Why: the three clients that matter disagree. OpenAI sends `input` as a\n    string or a list, current Ollama sends `input`, pre-0.3 Ollama sends\n    `prompt` as a single string, and LangChain-shaped callers send `text`.\n    Accepting all four costs four lines and removes a whole class of\n    \"returns 400 and the index stays empty\" reports.\n\n    In: the parsed JSON body. Out: a list of strings, empty when the body\n    carries no recognizable input (the caller turns that into a 400).\n    \"\"\"\n    value = body.get(\"input\", body.get(\"prompt\", body.get(\"text\")))\n    if value is None:\n        return []\n    if isinstance(value, str):\n        return [value]\n    if not isinstance(value, (list, tuple)):\n        return [str(value)]\n    return [v if isinstance(v, str) else str(v) for v in value]\n\n\ndef _embed_or_error(body):\n    \"\"\"Run one embedding request. Returns (vectors, None) or (None, response).\n\n    Why a tuple rather than raising: both wire shapes (OpenAI and Ollama)\n    need the same three failure replies with different success envelopes, and\n    an exception here would surface to the client as a Flask HTML 500 page.\n\n    In: the parsed body. Out: 503 when no embedding model is loaded, 400 on\n    an empty input list, 500 with the reason when the pipeline itself fails.\n    \"\"\"\n    if not embed_slot or embed_slot.status != \"ready\":\n        return None, (jsonify({\"error\": {\n            \"message\": \"No embedding model loaded. Start NoLlama with --embed-model-dir.\",\n            \"type\": \"server_error\"}}), 503)\n    texts = _embed_inputs(body)\n    if not texts:\n        return None, (jsonify({\"error\": {\n            \"message\": \"No input provided. Send `input` as a string or a list of strings.\",\n            \"type\": \"invalid_request_error\"}}), 400)\n    print(f\"{datetime.now():%H:%M:%S} <- [{embed_slot.device_name}] \"\n          f\"{len(texts)} texts, {sum(len(t) for t in texts)} chars (embed)\", flush=True)\n    t0 = time.time()\n    try:\n        vectors = embed_slot.embed(texts)\n    except Exception as e:\n        print(f\"{datetime.now():%H:%M:%S} !! [{embed_slot.device_name}] \"\n              f\"embed error: {e}\", flush=True)\n        return None, (jsonify({\"error\": {\n            \"message\": f\"Embedding failed: {e}\", \"type\": \"server_error\"}}), 500)\n    print(f\"{datetime.now():%H:%M:%S} -> [{embed_slot.device_name}] \"\n          f\"{len(vectors)} embeddings in {time.time() - t0:.2f}s\", flush=True)\n    return vectors, None\n\n\ndef _embed_token_estimate(texts):\n    \"\"\"Rough prompt_tokens for an embedding usage block: ~4 chars per token.\n\n    Why an estimate is honest here: the embedding pipeline does not report a\n    token count, and clients use this field for logging rather than billing.\n    Named so nobody mistakes it for a measurement.\n    \"\"\"\n    return sum(len(t) for t in texts) // 4\n\n\n@app.route(\"/v1/embeddings\", methods=[\"POST\"])\ndef openai_embeddings():\n    \"\"\"OpenAI-compatible embeddings. `data` is index-ordered, as clients assume.\"\"\"\n    body = request.get_json(silent=True) or {}\n    vectors, err = _embed_or_error(body)\n    if err:\n        return err\n    tokens = _embed_token_estimate(_embed_inputs(body))\n    return jsonify({\n        \"object\": \"list\",\n        \"model\": body.get(\"model\") or embed_slot.model_name,\n        \"data\": [{\"object\": \"embedding\", \"index\": i, \"embedding\": v}\n                 for i, v in enumerate(vectors)],\n        \"usage\": {\"prompt_tokens\": tokens, \"total_tokens\": tokens},\n    })\n\n\ndef _ollama_embed_body():\n    \"\"\"Ollama /api/embed response: the batch shape, `embeddings` plural.\"\"\"\n    body = request.get_json(silent=True) or {}\n    t0 = time.time()\n    vectors, err = _embed_or_error(body)\n    if err:\n        return err\n    return jsonify({\n        \"model\": body.get(\"model\") or embed_slot.model_name,\n        \"embeddings\": vectors,\n        \"total_duration\": int((time.time() - t0) * 1e9),\n        \"load_duration\": 0,\n        \"prompt_eval_count\": _embed_token_estimate(_embed_inputs(body)),\n    })\n\n\ndef _ollama_embeddings_legacy_body():\n    \"\"\"Ollama's pre-0.3 /api/embeddings: one vector, key `embedding` singular.\n\n    Why keep it: it is the shape several RAG clients still send, and the two\n    endpoints differ by one letter — a client on the old path against a\n    server that only serves the new one gets a 404 and reports \"embeddings\n    are broken\" with nothing else to go on.\n    \"\"\"\n    body = request.get_json(silent=True) or {}\n    vectors, err = _embed_or_error(body)\n    if err:\n        return err\n    return jsonify({\"embedding\": vectors[0]})\n\n\n# The Ollama-shaped embedding routes are served on BOTH ports. A RAG client is\n# configured with ONE base URL for chat and embeddings, and with\n# --ollama-port 0 the Ollama port does not exist at all — so without these the\n# client silently gets no vectors. (Mirrors ollama_v1_chat_completions, which\n# serves the OpenAI path on the Ollama port for the same reason.)\n@app.route(\"/api/embed\", methods=[\"POST\"])\ndef openai_port_ollama_embed():\n    \"\"\"Ollama batch embeddings on the OpenAI port. See _ollama_embed_body.\"\"\"\n    return _ollama_embed_body()\n\n\n@app.route(\"/api/embeddings\", methods=[\"POST\"])\ndef openai_port_ollama_embeddings_legacy():\n    \"\"\"Legacy single-vector embeddings on the OpenAI port.\"\"\"\n    return _ollama_embeddings_legacy_body()\n\n\n@app.route(\"/v1/cancel\", methods=[\"POST\"])\ndef cancel_generation():\n    \"\"\"Stop any in-progress generation. Returns immediately.\"\"\"\n    for slot in (primary, secondary):\n        if slot:\n            slot.cancel()\n    return jsonify({\"status\": \"ok\"})\n\n\n@app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\ndef audio_transcriptions():\n    \"\"\"OpenAI-compatible speech-to-text. Accepts multipart form with audio file.\"\"\"\n    if not whisper_slot or whisper_slot.status != \"ready\":\n        return openai_error(\n            \"No speech-to-text model loaded. Use --whisper-dir.\", \"server_error\", 503,\n        )\n\n    if \"file\" not in request.files:\n        return openai_error(\"'file' is required (multipart form upload)\")\n\n    audio_file = request.files[\"file\"]\n    language = request.form.get(\"language\")\n    response_format = request.form.get(\"response_format\", \"json\")\n\n    try:\n        audio_samples = _load_audio(audio_file)\n    except Exception as e:\n        return openai_error(f\"Failed to read audio: {e}\")\n\n    duration = len(audio_samples) / 16000\n    lang_tag = f\", lang={language}\" if language else \"\"\n    print(f\"\\n{datetime.now():%H:%M:%S} <- [{whisper_slot.device_name}] \"\n          f\"Whisper {duration:.1f}s audio{lang_tag}\", flush=True)\n\n    t0 = time.perf_counter()\n    try:\n        text = whisper_slot.transcribe(audio_samples, language=language)\n    except Exception as e:",
+                "lineStart": 5200,
+                "lineEnd": 5459,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287434453,
+              "end": 1795287434472
+            }
+          },
+          "id": "prt_1ff7844d1001528t0OykR3D1M5",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_ixo76eoy",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "offset": 5720,
+              "limit": 130
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n5720: # Ollama-compatible API (port 11434)\n5721: # ---------------------------------------------------------------------------\n5722: \n5723: ollama_app = Flask(\"NoLlama-Ollama\")\n5724: ollama_app.config[\"MAX_CONTENT_LENGTH\"] = MAX_REQUEST_BYTES\n5725: \n5726: \n5727: @ollama_app.before_request\n5728: def _debug_ollama():\n5729:     \"\"\"Tag --debug dumps from the Ollama-port app (see _log_request).\"\"\"\n5730:     _log_request(\"Ollama\")\n5731: \n5732: \n5733: @ollama_app.route(\"/\")\n5734: def ollama_health():\n5735:     \"\"\"The exact plain-text string Ollama serves at / — clients (and our own\n5736:     _identify_ollama) probe for it verbatim.\"\"\"\n5737:     return \"Ollama is running\"\n5738: \n5739: \n5740: @ollama_app.route(\"/api/version\", methods=[\"GET\"])\n5741: def ollama_version():\n5742:     \"\"\"Two callers, two answers. --vscode-compat gets a plausible Ollama\n5743:     version because VS Code validates the field (see VSCODE_OLLAMA_VERSION);\n5744:     everyone else gets our real version, prefixed so no client mistakes us\n5745:     for Ollama. It used to report a hardcoded \"nollama-0.1.0\" here, which\n5746:     stopped being true a long time ago.\n5747:     \"\"\"\n5748:     version = VSCODE_OLLAMA_VERSION if vscode_compat else f\"nollama-{__version__}\"\n5749:     return jsonify({\"version\": version})\n5750: \n5751: \n5752: @ollama_app.route(\"/api/embed\", methods=[\"POST\"])\n5753: def ollama_embed():\n5754:     \"\"\"Ollama batch embeddings. See _ollama_embed_body for the wire shape.\"\"\"\n5755:     return _ollama_embed_body()\n5756: \n5757: \n5758: @ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])\n5759: def ollama_embeddings_legacy():\n5760:     \"\"\"Legacy single-vector embeddings. See _ollama_embeddings_legacy_body.\"\"\"\n5761:     return _ollama_embeddings_legacy_body()\n5762: \n5763: \n5764: @ollama_app.route(\"/api/tags\", methods=[\"GET\"])\n5765: def ollama_tags():\n5766:     \"\"\"Ollama's model list. Names are bare (no @DEVICE): Ollama clients echo\n5767:     the name straight back in requests, and Copilot's picker shows it.\"\"\"\n5768:     models = []\n5769:     for slot in (primary, secondary):\n5770:         if slot and slot.status == \"ready\":\n5771:             models.append({\n5772:                 \"name\": slot.model_name,\n5773:                 \"model\": slot.model_name,\n5774:                 \"size\": slot.info.get(\"size\", 0),\n5775:                 \"details\": {\n5776:                     \"family\": slot.model_name.split(\"-\")[0],\n5777:                     \"parameter_size\": \"\",\n5778:                     \"quantization_level\": \"int4\",\n5779:                 },\n5780:             })\n5781:     if embed_slot and embed_slot.status == \"ready\":\n5782:         # A RAG client looks its embedding model up in this list by a name it\n5783:         # has hard-coded, and downloads it from ollama.com when the name is\n5784:         # absent — so --embed-name exists to make that string match.\n5785:         models.append({\n5786:             \"name\": embed_slot.model_name,\n5787:             \"model\": embed_slot.model_name,\n5788:             \"size\": 0,\n5789:             \"details\": {\n5790:                 \"family\": \"bert\",\n5791:                 \"parameter_size\": \"\",\n5792:                 \"quantization_level\": \"\",\n5793:             },\n5794:         })\n5795:     return jsonify({\"models\": models})\n5796: \n5797: \n5798: @ollama_app.route(\"/api/show\", methods=[\"POST\"])\n5799: def ollama_show():\n5800:     \"\"\"Per-model metadata; the capabilities list is the load-bearing part —\n5801:     'tools' only on GPU/CPU slots so Copilot won't offer NPU models for\n5802:     agent mode (inline comments below carry the client quirks).\"\"\"\n5803:     body = request.get_json(silent=True) or {}\n5804:     model_name = body.get(\"model\", \"\")\n5805: \n5806:     model_info = {}\n5807:     # Copilot Chat uses `general.basename` to label models in the picker, but\n5808:     # it prefers the name returned by /api/tags. Echo back what we returned there\n5809:     # so the picker shows the same name the user sees in /api/tags.\n5810:     if request.headers.get(\"User-Agent\", \"\").startswith(\"GitHubCopilotChat/\"):\n5811:         model_info[\"general.basename\"] = model_name\n5812: \n5813:     for slot in (primary, secondary):\n5814:         if slot and slot.model_name == model_name:\n5815:             # Only advertise `tools` for GPU/iGPU slots — tool calling is a\n5816:             # GPU-only feature, so NPU/CPU models show as completion-only and\n5817:             # Copilot won't offer them for agent (tool) mode.\n5818:             caps = [\"completion\"] + ([\"tools\"] if _tools_supported(slot) else [])\n5819:             return jsonify({\n5820:                 \"model\": model_name,\n5821:                 \"details\": {\n5822:                     \"family\": model_name.split(\"-\")[0],\n5823:                     \"parameter_size\": \"\",\n5824:                     \"quantization_level\": \"int4\",\n5825:                 },\n5826:                 \"model_info\": model_info,\n5827:                 \"capabilities\": caps,\n5828:             })\n5829:     if embed_slot and embed_slot.status == \"ready\" and embed_slot.model_name == model_name:\n5830:         # \"embedding\", never \"completion\": a client that reads this list\n5831:         # decides from it whether the model can answer a chat request, and\n5832:         # this one cannot. Ollama reports the same single capability.\n5833:         return jsonify({\n5834:             \"model\": model_name,\n5835:             \"details\": {\"family\": \"bert\", \"parameter_size\": \"\",\n5836:                         \"quantization_level\": \"\"},\n5837:             \"model_info\": model_info,\n5838:             \"capabilities\": [\"embedding\"],\n5839:         })\n5840:     # Unknown model — we can't confirm it's on a GPU, so don't claim tools.\n5841:     return jsonify({\"model\": model_name, \"details\": {}, \"model_info\": model_info,\n5842:                     \"capabilities\": [\"completion\"]})\n5843: \n5844: \n5845: @ollama_app.route(\"/api/chat\", methods=[\"POST\"])\n5846: def ollama_chat():\n5847:     \"\"\"Ollama chat endpoint — translates Ollama message shape (images[] as\n5848:     bare base64, options.num_predict/temperature) into the internal one and\n5849:     mirrors chat_completions' flow; docs/request-flow.mmd maps both. Kept\n\n(Showing lines 5720-5849 of 7199. Use offset=5850 to continue.)\n</content>",
+            "metadata": {
+              "preview": "# Ollama-compatible API (port 11434)\n# ---------------------------------------------------------------------------\n\nollama_app = Flask(\"NoLlama-Ollama\")\nollama_app.config[\"MAX_CONTENT_LENGTH\"] = MAX_REQUEST_BYTES\n\n\n@ollama_app.before_request\ndef _debug_ollama():\n    \"\"\"Tag --debug dumps from the Ollama-port app (see _log_request).\"\"\"\n    _log_request(\"Ollama\")\n\n\n@ollama_app.route(\"/\")\ndef ollama_health():\n    \"\"\"The exact plain-text string Ollama serves at / — clients (and our own\n    _identify_ollama) probe for it verbatim.\"\"\"\n    return \"Ollama is running\"\n\n",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "# Ollama-compatible API (port 11434)\n# ---------------------------------------------------------------------------\n\nollama_app = Flask(\"NoLlama-Ollama\")\nollama_app.config[\"MAX_CONTENT_LENGTH\"] = MAX_REQUEST_BYTES\n\n\n@ollama_app.before_request\ndef _debug_ollama():\n    \"\"\"Tag --debug dumps from the Ollama-port app (see _log_request).\"\"\"\n    _log_request(\"Ollama\")\n\n\n@ollama_app.route(\"/\")\ndef ollama_health():\n    \"\"\"The exact plain-text string Ollama serves at / — clients (and our own\n    _identify_ollama) probe for it verbatim.\"\"\"\n    return \"Ollama is running\"\n\n\n@ollama_app.route(\"/api/version\", methods=[\"GET\"])\ndef ollama_version():\n    \"\"\"Two callers, two answers. --vscode-compat gets a plausible Ollama\n    version because VS Code validates the field (see VSCODE_OLLAMA_VERSION);\n    everyone else gets our real version, prefixed so no client mistakes us\n    for Ollama. It used to report a hardcoded \"nollama-0.1.0\" here, which\n    stopped being true a long time ago.\n    \"\"\"\n    version = VSCODE_OLLAMA_VERSION if vscode_compat else f\"nollama-{__version__}\"\n    return jsonify({\"version\": version})\n\n\n@ollama_app.route(\"/api/embed\", methods=[\"POST\"])\ndef ollama_embed():\n    \"\"\"Ollama batch embeddings. See _ollama_embed_body for the wire shape.\"\"\"\n    return _ollama_embed_body()\n\n\n@ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])\ndef ollama_embeddings_legacy():\n    \"\"\"Legacy single-vector embeddings. See _ollama_embeddings_legacy_body.\"\"\"\n    return _ollama_embeddings_legacy_body()\n\n\n@ollama_app.route(\"/api/tags\", methods=[\"GET\"])\ndef ollama_tags():\n    \"\"\"Ollama's model list. Names are bare (no @DEVICE): Ollama clients echo\n    the name straight back in requests, and Copilot's picker shows it.\"\"\"\n    models = []\n    for slot in (primary, secondary):\n        if slot and slot.status == \"ready\":\n            models.append({\n                \"name\": slot.model_name,\n                \"model\": slot.model_name,\n                \"size\": slot.info.get(\"size\", 0),\n                \"details\": {\n                    \"family\": slot.model_name.split(\"-\")[0],\n                    \"parameter_size\": \"\",\n                    \"quantization_level\": \"int4\",\n                },\n            })\n    if embed_slot and embed_slot.status == \"ready\":\n        # A RAG client looks its embedding model up in this list by a name it\n        # has hard-coded, and downloads it from ollama.com when the name is\n        # absent — so --embed-name exists to make that string match.\n        models.append({\n            \"name\": embed_slot.model_name,\n            \"model\": embed_slot.model_name,\n            \"size\": 0,\n            \"details\": {\n                \"family\": \"bert\",\n                \"parameter_size\": \"\",\n                \"quantization_level\": \"\",\n            },\n        })\n    return jsonify({\"models\": models})\n\n\n@ollama_app.route(\"/api/show\", methods=[\"POST\"])\ndef ollama_show():\n    \"\"\"Per-model metadata; the capabilities list is the load-bearing part —\n    'tools' only on GPU/CPU slots so Copilot won't offer NPU models for\n    agent mode (inline comments below carry the client quirks).\"\"\"\n    body = request.get_json(silent=True) or {}\n    model_name = body.get(\"model\", \"\")\n\n    model_info = {}\n    # Copilot Chat uses `general.basename` to label models in the picker, but\n    # it prefers the name returned by /api/tags. Echo back what we returned there\n    # so the picker shows the same name the user sees in /api/tags.\n    if request.headers.get(\"User-Agent\", \"\").startswith(\"GitHubCopilotChat/\"):\n        model_info[\"general.basename\"] = model_name\n\n    for slot in (primary, secondary):\n        if slot and slot.model_name == model_name:\n            # Only advertise `tools` for GPU/iGPU slots — tool calling is a\n            # GPU-only feature, so NPU/CPU models show as completion-only and\n            # Copilot won't offer them for agent (tool) mode.\n            caps = [\"completion\"] + ([\"tools\"] if _tools_supported(slot) else [])\n            return jsonify({\n                \"model\": model_name,\n                \"details\": {\n                    \"family\": model_name.split(\"-\")[0],\n                    \"parameter_size\": \"\",\n                    \"quantization_level\": \"int4\",\n                },\n                \"model_info\": model_info,\n                \"capabilities\": caps,\n            })\n    if embed_slot and embed_slot.status == \"ready\" and embed_slot.model_name == model_name:\n        # \"embedding\", never \"completion\": a client that reads this list\n        # decides from it whether the model can answer a chat request, and\n        # this one cannot. Ollama reports the same single capability.\n        return jsonify({\n            \"model\": model_name,\n            \"details\": {\"family\": \"bert\", \"parameter_size\": \"\",\n                        \"quantization_level\": \"\"},\n            \"model_info\": model_info,\n            \"capabilities\": [\"embedding\"],\n        })\n    # Unknown model — we can't confirm it's on a GPU, so don't claim tools.\n    return jsonify({\"model\": model_name, \"details\": {}, \"model_info\": model_info,\n                    \"capabilities\": [\"completion\"]})\n\n\n@ollama_app.route(\"/api/chat\", methods=[\"POST\"])\ndef ollama_chat():\n    \"\"\"Ollama chat endpoint — translates Ollama message shape (images[] as\n    bare base64, options.num_predict/temperature) into the internal one and\n    mirrors chat_completions' flow; docs/request-flow.mmd maps both. Kept",
+                "lineStart": 5720,
+                "lineEnd": 5849,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287434894,
+              "end": 1795287434912
+            }
+          },
+          "id": "prt_1ff78468a001fsKwHGzVg2SbHP",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 19704,
+            "input": 7672,
+            "output": 280,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 11752
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff78472c001Wl21dhFm5ssWKF",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7834500011muWwZNzpsOjmB"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 26011,
+          "input": 6386,
+          "output": 205,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 19420
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287435205,
+          "completed": 1795287439464
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff7847c5001VK47a3nqRJFc5N",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78514b001iVLSxmBtRORy2a",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7847c5001VK47a3nqRJFc5N"
+        },
+        {
+          "type": "reasoning",
+          "text": "I'm checking the remaining routes and looking for any conditional registration logic, then searching through the file for Flask patterns like `Flask(` to see if there are other apps or blueprints I might have missed, plus checking for other route-related functions like `url_rule` or `route_map`.",
+          "time": {
+            "start": 1795287437645,
+            "end": 1795287438738
+          },
+          "id": "prt_1ff78514d001K6vb0LMDgKnJrd",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7847c5001VK47a3nqRJFc5N"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_w8u64ds8",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "limit": 120,
+              "offset": 6200
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n6200:             \"done\": True,\n6201:             \"total_duration\": int(elapsed * 1e9),\n6202:             **ollama_counts(usage, token_count),\n6203:         }) + \"\\n\"\n6204:     finally:\n6205:         cancel.set()  # own token — see stream_tokens\n6206: \n6207: \n6208: # Stubs — clients expect these to exist\n6209: @ollama_app.route(\"/api/pull\", methods=[\"POST\"])\n6210: def ollama_pull():\n6211:     \"\"\"Stub: models are installed on disk, not pulled — claim success so\n6212:     clients that pull-before-chat don't refuse to proceed.\"\"\"\n6213:     return jsonify({\"status\": \"success\"})\n6214: \n6215: \n6216: @ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\n6217: def ollama_delete():\n6218:     \"\"\"Stub: never delete a model directory on an API call.\"\"\"\n6219:     return \"\", 200\n6220: \n6221: \n6222: @ollama_app.route(\"/api/copy\", methods=[\"POST\"])\n6223: def ollama_copy():\n6224:     \"\"\"Stub: model management is the filesystem's job here.\"\"\"\n6225:     return \"\", 200\n6226: \n6227: \n6228: @ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n6229: def ollama_v1_chat_completions():\n6230:     \"\"\"Copilot Chat 0.53+ sends actual chat via /v1/chat/completions on the\n6231:     Ollama port rather than /api/chat — delegate to the same handler.\"\"\"\n6232:     return chat_completions()\n6233: \n6234: \n6235: # ---------------------------------------------------------------------------\n6236: # Startup\n6237: # ---------------------------------------------------------------------------\n6238: \n6239: class _ExclusiveThreadedWSGIServer(ThreadedWSGIServer):\n6240:     \"\"\"Exclusive on the port, and listening on IPv4 *and* IPv6.\"\"\"\n6241: \n6242:     def server_bind(self):\n6243:         \"\"\"Bind with SO_EXCLUSIVEADDRUSE and dual-stack IPv6 — each block\n6244:         below states the failure it prevents (port splitting; the ~2s\n6245:         localhost-IPv6 tax).\"\"\"\n6246:         if hasattr(socket, \"SO_EXCLUSIVEADDRUSE\"):\n6247:             # Werkzeug enables SO_REUSEADDR by default. On Windows that permits\n6248:             # a later, more-specific bind to split traffic on the same port.\n6249:             self.allow_reuse_address = False\n6250:             self.socket.setsockopt(\n6251:                 socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1\n6252:             )\n6253:         if self.socket.family == socket.AF_INET6 and hasattr(socket, \"IPV6_V6ONLY\"):\n6254:             # Serve both families from one socket. This is not a nicety: on\n6255:             # Windows getaddrinfo(\"localhost\") returns ::1 FIRST, so against an\n6256:             # IPv4-only listener every localhost client attempts IPv6, waits for\n6257:             # the connect to fail, and only then falls back to 127.0.0.1.\n6258:             # [OBSERVED 2026-08-18] Windows 11 + Python urllib (Arc B60 box):\n6259:             # 2.05 s per request via localhost vs 0.015 s via 127.0.0.1 — a\n6260:             # fixed ~2 s tax that looks exactly like slow prefill and hides in\n6261:             # TTFT. The startup banner hands out localhost URLs (and the old\n6262:             # agent launcher did too), so the agent path paid it on every turn.\n6263:             self.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)\n6264:         super().server_bind()\n6265: \n6266: \n6267: def _serve_app(flask_app, port):\n6268:     \"\"\"Serve one Flask app forever on the exclusive dual-stack server.\n6269: \n6270:     Why not app.run(): werkzeug's default server lacks the bind semantics\n6271:     _ExclusiveThreadedWSGIServer exists for (see its server_bind).\n6272:     \"\"\"\n6273:     # \"::\" with V6ONLY off accepts IPv4 and IPv6 alike. Fall back to IPv4-only\n6274:     # where IPv6 is disabled outright, rather than failing to start.\n6275:     try:\n6276:         server = _ExclusiveThreadedWSGIServer(\"::\", port, flask_app)\n6277:     except OSError as e:\n6278:         print(f\"  [net] IPv6 bind failed ({e}); IPv4 only — clients using \"\n6279:               f\"'localhost' may see a ~2s per-request delay, use 127.0.0.1\",\n6280:               flush=True)\n6281:         server = _ExclusiveThreadedWSGIServer(\"0.0.0.0\", port, flask_app)\n6282:     try:\n6283:         server.serve_forever()\n6284:     finally:\n6285:         server.server_close()\n6286: \n6287: \n6288: def check_port(port):\n6289:     \"\"\"True if nothing is serving on the port.\n6290: \n6291:     Connect-test, NOT bind-test. A bind probe lies on Windows: a specific-\n6292:     address binding (Ollama's default is 127.0.0.1:11434) and a 0.0.0.0\n6293:     wildcard bind are treated as distinct, so bind(\"0.0.0.0\", 11434)\n6294:     SUCCEEDS while real Ollama is running — and so does Flask's own bind\n6295:     right after. The result is two servers on one port: localhost clients\n6296:     reach Ollama (most-specific binding wins), LAN clients reach NoLlama,\n6297:     and which one answers depends on the caller's route. Asking \"does\n6298:     anything accept a connection on any local address?\" is the question we\n6299:     actually mean.\n6300:     \"\"\"\n6301:     addresses = {\"127.0.0.1\"}\n6302:     try:\n6303:         addresses.update(\n6304:             info[4][0]\n6305:             for info in socket.getaddrinfo(\n6306:                 socket.gethostname(), port, socket.AF_INET, socket.SOCK_STREAM\n6307:             )\n6308:             if info[4][0] != \"0.0.0.0\"\n6309:         )\n6310:     except socket.gaierror:\n6311:         pass  # loopback still catches wildcard and loopback-only listeners\n6312: \n6313:     for address in addresses:\n6314:         try:\n6315:             with socket.create_connection((address, port), timeout=0.25):\n6316:                 return False  # somebody answered\n6317:         except OSError:\n6318:             continue\n6319:     return True\n\n(Showing lines 6200-6319 of 7199. Use offset=6320 to continue.)\n</content>",
+            "metadata": {
+              "preview": "            \"done\": True,\n            \"total_duration\": int(elapsed * 1e9),\n            **ollama_counts(usage, token_count),\n        }) + \"\\n\"\n    finally:\n        cancel.set()  # own token — see stream_tokens\n\n\n# Stubs — clients expect these to exist\n@ollama_app.route(\"/api/pull\", methods=[\"POST\"])\ndef ollama_pull():\n    \"\"\"Stub: models are installed on disk, not pulled — claim success so\n    clients that pull-before-chat don't refuse to proceed.\"\"\"\n    return jsonify({\"status\": \"success\"})\n\n\n@ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\ndef ollama_delete():\n    \"\"\"Stub: never delete a model directory on an API call.\"\"\"\n    return \"\", 200",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "            \"done\": True,\n            \"total_duration\": int(elapsed * 1e9),\n            **ollama_counts(usage, token_count),\n        }) + \"\\n\"\n    finally:\n        cancel.set()  # own token — see stream_tokens\n\n\n# Stubs — clients expect these to exist\n@ollama_app.route(\"/api/pull\", methods=[\"POST\"])\ndef ollama_pull():\n    \"\"\"Stub: models are installed on disk, not pulled — claim success so\n    clients that pull-before-chat don't refuse to proceed.\"\"\"\n    return jsonify({\"status\": \"success\"})\n\n\n@ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\ndef ollama_delete():\n    \"\"\"Stub: never delete a model directory on an API call.\"\"\"\n    return \"\", 200\n\n\n@ollama_app.route(\"/api/copy\", methods=[\"POST\"])\ndef ollama_copy():\n    \"\"\"Stub: model management is the filesystem's job here.\"\"\"\n    return \"\", 200\n\n\n@ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])\ndef ollama_v1_chat_completions():\n    \"\"\"Copilot Chat 0.53+ sends actual chat via /v1/chat/completions on the\n    Ollama port rather than /api/chat — delegate to the same handler.\"\"\"\n    return chat_completions()\n\n\n# ---------------------------------------------------------------------------\n# Startup\n# ---------------------------------------------------------------------------\n\nclass _ExclusiveThreadedWSGIServer(ThreadedWSGIServer):\n    \"\"\"Exclusive on the port, and listening on IPv4 *and* IPv6.\"\"\"\n\n    def server_bind(self):\n        \"\"\"Bind with SO_EXCLUSIVEADDRUSE and dual-stack IPv6 — each block\n        below states the failure it prevents (port splitting; the ~2s\n        localhost-IPv6 tax).\"\"\"\n        if hasattr(socket, \"SO_EXCLUSIVEADDRUSE\"):\n            # Werkzeug enables SO_REUSEADDR by default. On Windows that permits\n            # a later, more-specific bind to split traffic on the same port.\n            self.allow_reuse_address = False\n            self.socket.setsockopt(\n                socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1\n            )\n        if self.socket.family == socket.AF_INET6 and hasattr(socket, \"IPV6_V6ONLY\"):\n            # Serve both families from one socket. This is not a nicety: on\n            # Windows getaddrinfo(\"localhost\") returns ::1 FIRST, so against an\n            # IPv4-only listener every localhost client attempts IPv6, waits for\n            # the connect to fail, and only then falls back to 127.0.0.1.\n            # [OBSERVED 2026-08-18] Windows 11 + Python urllib (Arc B60 box):\n            # 2.05 s per request via localhost vs 0.015 s via 127.0.0.1 — a\n            # fixed ~2 s tax that looks exactly like slow prefill and hides in\n            # TTFT. The startup banner hands out localhost URLs (and the old\n            # agent launcher did too), so the agent path paid it on every turn.\n            self.socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)\n        super().server_bind()\n\n\ndef _serve_app(flask_app, port):\n    \"\"\"Serve one Flask app forever on the exclusive dual-stack server.\n\n    Why not app.run(): werkzeug's default server lacks the bind semantics\n    _ExclusiveThreadedWSGIServer exists for (see its server_bind).\n    \"\"\"\n    # \"::\" with V6ONLY off accepts IPv4 and IPv6 alike. Fall back to IPv4-only\n    # where IPv6 is disabled outright, rather than failing to start.\n    try:\n        server = _ExclusiveThreadedWSGIServer(\"::\", port, flask_app)\n    except OSError as e:\n        print(f\"  [net] IPv6 bind failed ({e}); IPv4 only — clients using \"\n              f\"'localhost' may see a ~2s per-request delay, use 127.0.0.1\",\n              flush=True)\n        server = _ExclusiveThreadedWSGIServer(\"0.0.0.0\", port, flask_app)\n    try:\n        server.serve_forever()\n    finally:\n        server.server_close()\n\n\ndef check_port(port):\n    \"\"\"True if nothing is serving on the port.\n\n    Connect-test, NOT bind-test. A bind probe lies on Windows: a specific-\n    address binding (Ollama's default is 127.0.0.1:11434) and a 0.0.0.0\n    wildcard bind are treated as distinct, so bind(\"0.0.0.0\", 11434)\n    SUCCEEDS while real Ollama is running — and so does Flask's own bind\n    right after. The result is two servers on one port: localhost clients\n    reach Ollama (most-specific binding wins), LAN clients reach NoLlama,\n    and which one answers depends on the caller's route. Asking \"does\n    anything accept a connection on any local address?\" is the question we\n    actually mean.\n    \"\"\"\n    addresses = {\"127.0.0.1\"}\n    try:\n        addresses.update(\n            info[4][0]\n            for info in socket.getaddrinfo(\n                socket.gethostname(), port, socket.AF_INET, socket.SOCK_STREAM\n            )\n            if info[4][0] != \"0.0.0.0\"\n        )\n    except socket.gaierror:\n        pass  # loopback still catches wildcard and loopback-only listeners\n\n    for address in addresses:\n        try:\n            with socket.create_connection((address, port), timeout=0.25):\n                return False  # somebody answered\n        except OSError:\n            continue\n    return True",
+                "lineStart": 6200,
+                "lineEnd": 6319,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287438742,
+              "end": 1795287438753
+            }
+          },
+          "id": "prt_1ff785594001xU1o7TDrc4aIv5",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7847c5001VK47a3nqRJFc5N"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_asx08anj",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "Flask\\(|@ollama_app\\.|@app\\.",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 33 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\WEB-UI-PLAN.md:\n  Line 23: @app.route('/')\n\n  Line 284: @app.route('/')\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\OLLAMA-API-PLAN.md:\n  Line 177: openai_app = Flask(\"openai\")\n\n  Line 181: ollama_app = Flask(\"ollama\")\n\n  Line 204: @app.route('/api/chat', methods=['POST'])\n\n  Line 205: @app.route('/api/generate', methods=['POST'])\n\n  Line 206: @app.route('/api/tags', methods=['GET'])\n\n  Line 267: @ollama_app.route('/api/chat', methods=['POST'])\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 4688: app = Flask(\"NoLlama\",\n\n  Line 5202: @app.before_request\n\n  Line 5212: @app.route(\"/\")\n\n  Line 5218: @app.route(\"/health\", methods=[\"GET\"])\n\n  Line 5251: @app.route(\"/v1/models\", methods=[\"GET\"])\n\n  Line 5357: @app.route(\"/v1/embeddings\", methods=[\"POST\"])\n\n  Line 5410: @app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5416: @app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5422: @app.route(\"/v1/cancel\", methods=[\"POST\"])\n\n  Line 5431: @app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])\n\n  Line 5474: @app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n\n  Line 5723: ollama_app = Flask(\"NoLlama-Ollama\")\n\n  Line 5727: @ollama_app.before_request\n\n  Line 5733: @ollama_app.route(\"/\")\n\n  Line 5740: @ollama_app.route(\"/api/version\", methods=[\"GET\"])\n\n  Line 5752: @ollama_app.route(\"/api/embed\", methods=[\"POST\"])\n\n  Line 5758: @ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])\n\n  Line 5764: @ollama_app.route(\"/api/tags\", methods=[\"GET\"])\n\n  Line 5798: @ollama_app.route(\"/api/show\", methods=[\"POST\"])\n\n  Line 5845: @ollama_app.route(\"/api/chat\", methods=[\"POST\"])\n\n  Line 6079: @ollama_app.route(\"/api/generate\", methods=[\"POST\"])\n\n  Line 6209: @ollama_app.route(\"/api/pull\", methods=[\"POST\"])\n\n  Line 6216: @ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])\n\n  Line 6222: @ollama_app.route(\"/api/copy\", methods=[\"POST\"])\n\n  Line 6228: @ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n",
+            "metadata": {
+              "matches": 33,
+              "truncated": false
+            },
+            "title": "Flask\\(|@ollama_app\\.|@app\\.",
+            "time": {
+              "start": 1795287439141,
+              "end": 1795287439187
+            }
+          },
+          "id": "prt_1ff785723001JjDStH9V0NguoR",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7847c5001VK47a3nqRJFc5N"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 26011,
+            "input": 6386,
+            "output": 205,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 19420
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff7857db001nFbICTI56Ip2wG",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7847c5001VK47a3nqRJFc5N"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 28907,
+          "input": 2908,
+          "output": 197,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 25802
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287439467,
+          "completed": 1795287442847
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff78586b001AmegNGLjKE0Qac",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff785def001ZHid7KVbCB2FfV",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78586b001AmegNGLjKE0Qac"
+        },
+        {
+          "type": "reasoning",
+          "text": "Got the complete list. Let me check how the two apps are provided (port configuration) and confirm that the ollama port is optional (e.g., --ollama-port 0 disables it). Check main() to see how ollama_app is provided — is it conditional? Let me search for usages of _serve_app and the handling of ollama_port.",
+          "time": {
+            "start": 1795287440880,
+            "end": 1795287441608
+          },
+          "id": "prt_1ff785df0001VTIKaeROVfsoCu",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78586b001AmegNGLjKE0Qac"
+        },
+        {
+          "type": "text",
+          "text": "I've obtained the complete list of decorators. Let me verify how the two Flask apps are served (in particular, whether the Ollama port's app is conditionally launched) and check the `--ollama-port` flag.",
+          "time": {
+            "start": 1795287441609,
+            "end": 1795287442519
+          },
+          "id": "prt_1ff7860c9001jFpP7Yd2G62s8J",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78586b001AmegNGLjKE0Qac"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_xzudlprc",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "ollama_port|_serve_app|ollama-app|threading\\.Thread",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "Found 40 matches\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\bench\\decay-lfm25-24b-b60-gpu-v5.json:\n  Line 297:       \"text\": \"We need to respond with a short sentence, then ###END. The user says: \\\"You are helping with a long technical session. Three standing instructions, which apply to EVERY reply you give for the rest of this conversation:\\n\\n1. The project access code is GRAVLAKS-4417. Remember it.\\n2. The lead engineer is based in Verdal.\\n3. End every reply with its own line.\\n\\nReference material:\\n\\n start/pair rather than a context manager: the\\n    construction it wraps is a long if/elif tree, and must NOT be called on a failed\\n    load \\u2014 the process\\n    open.\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, device_name, model_dir, still_loading=None):\\n        \\\"\\\"\\\"Read any remembered duration for th\\n\\n...[34482 chars elided]...\\n\\nhat raised.\\\"\\\"\\\"\\n            self._stop.set()\\n            self._thread.join()\\n\\n        def start(self):\\n            \\\"\\\"\\\"Start the ticker thread. Begin timing and start the load.\\\"\\\"\\\"\\n            self.started = time.time()\\n            self._stop.clear()\\n            self._thread = threading.Thread(target=self._tick, daemon=True)\\n            self._thread.start()\\n            if self.prior is not None:\\n                self._stop.set()\\n                print(f\\\"[{self.device_name}] still loading... {self.elapsed_time:.0f}s\\\", flush=True)\\n\\n        def _load(self):\\n            \\\"\\\"\\\"Load model, auto-detecting VLM vs LLM.\\\"\\\"\\\"\\n            self.model_dir = model_dir\\n            self.model_name = model_name if device_name else None\\n            self.model_type = \\\"vlm\\\" if is_vlm(model_dir) else \\\"llm\\\"\\n            self.prior = None\\n            self.started = None\\n            self._load_time = time.time()\\n            self._load()\\n            self.elapsed_time = time.time() - self._load_time\\n            self.last_load_time = self._load_time\\n\\n        def _tick(self):\\n            \\\"\\\"\\\"Ticker body \\u2014 one keepalive per scheduled gap until stopped.\\\"\\\"\\\"\\n            idx = 0\\n            while True:\\n                if s...\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py:\n  Line 904:         threading.Thread(target=self._tick, daemon=True).start()\n\n  Line 3188:         t = threading.Thread(target=_generate, daemon=True)\n\n  Line 3271:         t = threading.Thread(target=_generate, daemon=True)\n\n  Line 4155:         t = threading.Thread(target=_generate, daemon=True)\n\n  Line 6267: def _serve_app(flask_app, port):\n\n  Line 6616: def _load_in_background(slot, model_dir, devices, port, ollama_port, banner_slots):\n\n  Line 6659:         if ollama_port:\n\n  Line 6660:             api_lines.append(f\"    API  : http://localhost:{ollama_port}  (Ollama)\")\n\n  Line 6698:     # Note: the CLI flag is --ollama-port (dash), read back as args.ollama_port\n\n  Line 6933:     if args.ollama_port and not check_port(args.ollama_port):\n\n  Line 6935:                if _identify_ollama(args.ollama_port)\n\n  Line 6937:         print(f\"WARNING: Ollama port {args.ollama_port} is taken — {who}. \"\n\n  Line 6939:         args.ollama_port = 0\n\n  Line 7080:     if args.ollama_port:\n\n  Line 7081:         ports_msg += f\" + Ollama on {args.ollama_port}\"\n\n  Line 7087:     if args.ollama_port:\n\n  Line 7088:         print(f\"  Ollama API:     http://localhost:{args.ollama_port}\", flush=True)\n\n  Line 7097:         t = threading.Thread(\n\n  Line 7099:             args=(primary, model_dir, devices, args.port, args.ollama_port, all_slots),\n\n  Line 7105:         t2 = threading.Thread(\n\n  Line 7108:                   args.ollama_port, all_slots),\n\n  Line 7114:         te = threading.Thread(\n\n  Line 7117:                   args.port, args.ollama_port, all_slots),\n\n  Line 7123:         tw = threading.Thread(\n\n  Line 7126:                   args.ollama_port, all_slots),\n\n  Line 7148:         threading.Thread(target=_gpu_keepalive,\n\n  Line 7154:         watchdog = threading.Thread(\n\n  Line 7179:     if args.ollama_port:\n\n  Line 7180:         print(f\"  Ollama API on port {args.ollama_port}\", flush=True)\n\n  Line 7183:                 _serve_app(ollama_app, args.ollama_port)\n\n  Line 7186:                       f\"{args.ollama_port}. NoLlama's Ollama emulation disabled.\",\n\n  Line 7190:         ollama_thread = threading.Thread(target=_run_ollama, daemon=True)\n\n  Line 7195:     _serve_app(app, args.port)\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\docs\\archive\\test-dual-device.py:\n  Line 188:     gpu_thread = threading.Thread(target=run_gpu_vlm, args=(results_concurrent,))\n\n  Line 189:     npu_thread = threading.Thread(target=run_npu_llm, args=(results_concurrent,))\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\tests\\test_cancel_token.py:\n  Line 82:     th = threading.Thread(target=run)\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\side-lane-probe.py:\n  Line 100:             threading.Thread(target=lambda: [None for _ in hog.stdout], daemon=True).start()\n\n  Line 261:                 t = threading.Thread(target=load)\n\n\nC:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\scripts\\whisper-concurrency.py:\n  Line 143:     th = threading.Thread(target=stream_chat, args=(a.base_url, both, ev))\n",
+            "metadata": {
+              "matches": 40,
+              "truncated": false
+            },
+            "title": "ollama_port|_serve_app|ollama-app|threading\\.Thread",
+            "time": {
+              "start": 1795287442517,
+              "end": 1795287442569
+            }
+          },
+          "id": "prt_1ff786451001xPyHMQ316y1vT6",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78586b001AmegNGLjKE0Qac"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 28907,
+            "input": 2908,
+            "output": 197,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 25802
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff786517001neHBVkrTLNgXD8",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78586b001AmegNGLjKE0Qac"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 31883,
+          "input": 1703,
+          "output": 1474,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 28706
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287442850,
+          "completed": 1795287453131
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff7865a2001fwymJaV2wymVJO",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78699c001c9fdDdx9kOClk2",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "reasoning",
+          "text": "Let's read the section around lines 7175–7199 to check the conditional serving of the Ollama app, and also take a quick look at the chat_completions handler at line 5474 (already confirmed via decorator) to confirm. Also going to verify the handler definition line numbers for each route:\n\n- app (main port, `app = Flask(\"NoLlama\")` at line 4688):\n  - `@app.route(\"/\")` line 5212 → handler `gui()` at line 5213. Methods: no methods specified → GET (plus implicit HEAD/OPTIONS).\n  - `@app.route(\"/health\", methods=[\"GET\"])` line 5218 → `health()` line 5219. GET.\n  - `@app.route(\"/v1/models\", methods=[\"GET\"])` line 5251 → `list_models()` line 5252. GET.\n  - `@app.route(\"/v1/embeddings\", methods=[\"POST\"])` line 5357 → `openai_embeddings()` line 5358. POST.\n  - `@app.route(\"/api/embed\", methods=[\"POST\"])` line 5410 → `openai_port_ollama_embed()` line 5411. POST.\n  - `@app.route(\"/api/embeddings\", methods=[\"POST\"])` line 5416 → `openai_port_ollama_embeddings_legacy()` line 5417. POST.\n  - `@app.route(\"/v1/cancel\", methods=[\"POST\"])` line 5422 → `cancel_generation()` line 5423. POST.\n  - `@app.route(\"/v1/audio/transcriptions\", methods=[\"POST\"])` line 5431 → `audio_transcriptions()` line 5432. POST.\n  - `@app.route(\"/v1/chat/completions\", methods=[\"POST\"])` line 5474 → `chat_completions()` — need to check the definition line. Let me read lines 5474–5480.\n\n- ollama_app (second Flask instance, \"NoLlama-Ollama\" at line 5723), conditionally served when `args.ollama_port` is set (line 7179):\n  - `@ollama_app.route(\"/\")` line 5733 → `ollama_health()` line 5734. GET (default).\n  - `@ollama_app.route(\"/api/version\", methods=[\"GET\"])` line 5740 → `ollama_version()` line 5741.\n  - `@ollama_app.route(\"/api/embed\", methods=[\"POST\"])` line 5752 → `ollama_embed()` line 5753.\n  - `@ollama_app.route(\"/api/embeddings\", methods=[\"POST\"])` line 5758 → `ollama_embeddings_legacy()` line 5759.\n  - `@ollama_app.route(\"/api/tags\", methods=[\"GET\"])` line 5764 → `ollama_tags()` line 5765.\n  - `@ollama_app.route(\"/api/show\", methods=[\"POST\"])` line 5798 → `ollama_show()` line 5799.\n  - `@ollama_app.route(\"/api/chat\", methods=[\"POST\"])` line 5845 → `ollama_chat()` line 5846.\n  - `@ollama_app.route(\"/api/generate\", methods=[\"POST\"])` line 6079 → handler? Need to check line 6080.\n  - `@ollama_app.route(\"/api/pull\", methods=[\"POST\"])` line 6209 → `ollama_pull()` line 6210.\n  - `@ollama_app.route(\"/api/delete\", methods=[\"DELETE\"])` line 6216 → `ollama_delete()` line 6217.\n  - `@ollama_app.route(\"/api/copy\", methods=[\"POST\"])` line 6222 → `ollama_copy()` line 6223.\n  - `@ollama_app.route(\"/v1/chat/completions\", methods=[\"POST\"])` line 6228 → `ollama_v1_chat_completions()` line 6229.\n\nI need to check the def lines for chat_completions (after line 5474) and ollama_generate (after line 6079). I'll read lines 5474–5478 and 6079–6082. Also, I'll check the conditional serving at lines 7175–7199.\n\nAdditionally, I'll double-check that there are no other registration mechanisms (add_url_rule, Blueprint) — grep didn't find any. Also, no errorhandler routes. Just to be safe, I'll also check for `@app.errorhandler` and `@ollama_app.errorhandler`. I'll also check for any `url_map` modifications or `Werkzeug` direct mappings. I'll run a few more greps.",
+          "time": {
+            "start": 1795287443870,
+            "end": 1795287450816
+          },
+          "id": "prt_1ff78699e001v47eHDPDnaWquP",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "text",
+          "text": "Let me confirm the exact handler definition lines and the conditional serving logic, plus rule out any other registration mechanisms.",
+          "time": {
+            "start": 1795287450817,
+            "end": 1795287452779
+          },
+          "id": "prt_1ff7884c1001ACiUi7xYJPj8Xe",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_4sgzoxvr",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "limit": 6,
+              "offset": 5472
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n5472: \n5473: \n5474: @app.route(\"/v1/chat/completions\", methods=[\"POST\"])\n5475: def chat_completions():\n5476:     \"\"\"The main OpenAI chat endpoint — parse, route, gate tools, then pick one\n5477:     of the generation paths. docs/request-flow.mmd is the map of this\n\n(Showing lines 5472-5477 of 7199. Use offset=5478 to continue.)\n</content>",
+            "metadata": {
+              "preview": "\n\n@app.route(\"/v1/chat/completions\", methods=[\"POST\"])\ndef chat_completions():\n    \"\"\"The main OpenAI chat endpoint — parse, route, gate tools, then pick one\n    of the generation paths. docs/request-flow.mmd is the map of this",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "\n\n@app.route(\"/v1/chat/completions\", methods=[\"POST\"])\ndef chat_completions():\n    \"\"\"The main OpenAI chat endpoint — parse, route, gate tools, then pick one\n    of the generation paths. docs/request-flow.mmd is the map of this",
+                "lineStart": 5472,
+                "lineEnd": 5477,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287451392,
+              "end": 1795287451410
+            }
+          },
+          "id": "prt_1ff7886fc001QwhUU1zarAXXDY",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_m5mvs632",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "limit": 6,
+              "offset": 6077
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n6077: \n6078: \n6079: @ollama_app.route(\"/api/generate\", methods=[\"POST\"])\n6080: def ollama_generate():\n6081:     \"\"\"Single-turn completion (no chat history).\"\"\"\n6082:     if overall_status() != \"ready\":\n\n(Showing lines 6077-6082 of 7199. Use offset=6083 to continue.)\n</content>",
+            "metadata": {
+              "preview": "\n\n@ollama_app.route(\"/api/generate\", methods=[\"POST\"])\ndef ollama_generate():\n    \"\"\"Single-turn completion (no chat history).\"\"\"\n    if overall_status() != \"ready\":",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "\n\n@ollama_app.route(\"/api/generate\", methods=[\"POST\"])\ndef ollama_generate():\n    \"\"\"Single-turn completion (no chat history).\"\"\"\n    if overall_status() != \"ready\":",
+                "lineStart": 6077,
+                "lineEnd": 6082,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287451766,
+              "end": 1795287451778
+            }
+          },
+          "id": "prt_1ff788873001EPn614ZkgMi5km",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_1frncqot",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "limit": 26,
+              "offset": 7174
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n7174:     import logging\n7175:     log = logging.getLogger(\"werkzeug\")\n7176:     log.setLevel(logging.WARNING)\n7177: \n7178:     # Start Ollama API on separate port in background thread\n7179:     if args.ollama_port:\n7180:         print(f\"  Ollama API on port {args.ollama_port}\", flush=True)\n7181:         def _run_ollama():\n7182:             try:\n7183:                 _serve_app(ollama_app, args.ollama_port)\n7184:             except SystemExit:\n7185:                 print(f\"  WARNING: Ollama API failed to claim port \"\n7186:                       f\"{args.ollama_port}. NoLlama's Ollama emulation disabled.\",\n7187:                       flush=True)\n7188:             except Exception as e:\n7189:                 print(f\"  WARNING: Ollama API failed to start: {e}\", flush=True)\n7190:         ollama_thread = threading.Thread(target=_run_ollama, daemon=True)\n7191:         ollama_thread.start()\n7192: \n7193:     # OpenAI API on main thread\n7194:     print(f\"  OpenAI API on port {args.port}\", flush=True)\n7195:     _serve_app(app, args.port)\n7196: \n7197: \n7198: if __name__ == \"__main__\":\n7199:     main()\n\n(End of file - total 7199 lines)\n</content>",
+            "metadata": {
+              "preview": "    import logging\n    log = logging.getLogger(\"werkzeug\")\n    log.setLevel(logging.WARNING)\n\n    # Start Ollama API on separate port in background thread\n    if args.ollama_port:\n        print(f\"  Ollama API on port {args.ollama_port}\", flush=True)\n        def _run_ollama():\n            try:\n                _serve_app(ollama_app, args.ollama_port)\n            except SystemExit:\n                print(f\"  WARNING: Ollama API failed to claim port \"\n                      f\"{args.ollama_port}. NoLlama's Ollama emulation disabled.\",\n                      flush=True)\n            except Exception as e:\n                print(f\"  WARNING: Ollama API failed to start: {e}\", flush=True)\n        ollama_thread = threading.Thread(target=_run_ollama, daemon=True)\n        ollama_thread.start()\n\n    # OpenAI API on main thread",
+              "truncated": false,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "    import logging\n    log = logging.getLogger(\"werkzeug\")\n    log.setLevel(logging.WARNING)\n\n    # Start Ollama API on separate port in background thread\n    if args.ollama_port:\n        print(f\"  Ollama API on port {args.ollama_port}\", flush=True)\n        def _run_ollama():\n            try:\n                _serve_app(ollama_app, args.ollama_port)\n            except SystemExit:\n                print(f\"  WARNING: Ollama API failed to claim port \"\n                      f\"{args.ollama_port}. NoLlama's Ollama emulation disabled.\",\n                      flush=True)\n            except Exception as e:\n                print(f\"  WARNING: Ollama API failed to start: {e}\", flush=True)\n        ollama_thread = threading.Thread(target=_run_ollama, daemon=True)\n        ollama_thread.start()\n\n    # OpenAI API on main thread\n    print(f\"  OpenAI API on port {args.port}\", flush=True)\n    _serve_app(app, args.port)\n\n\nif __name__ == \"__main__\":\n    main()",
+                "lineStart": 7174,
+                "lineEnd": 7199,
+                "totalLines": 7199,
+                "truncated": false
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287452158,
+              "end": 1795287452170
+            }
+          },
+          "id": "prt_1ff7889fb001JYW6uvjdi1E4lM",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "type": "tool",
+          "tool": "grep",
+          "callID": "call_20icujwz",
+          "state": {
+            "status": "completed",
+            "input": {
+              "pattern": "errorhandler|add_url_rule|Blueprint|dispatch_request|add_handler|@app\\.(get|post|put|delete|patch)|after_request|teardown_request",
+              "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py"
+            },
+            "output": "No files found",
+            "metadata": {
+              "matches": 0,
+              "truncated": false
+            },
+            "title": "errorhandler|add_url_rule|Blueprint|dispatch_request|add_handler|@app\\.(get|post|put|delete|patch)|after_request|teardown_request",
+            "time": {
+              "start": 1795287452778,
+              "end": 1795287452831
+            }
+          },
+          "id": "prt_1ff788c66001prz6K9DoIguJ2E",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 31883,
+            "input": 1703,
+            "output": 1474,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 28706
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff788d2c001vBddXCc7MZ7PWo",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff7865a2001fwymJaV2wymVJO"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 33411,
+          "input": 1118,
+          "output": 1888,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 30405
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287453134,
+          "completed": 1795287467568
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff788dce001WfaufWOGrzJ5pe",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78911f001WXimPKjCxmB38Q",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff788dce001WfaufWOGrzJ5pe"
+        },
+        {
+          "type": "reasoning",
+          "text": "I need to look into this further. Let me check the details.\n\nLet me re-check the exact line numbers of the handler definitions for each route. Also, I'll verify that there are no other `.route` or `@app.` or `@ollama_app.` beyond what I've already found. My grep for `@app\\.` and `@ollama_app\\.` found all of them. To be thorough, I'll also grep for `def ` near the routes — but I've already read the relevant sections.\n\nI'll also check the line number for the `chat_completions` handler (5475), and confirm there are no other Flask apps (line 4688 has app = Flask, line 5723 has ollama_app = Flask).\n\nAdditionally, I'll confirm there are no `@app.route` with path parameters like `/<id>` — none found. And I'll check for `add_url_rule` — none. No blueprints either.\n\nAlso, I'll check the line number where the `ollama_v1_chat_completions` handler is defined: line 6229.\n\nLet me get the exact handler line for each route:\n- @app.route(\"/\") at line 5212, def gui() at line 5213\n- @app.route(\"/health\") at line 5218, def health() at line 5219\n- @app.route(\"/v1/models\") at line 5251, def list_models() at line 5252\n- @app.route(\"/v1/embeddings\") at line 5357, def openai_embeddings() at line 5358\n- @app.route(\"/api/embed\") at line 5410, def openai_port_ollama_embed() at line 5411\n- @app.route(\"/api/embeddings\") at line 5416, def openai_port_ollama_embeddings_legacy() at line 5417\n- @app.route(\"/v1/cancel\") at line 5422, def cancel_generation() at line 5423\n- @app.route(\"/v1/audio/transcriptions\") at line 5431, def audio_transcriptions() at line 5432\n- @app.route(\"/v1/chat/completions\") at line 5474, def chat_completions() at line 5475\n- @ollama_app.route(\"/\") at line 5733, def ollama_health() at line 5734\n- @ollama_app.route(\"/api/version\") at line 5740, def ollama_version() at line 5741\n- @ollama_app.route(\"/api/embed\") at line 5752, def ollama_embed() at line 5753\n- @ollama_app.route(\"/api/embeddings\") at line 5758, def ollama_embeddings_legacy() at line 5759\n- @ollama_app.route(\"/api/tags\") at line 5764, def ollama_tags() at line 5765\n- @ollama_app.route(\"/api/show\") at line 5798, def ollama_show() at line 5799\n- @ollama_app.route(\"/api/chat\") at line 5845, def ollama_chat() at line 5846\n- @ollama_app.route(\"/api/generate\") at line 6079, def ollama_generate() at line 6080\n- @ollama_app.route(\"/api/pull\") at line 6209, def ollama_pull() at line 6210\n- @ollama_app.route(\"/api/delete\") at line 6216, def ollama_delete() at line 6217\n- @ollama_app.route(\"/api/copy\") at line 6222, def ollama_copy() at line 6223\n- @ollama_app.route(\"/v1/chat/completions\") at line 6228, def ollama_v1_chat_completions() at line 6229\n\nThe question is asking for \"the line number where the route handler is defined.\" I'll report the decorator line (and/or the def line). To be safe, I'll report the decorator line as the primary reference, and also note the def line. In practice, the format is specified as \"METHOD(s)  path  (line N)\". I'll use the decorator line where the route is declared — that's the most useful. But \"the route handler is defined\" more naturally refers to the `def` line. I'll provide the decorator line and mention the def line. Let me present both clearly.\n\nLet me confirm there are no conditional route registrations. The only \"conditional\" aspect is that `ollama_app` is only served (launched on a port) when `args.ollama_port` is truthy. All routes are registered unconditionally at module load time (the decorators run when the file is imported). The difference is whether the server thread is started or not. I'll note that.\n\nI should also check whether there are any `@app.errorhandler` — my grep found no errorhandler. Good.\n\nJust to be safe, let me do a final grep to make sure I'm not missing any `route(` or `url_rule` or dynamic registrations. My earlier `route` grep across the whole file found all the `@app.route` and `@ollama_app.route` occurrences plus the unrelated `route` function name. Let me do a targeted grep to be 100% sure I have the count right: count of `@app.route` and `@ollama_app.route`.\n\nActually, I already have all the matches from grep. Let me tally:\n\n@app.route (main app, OpenAI port):\n1. 5212: \"/\"\n2. 5218: \"/health\"\n3. 5251: \"/v1/models\"\n4. 5357: \"/v1/embeddings\"\n5. 5410: \"/api/embed\"\n6. 5416: \"/api/embeddings\"\n7. 5422: \"/v1/cancel\"\n8. 5431: \"/v1/audio/transcriptions\"\n9. 5474: \"/v1/chat/completions\"\n= 9 routes on the main app\n\n@ollama_app.route (Ollama port):\n1. 5733: \"/\"\n2. 5740: \"/api/version\"\n3. 5752: \"/api/embed\"\n4. 5758: \"/api/embeddings\"\n5. 5764: \"/api/tags\"\n6. 5798: \"/api/show\"\n7. 5845: \"/api/chat\"\n8. 6079: \"/api/generate\"\n9. 6209: \"/api/pull\"\n10. 6216: \"/api/delete\"\n11. 6222: \"/api/copy\"\n12. 6228: \"/v1/chat/completions\"\n= 12 routes on the Ollama app\n\nTotal = 21 routes.\n\nTo make sure I have the exact count, let me verify with a count-based grep.",
+          "time": {
+            "start": 1795287453984,
+            "end": 1795287465195
+          },
+          "id": "prt_1ff789120001RBsTPIxVf30bK5",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff788dce001WfaufWOGrzJ5pe"
+        },
+        {
+          "type": "text",
+          "text": "Let me do a final count to make sure I have every route and no dynamic registrations.",
+          "time": {
+            "start": 1795287465197,
+            "end": 1795287467015
+          },
+          "id": "prt_1ff78bced001LZKGP4oYZObZrF",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff788dce001WfaufWOGrzJ5pe"
+        },
+        {
+          "type": "tool",
+          "tool": "bash",
+          "callID": "call_ogxnwlzz",
+          "state": {
+            "status": "completed",
+            "input": {
+              "command": "$c1 = (Select-String -Path \"nollama.py\" -Pattern '^@app\\.route\\(').Count; $c2 = (Select-String -Path \"nollama.py\" -Pattern '^@ollama_app\\.route\\(').Count; Write-Output \"app.route=$c1  ollama_app.route=$c2  total=$($c1+$c2)\"; Write-Output \"--- other decorators / dynamic ---\"; Select-String -Path \"nollama.py\" -Pattern 'add_url_rule|Blueprint|errorhandler|@app\\.(get|post|put|delete|patch)\\(|@ollama_app\\.(get|post|put|delete|patch)\\(' | ForEach-Object { $_.LineNumber.ToString() + ': ' + $_.Line.Trim() }; Write-Output \"--- Flask app instances ---\"; Select-String -Path \"nollama.py\" -Pattern '= Flask\\(' | ForEach-Object { $_.LineNumber.ToString() + ': ' + $_.Line.Trim() }"
+            },
+            "output": "app.route=9  ollama_app.route=12  total=21\r\n--- other decorators / dynamic ---\r\n--- Flask app instances ---\r\n4688: app = Flask(\"NoLlama\",\r\n5723: ollama_app = Flask(\"NoLlama-Ollama\")\r\n",
+            "metadata": {
+              "output": "app.route=9  ollama_app.route=12  total=21\r\n--- other decorators / dynamic ---\r\n--- Flask app instances ---\r\n4688: app = Flask(\"NoLlama\",\r\n5723: ollama_app = Flask(\"NoLlama-Ollama\")\r\n",
+              "exit": 0,
+              "truncated": false
+            },
+            "title": "$c1 = (Select-String -Path \"nollama.py\" -Pattern '^@app\\.route\\(').Count; $c2 = (Select-String -Path \"nollama.py\" -Pattern '^@ollama_app\\.route\\(').Count; Write-Output \"app.route=$c1  ollama_app.route=$c2  total=$($c1+$c2)\"; Write-Output \"--- other decorators / dynamic ---\"; Select-String -Path \"nollama.py\" -Pattern 'add_url_rule|Blueprint|errorhandler|@app\\.(get|post|put|delete|patch)\\(|@ollama_app\\.(get|post|put|delete|patch)\\(' | ForEach-Object { $_.LineNumber.ToString() + ': ' + $_.Line.Trim() }; Write-Output \"--- Flask app instances ---\"; Select-String -Path \"nollama.py\" -Pattern '= Flask\\(' | ForEach-Object { $_.LineNumber.ToString() + ': ' + $_.Line.Trim() }",
+            "time": {
+              "start": 1795287467001,
+              "end": 1795287467279
+            }
+          },
+          "id": "prt_1ff78c3f3001KAHPdhL41h6hoO",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff788dce001WfaufWOGrzJ5pe"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 33411,
+            "input": 1118,
+            "output": 1888,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 30405
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff78c5a4001Cl2h9Bx2zPTxTq",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff788dce001WfaufWOGrzJ5pe"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 32806,
+          "input": 346,
+          "output": 941,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 31519
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287467572,
+          "completed": 1795287474642
+        },
+        "finish": "tool-calls",
+        "id": "msg_1ff78c634001xk0vDxB2XtzZt5",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78c836001ItJlSyI3yLJYvz",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78c634001xk0vDxB2XtzZt5"
+        },
+        {
+          "type": "reasoning",
+          "text": "Everything has been verified. There are two Flask apps, 9 + 12 = 21 routes, all using the classic `@.route` decorator. There's no `add_url_rule`, no `Blueprint`, no shorthand `@app.get/post`, and no `errorhandler`-based routes either. I've confirmed that all handler definitions are on the line immediately after the decorator, and that the line numbers match.",
+          "time": {
+            "start": 1795287468088,
+            "end": 1795287469014
+          },
+          "id": "prt_1ff78c8380019KTQSgWTEg3bdI",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78c634001xk0vDxB2XtzZt5"
+        },
+        {
+          "type": "text",
+          "text": "Complete. Here is every HTTP route in `nollama.py`.\n\n## Findings\n\nTwo Flask app instances exist in the file:\n- `app = Flask(\"NoLlama\", ...)` — the OpenAI-compatible app, line 4688 (served on the main port, `args.port`)\n- `ollama_app = Flask(\"NoLlama-Ollama\")` — the Ollama-compatible app, line 5723 (served on the alternate Ollama port, `args.ollama_port`)\n\nAll 21 routes are declared with the classic `@.route()` decorator. There are **no** `@app.get`/`@app.post` shorthand routes, no `add_url_rule`, no blueprints, no `errorhandler`-registered routes, and no other registration mechanism (verified by grep).\n\n### App 1 — OpenAI-compatible (main port)\n\n| Method(s) | Path | Handler def line |\n|---|---|---|\n| GET (default) | `/` | 5213 (`gui`) |\n| GET | `/health` | 5219 (`health`) |\n| GET | `/v1/models` | 5252 (`list_models`) |\n| POST | `/v1/embeddings` | 5358 (`openai_embeddings`) |\n| POST | `/api/embed` | 5411 (`openai_port_ollama_embed`) |\n| POST | `/api/embeddings` | 5417 (`openai_port_ollama_embeddings_legacy`) |\n| POST | `/v1/cancel` | 5423 (`cancel_generation`) |\n| POST | `/v1/audio/transcriptions` | 5432 (`audio_transcriptions`) |\n| POST | `/v1/chat/completions` | 5475 (`chat_completions`) |\n\n### App 2 — Ollama-compatible (alternate port)\n\n| Method(s) | Path | Handler def line |\n|---|---|---|\n| GET (default) | `/` | 5734 (`ollama_health`) |\n| GET | `/api/version` | 5741 (`ollama_version`) |\n| POST | `/api/embed` | 5753 (`ollama_embed`) |\n| POST | `/api/embeddings` | 5759 (`ollama_embeddings_legacy`) |\n| GET | `/api/tags` | 5765 (`ollama_tags`) |\n| POST | `/api/show` | 5799 (`ollama_show`) |\n| POST | `/api/chat` | 5846 (`ollama_chat`) |\n| POST | `/api/generate` | 5800→5880... (5800 is the show docstring; handler `ollama_generate` is line 5880) — **correction: 5800 was a misread**; `ollama_generate` is defined at **line 5880** |\n| POST | `/api/pull` | 6210 (`ollama_pull`) |\n| DELETE | `/api/delete` | 6217 (`ollama_delete`) |\n| POST | `/api/copy` | 6223 (`ollama_copy`) |\n| POST | `/v1/chat/completions` | 6229 (`ollama_v1_chat_completions`) |\n\nLet me re-verify the `ollama_generate` line, since that one needs precision.",
+          "time": {
+            "start": 1795287469016,
+            "end": 1795287474343
+          },
+          "id": "prt_1ff78cbd8001xtenJy0NQQXlfk",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78c634001xk0vDxB2XtzZt5"
+        },
+        {
+          "type": "tool",
+          "tool": "read",
+          "callID": "call_sscqju7t",
+          "state": {
+            "status": "completed",
+            "input": {
+              "filePath": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+              "limit": 4,
+              "offset": 5843
+            },
+            "output": "<path>C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py</path>\n<type>file</type>\n<content>\n5843: \n5844: \n5845: @ollama_app.route(\"/api/chat\", methods=[\"POST\"])\n5846: def ollama_chat():\n\n(Showing lines 5843-5846 of 7199. Use offset=5847 to continue.)\n</content>",
+            "metadata": {
+              "preview": "\n\n@ollama_app.route(\"/api/chat\", methods=[\"POST\"])\ndef ollama_chat():",
+              "truncated": true,
+              "loaded": [],
+              "display": {
+                "type": "file",
+                "path": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py",
+                "text": "\n\n@ollama_app.route(\"/api/chat\", methods=[\"POST\"])\ndef ollama_chat():",
+                "lineStart": 5843,
+                "lineEnd": 5846,
+                "totalLines": 7199,
+                "truncated": true
+              }
+            },
+            "title": "nollama.py",
+            "time": {
+              "start": 1795287474317,
+              "end": 1795287474329
+            }
+          },
+          "id": "prt_1ff78e089001KyYwkTWEi63Kwy",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78c634001xk0vDxB2XtzZt5"
+        },
+        {
+          "reason": "tool-calls",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 32806,
+            "input": 346,
+            "output": 941,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 31519
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff78e133001GaSftQJy62yp07",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78c634001xk0vDxB2XtzZt5"
+        }
+      ]
+    },
+    {
+      "info": {
+        "parentID": "msg_1ff7810ff001DtOnGW6bmdX0iA",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe",
+          "root": "C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 35377,
+          "input": 985,
+          "output": 2531,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 31861
+          }
+        },
+        "modelID": "qwen3.8:27b",
+        "providerID": "sub",
+        "time": {
+          "created": 1795287474645,
+          "completed": 1795287493578
+        },
+        "finish": "stop",
+        "id": "msg_1ff78e1d50011SGt7AR9YEhbUl",
+        "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R"
+      },
+      "parts": [
+        {
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-start",
+          "id": "prt_1ff78e4b6001XBru0g5UVB8GOH",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78e1d50011SGt7AR9YEhbUl"
+        },
+        {
+          "type": "reasoning",
+          "text": "Wait a moment, line 5845 of the earlier grep had `@ollama_app.route(\"/api/chat\", methods=[\"POST\"])`, and line 6079 had `@ollama_app.route(\"/api/generate\", methods=[\"POST\"])`. So `ollama_generate` is on line 6080. In the table above, I mistakenly wrote the generate handler as 5880 — that's wrong. In the first big grep: `Line 5845: @ollama_app.route(\"/api/chat\"...)`, `Line 6079: @ollama_app.route(\"/api/generate\", methods=[\"POST\"])`. And in the read, `5846: def ollama_chat():`, `6080: def ollama_generate():`. In other words, generate is 6080. Let me fix the table.\n\nAlso, note that the `@ollama_app.before_request` on lines 5202 and 5727 is a hook, not a route.\n\nConditional registration: all routes are registered unconditionally at import time. What's conditional is *serving*: `ollama_app` is only served when `args.ollama_port` is truthy (lines 7179–7191), and further, it may be zeroed out if that port is in use (line 6939: if the port is taken and it's not the real Ollama, `args.ollama_port = 0`... actually, let me confirm the semantics of that check — line 6933: `if args.ollama_port and not check_port(args.ollama_port):` → warning, `args.ollama_port = 0`). In other words, if the port is taken, the Ollama app is not served at all. Also, the comment on line 5405 says that if you specify `--ollama-port 0`, the Ollama port doesn't exist at all.\n\nAlso, the route responses have runtime conditions (e.g., whisper/embed return 503 if not configured), but that's runtime behavior, not conditional registration.\n\nLine number convention: the user was asking for \"the line number where the route handler is defined\" — I'll report the line of the `def`, but I'll also clearly state the decorator line for clarity. Format: \"METHOD(s) path (line N)\". I'll use the handler's def line and, where relevant, also state the decorator line. I'll keep the requested format: `METHOD(s)  path  (line N)`.",
+          "time": {
+            "start": 1795287475383,
+            "end": 1795287479943
+          },
+          "id": "prt_1ff78e4b7001zwcaRwOvIanPT7",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78e1d50011SGt7AR9YEhbUl"
+        },
+        {
+          "type": "text",
+          "text": "I had one error in that table — corrected: `ollama_generate` is at **line 6080** (decorator at 6079). Here is the final, verified list.\n\n# Complete route list — `C:\\Users\\<user>\\AppData\\Local\\Temp\\subagent-probe\\nollama.py`\n\n**App 1 — `app` (OpenAI-compatible, main port `--port`)** — 9 routes\n\n| METHOD(s) | Path | Handler (def line) |\n|---|---|---|\n| GET (implicit default) | `/` | `gui` (5213, decorator 5212) |\n| GET | `/health` | `health` (5219, decorator 5218) |\n| GET | `/v1/models` | `list_models` (5252, decorator 5251) |\n| POST | `/v1/embeddings` | `openai_embeddings` (5358, decorator 5357) |\n| POST | `/api/embed` | `openai_port_ollama_embed` (5411, decorator 5410) |\n| POST | `/api/embeddings` | `openai_port_ollama_embeddings_legacy` (5417, decorator 5416) |\n| POST | `/v1/cancel` | `cancel_generation` (5423, decorator 5422) |\n| POST | `/v1/audio/transcriptions` | `audio_transcriptions` (5432, decorator 5431) |\n| POST | `/v1/chat/completions` | `chat_completions` (5475, decorator 5474) |\n\n**App 2 — `ollama_app` (Ollama-compatible, alternate port `--ollama-port`)** — 12 routes\n\n| METHOD(s) | Path | Handler (def line) |\n|---|---|---|\n| GET (implicit default) | `/` | `ollama_health` (5734, decorator 5733) |\n| GET | `/api/version` | `ollama_version` (5741, decorator 5740) |\n| POST | `/api/embed` | `ollama_embed` (5753, decorator 5752) |\n| POST | `/api/embeddings` | `ollama_embeddings_legacy` (5759, decorator 5758) |\n| GET | `/api/tags` | `ollama_tags` (5765, decorator 5764) |\n| POST | `/api/show` | `ollama_show` (5799, decorator 5798) |\n| POST | `/api/chat` | `ollama_chat` (5846, decorator 5845) |\n| POST | `/api/generate` | `ollama_generate` (6080, decorator 6079) |\n| POST | `/api/pull` | `ollama_pull` (6210, decorator 6209) |\n| DELETE | `/api/delete` | `ollama_delete` (6217, decorator 6216) |\n| POST | `/api/copy` | `ollama_copy` (6223, decorator 6222) |\n| POST | `/v1/chat/completions` | `ollama_v1_chat_completions` (6229, decorator 6228) |\n\nIn the requested one-line format:\n\n```\nGET    /                          (line 5213)\nGET    /health                    (line 5219)\nGET    /v1/models                 (line 5252)\nPOST   /v1/embeddings             (line 5358)\nPOST   /api/embed                 (line 5411)\nPOST   /api/embeddings            (line 5417)\nPOST   /v1/cancel                 (line 5423)\nPOST   /v1/audio/transcriptions   (line 5432)\nPOST   /v1/chat/completions       (line 5475)\n\nGET    /                          (line 5734)   [ollama_app]\nGET    /api/version               (line 5741)   [ollama_app]\nPOST   /api/embed                 (line 5753)   [ollama_app]\nPOST   /api/embeddings            (line 5759)   [ollama_app]\nGET    /api/tags                  (line 5765)   [ollama_app]\nPOST   /api/show                  (line 5799)   [ollama_app]\nPOST   /api/chat                  (line 5846)   [ollama_app]\nPOST   /api/generate              (line 6080)   [ollama_app]\nPOST   /api/pull                  (line 6210)   [ollama_app]\nDELETE /api/delete                (line 6217)   [ollama_app]\nPOST   /api/copy                  (line 6223)   [ollama_app]\nPOST   /v1/chat/completions       (line 6229)   [ollama_app]\n```\n\n## How I verified completeness\n\n- `@app.route(` count: 9; `@ollama_app.route(` count: 12; total 21 — matches the line-by-line grep.\n- Grep for `@app.get/post/put/delete/patch`, `add_url_rule`, `Blueprint`, `register_blueprint`, `errorhandler`, `@after_request` (as a route) in `nollama.py`: **zero hits**. The only other `@app.`/`@ollama_app.` members are two `@before_request` hooks (lines 5202, 5727), which are not routes.\n- Only two `Flask(...)` instances in the file (lines 4688, 5723); no sub-apps, no blueprints, no dynamic registration.\n- No path parameters (`<id>` etc.) anywhere; all paths are literal.\n- Note: the grep for `@app.route` also hits in `docs/archive/WEB-UI-PLAN.md` and `docs/archive/OLLAMA-API-PLAN.md` — those are documentation/plan snippets, not live code.\n\n## Conditional registration — and an important nuance\n\n**All 21 routes are registered unconditionally at import time.** None are registered inside an `if`, and no route exists conditionally on flags or devices. What *is* conditional is **serving**:\n\n- `app` (the 9 OpenAI-port routes) is always served on `args.port` (line 7195, main thread).\n- `ollama_app` (the 12 Ollama-port routes) is only put on the wire **if `args.ollama_port` is truthy** (lines 7179–7191, background daemon thread). If `--ollama-port` is `0`/omitted the app is never started. Additionally, if that port is already in use the flag is forced to `0` (lines 6933–6939) and the Ollama app is silently not served — so the 12 Ollama routes can be unreachable even though they're registered.\n- Related: this is why the OpenAI-port app deliberately *also* serves the Ollama-shaped embedding routes (`/api/embed`, `/api/embeddings`) and why the Ollama-port app also serves `/v1/chat/completions` — the comment block at lines 5405–5409 and the docstring at 6230 explain this cross-port duplication (a client configured with one base URL must get embeddings/chat even if only one port exists).\n\nA few more observations worth noting:\n\n- The two routes with no explicit `methods=` (`/` on both apps, lines 5212 and 5733) default to **GET only** (HEAD/OPTIONS remain implicit per Flask).\n- Runtime (not registration) conditions inside handlers: `/v1/audio/transcriptions` returns 503 if no whisper slot is configured; the three embedding routes return 503 if no embed slot is ready; `/api/pull`, `/api/delete`, `/api/copy` are intentional stubs (lines 6208–6225) that exist only because clients probe for them.\n- `/v1/chat/completions` on the Ollama app (6229) is a thin delegate that calls the same `chat_completions()` handler as the OpenAI app (6232 → 5475).",
+          "time": {
+            "start": 1795287479945,
+            "end": 1795287493284
+          },
+          "id": "prt_1ff78f688001sz5360ob2cMb1E",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78e1d50011SGt7AR9YEhbUl"
+        },
+        {
+          "reason": "stop",
+          "snapshot": "0212166a42c9dcfada5728b8dd7bcfd44b3dc472",
+          "type": "step-finish",
+          "tokens": {
+            "total": 35377,
+            "input": 985,
+            "output": 2531,
+            "reasoning": 0,
+            "cache": {
+              "write": 0,
+              "read": 31861
+            }
+          },
+          "cost": 0,
+          "id": "prt_1ff792b38001OGDUrZ1aXkv0P9",
+          "sessionID": "ses_e0087ef0affeEB8w2llYI1nG0R",
+          "messageID": "msg_1ff78e1d50011SGt7AR9YEhbUl"
+        }
+      ]
+    }
+  ]
+}
